@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Public Economics Case | Sector Corporate University</title>
+
+    <style>
+
+        /* ==================================================================================================== */
+        /* ===========================================  COLOURS  ============================================== */
+        /* ==================================================================================================== */
+
+        :root {
+            --red: #AF144B;
+            --deep: #75052F;
+            --ink: #261620;
+            --cream: #FFF8F5;
+            --white: #FFFFFF;
+            --line: #F0D9DF;
+            --muted: #735E68;
+            --soft: #F8ECEF;
+
+            --public: #6A55A5;
+            --public-soft: #F0ECF8;
+            --public-deep: #463876;
+
+            --success: #3F7C5A;
+            --success-soft: #EDF6F0;
+            --warning: #A66C22;
+            --warning-soft: #FFF4E5;
+
+            --shadow: 0 14px 40px rgba(78, 23, 48, 0.10);
+            --shadow-small: 0 8px 24px rgba(78, 23, 48, 0.08);
+        }
+
+
+        /* ==================================================================================================== */
+        /* ========================================  PAGE RESET  ============================================== */
+        /* ==================================================================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+        }
+
+        button,
+        textarea,
+        input {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+        /* ==================================================================================================== */
+        /* ==========================================  HEADER  ================================================ */
+        /* ==================================================================================================== */
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 14px 28px;
+            background: rgba(255, 248, 245, 0.96);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(12px);
+        }
+
+        .brand-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .logo {
+            width: 46px;
+            height: 46px;
+            flex: 0 0 46px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--red), var(--deep));
+            color: white;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-text b {
+            display: block;
+            font-size: 15px;
+        }
+
+        .brand-text small {
+            display: block;
+            margin-top: 3px;
+            color: var(--muted);
+        }
+
+        .topnav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-link {
+            padding: 10px 12px;
+            border-radius: 10px;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .nav-link:hover {
+            background: var(--soft);
+            color: var(--deep);
+        }
+
+        .nav-ai {
+            border: 0;
+            border-radius: 10px;
+            padding: 10px 14px;
+            background: var(--deep);
+            color: white;
+            font-weight: 800;
+        }
+
+
+        /* ==================================================================================================== */
+        /* ========================================  PAGE LAYOUT  ============================================= */
+        /* ==================================================================================================== */
+
+        .page {
+            width: min(1440px, 100%);
+            margin: 0 auto;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 34px 30px 30px;
+            color: white;
+            background:
+                radial-gradient(circle at 86% 16%, rgba(255,255,255,0.12), transparent 22%),
+                radial-gradient(circle at 72% 85%, rgba(255,255,255,0.08), transparent 30%),
+                linear-gradient(130deg, var(--public-deep), var(--public), var(--deep));
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.7fr);
+            gap: 28px;
+            align-items: end;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            opacity: 0.92;
+        }
+
+        .eyebrow-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .hero h1 {
+            max-width: 850px;
+            margin: 0;
+            font-size: clamp(34px, 4.6vw, 64px);
+            line-height: 0.98;
+            letter-spacing: -2.2px;
+        }
+
+        .hero p {
+            max-width: 820px;
+            margin: 18px 0 0;
+            font-size: 17px;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.88);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 22px;
+        }
+
+        .btn {
+            border: 0;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-weight: 800;
+            transition: 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-light {
+            background: white;
+            color: var(--public-deep);
+        }
+
+        .btn-ghost-light {
+            background: rgba(255,255,255,0.13);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+        }
+
+        .hero-card {
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.10);
+            border-radius: 18px;
+            padding: 18px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-card-label {
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 800;
+            opacity: 0.8;
+        }
+
+        .hero-card h3 {
+            margin: 7px 0 4px;
+            font-size: 22px;
+        }
+
+        .hero-card p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .progress-track {
+            height: 8px;
+            margin-top: 16px;
+            border-radius: 999px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.17);
+        }
+
+        .progress-bar {
+            width: 20%;
+            height: 100%;
+            border-radius: inherit;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.82);
+        }
+
+
+        /* ==================================================================================================== */
+        /* ======================================  MAIN WORKSPACE  ============================================ */
+        /* ==================================================================================================== */
+
+        .workspace {
+            display: grid;
+            grid-template-columns: 280px minmax(0, 1fr);
+            gap: 24px;
+            padding: 26px 28px 42px;
+        }
+
+        .sidebar {
+            align-self: start;
+            position: sticky;
+            top: 86px;
+            border: 1px solid var(--line);
+            background: white;
+            border-radius: 18px;
+            padding: 16px;
+            box-shadow: var(--shadow-small);
+        }
+
+        .sidebar-title {
+            margin: 2px 0 14px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--muted);
+            font-weight: 800;
+        }
+
+        .step-nav {
+            display: grid;
+            gap: 8px;
+        }
+
+        .step-button {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 34px 1fr;
+            gap: 10px;
+            align-items: center;
+            text-align: left;
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--ink);
+        }
+
+        .step-button:hover {
+            background: var(--public-soft);
+        }
+
+        .step-button.active {
+            background: var(--public-soft);
+            border-color: #D8CFEC;
+        }
+
+        .step-number {
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--soft);
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--muted);
+        }
+
+        .step-button.active .step-number {
+            background: var(--public);
+            color: white;
+        }
+
+        .step-button.complete .step-number {
+            background: var(--success);
+            color: white;
+        }
+
+        .step-copy strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .step-copy small {
+            display: block;
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .sidebar-footer {
+            margin-top: 16px;
+            padding: 14px;
+            border-radius: 14px;
+            background: var(--soft);
+        }
+
+        .sidebar-footer strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .sidebar-footer p {
+            margin: 5px 0 0;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.45;
+        }
+
+
+        /* ==================================================================================================== */
+        /* ========================================  CASE PANEL  ============================================== */
+        /* ==================================================================================================== */
+
+        .case-panel {
+            min-width: 0;
+        }
+
+        .section-card {
+            display: none;
+            border: 1px solid var(--line);
+            background: white;
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-card.active {
+            display: block;
+            animation: fadeIn 0.24s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-kicker {
+            color: var(--public);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.1px;
+            font-weight: 800;
+        }
+
+        .section-card h2 {
+            margin: 8px 0 10px;
+            font-size: clamp(26px, 3vw, 38px);
+            letter-spacing: -1px;
+        }
+
+        .section-intro {
+            max-width: 850px;
+            margin: 0 0 24px;
+            color: var(--muted);
+            line-height: 1.65;
+            font-size: 15px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .info-box {
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 17px;
+            background: #FFFCFB;
+        }
+
+        .info-box small {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .info-box strong {
+            display: block;
+            font-size: 16px;
+            line-height: 1.35;
+        }
+
+        .info-box p {
+            margin: 8px 0 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .briefing {
+            margin-top: 18px;
+            padding: 18px;
+            border-left: 4px solid var(--public);
+            border-radius: 0 14px 14px 0;
+            background: var(--public-soft);
+        }
+
+        .briefing strong {
+            display: block;
+            margin-bottom: 7px;
+        }
+
+        .briefing p {
+            margin: 0;
+            line-height: 1.6;
+            color: #574E66;
+        }
+
+
+        /* ==================================================================================================== */
+        /* ======================================  QUESTION CARDS  ============================================ */
+        /* ==================================================================================================== */
+
+        .question-block {
+            margin-top: 22px;
+            border-top: 1px solid var(--line);
+            padding-top: 22px;
+        }
+
+        .question-block h3 {
+            margin: 0 0 8px;
+            font-size: 18px;
+        }
+
+        .question-block > p {
+            margin: 0 0 14px;
+            color: var(--muted);
+            line-height: 1.55;
+        }
+
+        .options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .option {
+            width: 100%;
+            text-align: left;
+            padding: 14px 15px;
+            border-radius: 13px;
+            border: 1px solid var(--line);
+            background: white;
+            color: var(--ink);
+            line-height: 1.45;
+        }
+
+        .option:hover {
+            border-color: #CFC3E7;
+            background: #FCFAFF;
+        }
+
+        .option.selected {
+            border-color: var(--public);
+            background: var(--public-soft);
+        }
+
+        .feedback {
+            display: none;
+            margin-top: 14px;
+            padding: 16px;
+            border-radius: 14px;
+            line-height: 1.55;
+            font-size: 14px;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.good {
+            background: var(--success-soft);
+            border: 1px solid #CDE4D5;
+        }
+
+        .feedback.coach {
+            background: var(--public-soft);
+            border: 1px solid #D8CFEC;
+        }
+
+        .feedback.warning {
+            background: var(--warning-soft);
+            border: 1px solid #F0D4AB;
+        }
+
+        .feedback strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+
+        /* ==================================================================================================== */
+        /* =======================================  AI COACH BOX  ============================================= */
+        /* ==================================================================================================== */
+
+        .ai-coach {
+            margin-top: 22px;
+            border-radius: 17px;
+            padding: 19px;
+            background:
+                linear-gradient(135deg, rgba(106,85,165,0.10), rgba(175,20,75,0.08));
+            border: 1px solid #D9CEE7;
+        }
+
+        .ai-coach-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .ai-icon {
+            width: 35px;
+            height: 35px;
+            display: grid;
+            place-items: center;
+            border-radius: 11px;
+            background: linear-gradient(135deg, var(--public), var(--deep));
+            color: white;
+            font-weight: 800;
+        }
+
+        .ai-coach-header strong {
+            display: block;
+        }
+
+        .ai-coach-header small {
+            display: block;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .ai-coach p {
+            margin: 0;
+            color: #564B5B;
+            line-height: 1.6;
+        }
+
+
+        /* ==================================================================================================== */
+        /* =========================================  TEXT AREA  ============================================== */
+        /* ==================================================================================================== */
+
+        .response-area {
+            margin-top: 18px;
+        }
+
+        .response-area label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            resize: vertical;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 14px;
+            outline: none;
+            background: #FFFCFB;
+            color: var(--ink);
+            line-height: 1.55;
+        }
+
+        textarea:focus {
+            border-color: var(--public);
+            box-shadow: 0 0 0 3px rgba(106,85,165,0.10);
+        }
+
+
+        /* ==================================================================================================== */
+        /* =========================================  FOOTER NAV  ============================================= */
+        /* ==================================================================================================== */
+
+        .section-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: center;
+            margin-top: 26px;
+            padding-top: 20px;
+            border-top: 1px solid var(--line);
+        }
+
+        .action-right {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .btn-secondary {
+            background: white;
+            border: 1px solid var(--line);
+            color: var(--deep);
+        }
+
+        .btn-primary {
+            background: var(--deep);
+            color: white;
+        }
+
+        .btn-public {
+            background: var(--public);
+            color: white;
+        }
+
+
+        /* ==================================================================================================== */
+        /* =======================================  COMPLETION CARD  ========================================== */
+        /* ==================================================================================================== */
+
+        .completion-panel {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .completion-icon {
+            width: 78px;
+            height: 78px;
+            margin: 0 auto 18px;
+            border-radius: 24px;
+            display: grid;
+            place-items: center;
+            background: var(--success-soft);
+            color: var(--success);
+            font-size: 34px;
+            font-weight: 800;
+        }
+
+        .completion-panel h2 {
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .completion-panel .section-intro {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .evidence-card {
+            max-width: 760px;
+            margin: 22px auto 0;
+            text-align: left;
+            padding: 19px;
+            border-radius: 16px;
+            border: 1px solid var(--line);
+            background: #FFFCFB;
+        }
+
+        .evidence-card h3 {
+            margin: 0 0 12px;
+        }
+
+        .evidence-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .evidence-item {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .tick {
+            width: 22px;
+            height: 22px;
+            flex: 0 0 22px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--success-soft);
+            color: var(--success);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+
+        /* ==================================================================================================== */
+        /* ============================================  TOAST  =============================================== */
+        /* ==================================================================================================== */
+
+        .toast {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 100;
+            max-width: 360px;
+            padding: 13px 16px;
+            border-radius: 12px;
+            background: var(--ink);
+            color: white;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(8px);
+            transition: 0.2s ease;
+            font-size: 14px;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* ==================================================================================================== */
+        /* =======================================  RESPONSIVE DESIGN  ======================================== */
+        /* ==================================================================================================== */
+
+        @media (max-width: 980px) {
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .workspace {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .step-nav {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 760px) {
+
+            .topbar {
+                padding: 12px 16px;
+                align-items: flex-start;
+            }
+
+            .topnav {
+                display: none;
+            }
+
+            .hero {
+                padding: 28px 18px 24px;
+            }
+
+            .workspace {
+                padding: 18px 14px 34px;
+            }
+
+            .section-card {
+                padding: 21px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step-nav {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .section-actions {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .action-right {
+                justify-content: stretch;
+            }
+
+            .action-right .btn,
+            .section-actions > .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .step-nav {
+                grid-template-columns: 1fr;
+            }
+
+            .brand-text small {
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ==================================================================================================== -->
+    <!-- ============================================  HEADER  ============================================== -->
+    <!-- ==================================================================================================== -->
+
+    <header class="topbar">
+
+        <div class="brand-wrap">
+            <div class="logo">SCU</div>
+
+            <div class="brand-text">
+                <b>Sector Corporate University</b>
+                <small>Public Sector Faculty</small>
+            </div>
+        </div>
+
+        <nav class="topnav">
+            <a class="nav-link" href="public.html">← Public Sector learning</a>
+            <a class="nav-link" href="index.html">Campus home</a>
+            <button class="nav-ai" onclick="toast('SCU AI Coach opened')">Ask SCU AI</button>
+        </nav>
+
+    </header>
+
+
+    <!-- ==================================================================================================== -->
+    <!-- =============================================  HERO  =============================================== -->
+    <!-- ==================================================================================================== -->
+
+    <main class="page">
+
+        <section class="hero">
+
+            <div class="hero-grid">
+
+                <div>
+                    <div class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        Public Sector · Applied Case
+                    </div>
+
+                    <h1>Public Economics Case</h1>
+
+                    <p>
+                        Work through a realistic public-institution scenario. Interpret the mandate,
+                        fiscal dynamics, liquidity pressures, risks and potential banking needs before
+                        deciding how you would prepare for a stakeholder conversation.
+                    </p>
+
+                    <div class="hero-actions">
+                        <button class="btn btn-light" onclick="goToStep(0)">Start case</button>
+                        <button class="btn btn-ghost-light" onclick="toast('Case saved to My Learning')">Save for later</button>
+                    </div>
+                </div>
+
+                <aside class="hero-card">
+                    <div class="hero-card-label">Developing pathway</div>
+                    <h3>Guided application</h3>
+                    <p>
+                        Builds from sector knowledge toward credible, mandate-led stakeholder engagement.
+                    </p>
+
+                    <div class="progress-track">
+                        <div class="progress-bar" id="heroProgress"></div>
+                    </div>
+
+                    <div class="progress-text">
+                        <span id="progressLabel">Step 1 of 5</span>
+                        <span id="progressPercent">20%</span>
+                    </div>
+                </aside>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================================================================== -->
+        <!-- ==========================================  WORKSPACE  ============================================ -->
+        <!-- ==================================================================================================== -->
+
+        <section class="workspace">
+
+            <!-- ==================================================================================================== -->
+            <!-- ===========================================  SIDEBAR  ============================================= -->
+            <!-- ==================================================================================================== -->
+
+            <aside class="sidebar">
+
+                <div class="sidebar-title">Case journey</div>
+
+                <div class="step-nav">
+
+                    <button class="step-button active" onclick="goToStep(0)">
+                        <span class="step-number">1</span>
+                        <span class="step-copy">
+                            <strong>Institution context</strong>
+                            <small>Mandate & ecosystem</small>
+                        </span>
+                    </button>
+
+                    <button class="step-button" onclick="goToStep(1)">
+                        <span class="step-number">2</span>
+                        <span class="step-copy">
+                            <strong>Fiscal dynamics</strong>
+                            <small>Revenue, spend & timing</small>
+                        </span>
+                    </button>
+
+                    <button class="step-button" onclick="goToStep(2)">
+                        <span class="step-number">3</span>
+                        <span class="step-copy">
+                            <strong>Needs & risk</strong>
+                            <small>Banking hypotheses</small>
+                        </span>
+                    </button>
+
+                    <button class="step-button" onclick="goToStep(3)">
+                        <span class="step-number">4</span>
+                        <span class="step-copy">
+                            <strong>Stakeholder prep</strong>
+                            <small>Questions & next actions</small>
+                        </span>
+                    </button>
+
+                    <button class="step-button" onclick="goToStep(4)">
+                        <span class="step-number">5</span>
+                        <span class="step-copy">
+                            <strong>Reflect & evidence</strong>
+                            <small>Capture learning</small>
+                        </span>
+                    </button>
+
+                </div>
+
+                <div class="sidebar-footer">
+                    <strong>What this activity develops</strong>
+                    <p>
+                        Institutional context, fiscal interpretation, risk awareness,
+                        solution hypotheses and guided client preparation.
+                    </p>
+                </div>
+
+            </aside>
+
+
+            <!-- ==================================================================================================== -->
+            <!-- =========================================  CASE CONTENT  =========================================== -->
+            <!-- ==================================================================================================== -->
+
+            <div class="case-panel">
+
+
+                <!-- ==================================================================================================== -->
+                <!-- ===================================  STEP 1: INSTITUTION CONTEXT  ================================= -->
+                <!-- ==================================================================================================== -->
+
+                <article class="section-card active">
+
+                    <div class="section-kicker">Step 1 · Map institutional context</div>
+                    <h2>Understand the institution before discussing solutions</h2>
+
+                    <p class="section-intro">
+                        Begin with the institution’s mandate, operating context and stakeholder ecosystem.
+                        The objective is not to jump immediately to a product. First establish how the institution
+                        creates public value, how decisions are made and which parties influence delivery.
+                    </p>
+
+                    <div class="info-grid">
+
+                        <div class="info-box">
+                            <small>Institution</small>
+                            <strong>Metro Infrastructure & Services Agency</strong>
+                            <p>A fictional public entity used for this learning case.</p>
+                        </div>
+
+                        <div class="info-box">
+                            <small>Mandate</small>
+                            <strong>Coordinate and deliver priority urban infrastructure programmes</strong>
+                            <p>Focus areas include transport access, water resilience and municipal service upgrades.</p>
+                        </div>
+
+                        <div class="info-box">
+                            <small>Operating context</small>
+                            <strong>Multi-year capital programme with several delivery partners</strong>
+                            <p>Execution depends on public budgets, procurement, contractors and intergovernmental coordination.</p>
+                        </div>
+
+                        <div class="info-box">
+                            <small>Current challenge</small>
+                            <strong>Timing mismatch between approved expenditure and supplier payment cycles</strong>
+                            <p>Management is concerned about programme delays and pressure across the supplier ecosystem.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="briefing">
+                        <strong>Your briefing</strong>
+                        <p>
+                            You are preparing to support a relationship manager before an introductory stakeholder meeting.
+                            Your task is to frame the institution in context before proposing questions, risks or banking needs.
+                        </p>
+                    </div>
+
+                    <div class="question-block">
+                        <h3>What should you establish first?</h3>
+                        <p>Select the strongest starting point for the conversation.</p>
+
+                        <div class="options">
+                            <button class="option" onclick="selectOption(this, 'contextFeedback', 'good')">
+                                Clarify the institution’s mandate, decision-makers, funding relationships and delivery ecosystem.
+                            </button>
+
+                            <button class="option" onclick="selectOption(this, 'contextFeedback', 'warning')">
+                                Begin by presenting a suite of banking products that may suit public institutions.
+                            </button>
+
+                            <button class="option" onclick="selectOption(this, 'contextFeedback', 'coach')">
+                                Focus only on the current supplier-payment concern before understanding the wider operating model.
+                            </button>
+                        </div>
+
+                        <div class="feedback good" id="contextFeedback">
+                            <strong>AI Coach</strong>
+                            A strong Public Sector conversation starts with institutional context. Understanding mandate,
+                            stakeholders, funding and delivery pathways helps prevent premature product-led assumptions.
+                        </div>
+                    </div>
+
+                    <div class="section-actions">
+                        <button class="btn btn-secondary" onclick="window.location.href='public.html'">← Back to learning</button>
+
+                        <div class="action-right">
+                            <button class="btn btn-primary" onclick="completeAndNext(0)">Continue to fiscal dynamics →</button>
+                        </div>
+                    </div>
+
+                </article>
+
+
+                <!-- ==================================================================================================== -->
+                <!-- =====================================  STEP 2: FISCAL DYNAMICS  =================================== -->
+                <!-- ==================================================================================================== -->
+
+                <article class="section-card">
+
+                    <div class="section-kicker">Step 2 · Diagnose fiscal dynamics</div>
+                    <h2>Follow the money, timing and constraints</h2>
+
+                    <p class="section-intro">
+                        Public-sector financial needs cannot be understood from annual budget totals alone.
+                        Consider where revenue comes from, when funding becomes available, when expenditure falls due,
+                        and how capital-programme execution affects liquidity.
+                    </p>
+
+                    <div class="info-grid">
+
+                        <div class="info-box">
+                            <small>Funding profile</small>
+                            <strong>Transfers, own-source revenue and project-specific capital allocations</strong>
+                            <p>Not all funding arrives at the same time or with the same degree of flexibility.</p>
+                        </div>
+
+                        <div class="info-box">
+                            <small>Expenditure profile</small>
+                            <strong>Large contractor and supplier payments linked to project milestones</strong>
+                            <p>Cash requirements can cluster around delivery and certification cycles.</p>
+                        </div>
+
+                        <div class="info-box">
+                            <small>Timing issue</small>
+                            <strong>Approved expenditure can precede the practical availability of cash</strong>
+                            <p>This can create short-term pressure even where the programme is fully budgeted.</p>
+                        </div>
+
+                        <div class="info-box">
+                            <small>Management concern</small>
+                            <strong>Delay in payments could slow delivery and place smaller suppliers under pressure</strong>
+                            <p>The problem is operational as well as financial.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="question-block">
+                        <h3>Which hypothesis is most useful to test?</h3>
+                        <p>Choose the interpretation that best connects fiscal structure to the institution’s operating challenge.</p>
+
+                        <div class="options">
+                            <button class="option" onclick="selectOption(this, 'fiscalFeedback', 'good')">
+                                The institution may have a cash-timing mismatch that requires closer analysis of inflows,
+                                payment cycles and short-term liquidity requirements.
+                            </button>
+
+                            <button class="option" onclick="selectOption(this, 'fiscalFeedback', 'warning')">
+                                The institution clearly has insufficient annual funding and therefore requires long-term borrowing.
+                            </button>
+
+                            <button class="option" onclick="selectOption(this, 'fiscalFeedback', 'coach')">
+                                Because expenditure is approved, liquidity is unlikely to be relevant.
+                            </button>
+                        </div>
+
+                        <div class="feedback good" id="fiscalFeedback">
+                            <strong>AI Coach</strong>
+                            Correct direction. Budget approval and cash availability are not the same thing.
+                            The useful next step is to understand the timing, restrictions and predictability of cash flows
+                            before drawing conclusions about financing.
+                        </div>
+                    </div>
+
+                    <div class="ai-coach">
+                        <div class="ai-coach-header">
+                            <div class="ai-icon">AI</div>
+                            <div>
+                                <strong>Public Sector Faculty Agent</strong>
+                                <small>Coaching prompt</small>
+                            </div>
+                        </div>
+
+                        <p>
+                            Ask yourself: What is structurally funded, what is timing-driven, and what might indicate a
+                            deeper affordability or execution problem? Those distinctions change the banking conversation.
+                        </p>
+                    </div>
+
+                    <div class="section-actions">
+                        <button class="btn btn-secondary" onclick="goToStep(0)">← Previous</button>
+
+                        <div class="action-right">
+                            <button class="btn btn-primary" onclick="completeAndNext(1)">Continue to needs & risk →</button>
+                        </div>
+                    </div>
+
+                </article>
+
+
+                <!-- ==================================================================================================== -->
+                <!-- =======================================  STEP 3: NEEDS & RISK  ===================================== -->
+                <!-- ==================================================================================================== -->
+
+                <article class="section-card">
+
+                    <div class="section-kicker">Step 3 · Connect needs and risk</div>
+                    <h2>Move from context to informed hypotheses</h2>
+
+                    <p class="section-intro">
+                        Your objective is not to decide the solution before the client conversation.
+                        Instead, develop evidence-based hypotheses about potential needs, risks and areas requiring specialist input.
+                    </p>
+
+                    <div class="info-grid">
+
+                        <div class="info-box">
+                            <small>Possible banking need</small>
+                            <strong>Cash visibility and liquidity management</strong>
+                            <p>Relevant if timing mismatches are recurring and predictable.</p>
+                        </div>
+
+                        <div class="info-box">
+                            <small>Possible banking need</small>
+                            <strong>Payments and supplier ecosystem support</strong>
+                            <p>Relevant where high-volume or milestone-linked payments affect programme delivery.</p>
+                        </div>
+
+                        <div class="info-box">
+                            <small>Risk question</small>
+                            <strong>What governance and approvals govern access to funding or banking facilities?</strong>
+                            <p>Public-sector mandates, policy boundaries and delegated authority matter.</p>
+                        </div>
+
+                        <div class="info-box">
+                            <small>Execution question</small>
+                            <strong>Are delays caused by liquidity, approvals, procurement or project execution?</strong>
+                            <p>Different root causes require different responses.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="question-block">
+                        <h3>Which is the strongest next position?</h3>
+                        <p>Select the most credible way to frame potential opportunity without overreaching.</p>
+
+                        <div class="options">
+                            <button class="option" onclick="selectOption(this, 'needsFeedback', 'good')">
+                                Explore cash-flow timing, payment processes, governance constraints and delivery bottlenecks
+                                before determining whether liquidity, transaction or other solutions are relevant.
+                            </button>
+
+                            <button class="option" onclick="selectOption(this, 'needsFeedback', 'warning')">
+                                Recommend a funding facility immediately because the institution has delayed supplier payments.
+                            </button>
+
+                            <button class="option" onclick="selectOption(this, 'needsFeedback', 'coach')">
+                                Treat the issue only as a payments-process problem and avoid discussing fiscal context.
+                            </button>
+                        </div>
+
+                        <div class="feedback good" id="needsFeedback">
+                            <strong>AI Coach</strong>
+                            This keeps the discussion mandate-led and diagnostic. It connects potential banking needs to
+                            evidence while recognising governance, policy and execution boundaries.
+                        </div>
+                    </div>
+
+                    <div class="section-actions">
+                        <button class="btn btn-secondary" onclick="goToStep(1)">← Previous</button>
+
+                        <div class="action-right">
+                            <button class="btn btn-primary" onclick="completeAndNext(2)">Prepare stakeholder questions →</button>
+                        </div>
+                    </div>
+
+                </article>
+
+
+                <!-- ==================================================================================================== -->
+                <!-- ====================================  STEP 4: STAKEHOLDER PREP  ==================================== -->
+                <!-- ==================================================================================================== -->
+
+                <article class="section-card">
+
+                    <div class="section-kicker">Step 4 · Lead with guidance</div>
+                    <h2>Prepare for a credible stakeholder conversation</h2>
+
+                    <p class="section-intro">
+                        A good discovery conversation should test your hypotheses rather than simply confirm them.
+                        Frame questions that connect institutional mandate, fiscal dynamics, operational delivery and banking needs.
+                    </p>
+
+                    <div class="info-grid">
+
+                        <div class="info-box">
+                            <small>Mandate question</small>
+                            <strong>Which programmes and service outcomes are most exposed if payment timing deteriorates?</strong>
+                        </div>
+
+                        <div class="info-box">
+                            <small>Fiscal question</small>
+                            <strong>How predictable are major inflows relative to contractor and supplier payment cycles?</strong>
+                        </div>
+
+                        <div class="info-box">
+                            <small>Governance question</small>
+                            <strong>Which approvals and policy constraints shape available liquidity or transaction options?</strong>
+                        </div>
+
+                        <div class="info-box">
+                            <small>Opportunity question</small>
+                            <strong>Where could better cash visibility, payments execution or specialist support reduce friction?</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="response-area">
+                        <label for="learnerQuestions">Write two additional questions you would ask in the meeting</label>
+
+                        <textarea
+                            id="learnerQuestions"
+                            placeholder="Example: How do funding receipt dates compare with your largest monthly supplier-payment commitments?"
+                        ></textarea>
+                    </div>
+
+                    <div class="ai-coach">
+                        <div class="ai-coach-header">
+                            <div class="ai-icon">AI</div>
+                            <div>
+                                <strong>AI Coach guidance</strong>
+                                <small>What makes a strong question?</small>
+                            </div>
+                        </div>
+
+                        <p>
+                            Strong questions are open, evidence-seeking and tied to the institution’s operating model.
+                            Avoid questions that assume a specific product is already the answer.
+                        </p>
+                    </div>
+
+                    <div class="section-actions">
+                        <button class="btn btn-secondary" onclick="goToStep(2)">← Previous</button>
+
+                        <div class="action-right">
+                            <button class="btn btn-public" onclick="reviewQuestions()">Ask AI Coach to review</button>
+                            <button class="btn btn-primary" onclick="completeAndNext(3)">Continue to reflection →</button>
+                        </div>
+                    </div>
+
+                </article>
+
+
+                <!-- ==================================================================================================== -->
+                <!-- ====================================  STEP 5: REFLECT & EVIDENCE  ================================== -->
+                <!-- ==================================================================================================== -->
+
+                <article class="section-card">
+
+                    <div class="section-kicker">Step 5 · Capture evidence</div>
+                    <h2>Turn the activity into capability evidence</h2>
+
+                    <p class="section-intro">
+                        The SCU journey is not only about completing content. Capture what you learned,
+                        what you would do differently and how the activity demonstrates progress toward Developing capability.
+                    </p>
+
+                    <div class="response-area">
+                        <label for="reflection">What is the most important thing you would carry into a real Public Sector stakeholder conversation?</label>
+
+                        <textarea
+                            id="reflection"
+                            placeholder="Reflect on how mandate, fiscal timing, governance, risk and banking needs connect..."
+                        ></textarea>
+                    </div>
+
+                    <div class="response-area">
+                        <label for="nextAction">What would you do next if this were a real client?</label>
+
+                        <textarea
+                            id="nextAction"
+                            placeholder="For example: validate cash-flow timing, identify approval boundaries, involve a specialist, prepare targeted follow-up..."
+                        ></textarea>
+                    </div>
+
+                    <div class="evidence-card">
+                        <h3>Evidence this activity can capture</h3>
+
+                        <div class="evidence-list">
+                            <div class="evidence-item">
+                                <span class="tick">✓</span>
+                                <span>Interpretation of institutional mandate and stakeholder context.</span>
+                            </div>
+
+                            <div class="evidence-item">
+                                <span class="tick">✓</span>
+                                <span>Understanding of revenue, expenditure, liquidity and capital timing.</span>
+                            </div>
+
+                            <div class="evidence-item">
+                                <span class="tick">✓</span>
+                                <span>Risk and solution hypotheses developed without prematurely prescribing a product.</span>
+                            </div>
+
+                            <div class="evidence-item">
+                                <span class="tick">✓</span>
+                                <span>Mandate-led stakeholder questions and learner reflection.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-actions">
+                        <button class="btn btn-secondary" onclick="goToStep(3)">← Previous</button>
+
+                        <div class="action-right">
+                            <button class="btn btn-public" onclick="saveEvidence()">Save as capability evidence</button>
+                            <button class="btn btn-primary" onclick="finishCase()">Complete activity →</button>
+                        </div>
+                    </div>
+
+                </article>
+
+
+                <!-- ==================================================================================================== -->
+                <!-- ========================================  COMPLETION  ============================================= -->
+                <!-- ==================================================================================================== -->
+
+                <article class="section-card">
+
+                    <div class="completion-panel">
+
+                        <div class="completion-icon">✓</div>
+
+                        <div class="section-kicker">Activity complete</div>
+
+                        <h2>You have completed the Public Economics Case</h2>
+
+                        <p class="section-intro">
+                            This activity contributes to the Developing pathway by demonstrating guided application
+                            of Public Sector knowledge across institutional context, fiscal dynamics, risk,
+                            opportunity framing and stakeholder preparation.
+                        </p>
+
+                        <div class="evidence-card">
+                            <h3>Suggested next step</h3>
+
+                            <div class="evidence-list">
+                                <div class="evidence-item">
+                                    <span class="tick">→</span>
+                                    <span>
+                                        Move into <strong>Stakeholder Meeting Preparation</strong> or a
+                                        <strong>Public Sector Client Simulation</strong> to practise the conversation.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hero-actions" style="justify-content:center; margin-top:24px;">
+                            <button class="btn btn-public" onclick="window.location.href='public.html'">
+                                Return to Public Sector learning
+                            </button>
+
+                            <button class="btn btn-secondary" onclick="toast('Client simulation would open here in the next prototype stage')">
+                                Preview next practice activity
+                            </button>
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==================================================================================================== -->
+    <!-- =============================================  TOAST  =============================================== -->
+    <!-- ==================================================================================================== -->
+
+    <div class="toast" id="toast"></div>
+
+
+    <!-- ==================================================================================================== -->
+    <!-- ===========================================  JAVASCRIPT  ============================================ -->
+    <!-- ==================================================================================================== -->
+
+    <script>
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* CURRENT CASE STEP
+           Steps 0–4 are the five learning stages.
+           Step 5 is the completion screen.
+        ---------------------------------------------------------------------------------------------------- */
+
+        let currentStep = 0;
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* GO TO A CASE STEP
+        ---------------------------------------------------------------------------------------------------- */
+
+        function goToStep(stepNumber) {
+
+            const sections = document.querySelectorAll(".section-card");
+            const stepButtons = document.querySelectorAll(".step-button");
+
+            sections.forEach(function(section) {
+                section.classList.remove("active");
+            });
+
+            sections[stepNumber].classList.add("active");
+
+            stepButtons.forEach(function(button) {
+                button.classList.remove("active");
+            });
+
+            if (stepNumber < 5) {
+                stepButtons[stepNumber].classList.add("active");
+            }
+
+            currentStep = stepNumber;
+
+            updateProgress();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* MARK A STEP COMPLETE AND MOVE TO THE NEXT STEP
+        ---------------------------------------------------------------------------------------------------- */
+
+        function completeAndNext(stepNumber) {
+
+            const stepButtons = document.querySelectorAll(".step-button");
+
+            if (stepButtons[stepNumber]) {
+                stepButtons[stepNumber].classList.add("complete");
+            }
+
+            goToStep(stepNumber + 1);
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* UPDATE HERO PROGRESS
+        ---------------------------------------------------------------------------------------------------- */
+
+        function updateProgress() {
+
+            const progressBar = document.getElementById("heroProgress");
+            const progressLabel = document.getElementById("progressLabel");
+            const progressPercent = document.getElementById("progressPercent");
+
+            let percent;
+
+            if (currentStep >= 5) {
+                percent = 100;
+                progressLabel.textContent = "Activity complete";
+            } else {
+                percent = (currentStep + 1) * 20;
+                progressLabel.textContent = "Step " + (currentStep + 1) + " of 5";
+            }
+
+            progressBar.style.width = percent + "%";
+            progressPercent.textContent = percent + "%";
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* SELECT AN ANSWER OPTION
+           This prototype gives the same explanatory coaching text after any selection.
+           It can later be connected to real scoring or AI feedback.
+        ---------------------------------------------------------------------------------------------------- */
+
+        function selectOption(clickedOption, feedbackId, feedbackType) {
+
+            const optionGroup = clickedOption.parentElement;
+            const options = optionGroup.querySelectorAll(".option");
+
+            options.forEach(function(option) {
+                option.classList.remove("selected");
+            });
+
+            clickedOption.classList.add("selected");
+
+            const feedback = document.getElementById(feedbackId);
+
+            feedback.classList.remove("good", "coach", "warning");
+            feedback.classList.add("show");
+
+            if (feedbackType === "good") {
+                feedback.classList.add("good");
+            } else if (feedbackType === "warning") {
+                feedback.classList.add("warning");
+            } else {
+                feedback.classList.add("coach");
+            }
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* REVIEW LEARNER QUESTIONS
+           Prototype behaviour only.
+        ---------------------------------------------------------------------------------------------------- */
+
+        function reviewQuestions() {
+
+            const text = document.getElementById("learnerQuestions").value.trim();
+
+            if (text.length < 20) {
+                toast("Add one or two questions first, then ask the AI Coach to review them.");
+                return;
+            }
+
+            toast("AI Coach: Good start. Check that your questions test assumptions, explore timing and clarify governance boundaries.");
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* SAVE CAPABILITY EVIDENCE
+           Prototype behaviour only.
+        ---------------------------------------------------------------------------------------------------- */
+
+        function saveEvidence() {
+
+            const reflection = document.getElementById("reflection").value.trim();
+
+            if (reflection.length < 20) {
+                toast("Add a short reflection before saving this as evidence.");
+                return;
+            }
+
+            toast("Reflection saved to your Public Sector capability evidence.");
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* COMPLETE THE CASE
+        ---------------------------------------------------------------------------------------------------- */
+
+        function finishCase() {
+
+            const stepButtons = document.querySelectorAll(".step-button");
+
+            stepButtons.forEach(function(button) {
+                button.classList.add("complete");
+                button.classList.remove("active");
+            });
+
+            goToStep(5);
+
+            toast("Public Economics Case completed.");
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* SMALL TOAST MESSAGE
+        ---------------------------------------------------------------------------------------------------- */
+
+        let toastTimer;
+
+        function toast(message) {
+
+            const toastBox = document.getElementById("toast");
+
+            toastBox.textContent = message;
+            toastBox.classList.add("show");
+
+            clearTimeout(toastTimer);
+
+            toastTimer = setTimeout(function() {
+                toastBox.classList.remove("show");
+            }, 3200);
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* SET INITIAL PROGRESS
+        ---------------------------------------------------------------------------------------------------- */
+
+        updateProgress();
+
+    </script>
+
+</body>
+</html>
