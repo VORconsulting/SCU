@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sector Corporate University</title>
+
+
+    <!-- ==================================================================================================== -->
+    <!-- =======================================  PAGE STYLES START  ========================================= -->
+    <!-- ==================================================================================================== -->
+
+    <style>
+
+        /* ================================================================================================== */
+        /* ========================================  ABSA COLOURS  =========================================== */
+        /* ================================================================================================== */
+
+        :root {
+            --red: #AF144B;
+            --deep: #75052F;
+            --ink: #261620;
+            --cream: #FFF8F5;
+            --line: #F0D9DF;
+        }
+
+
+        /* ================================================================================================== */
+        /* =======================================  GLOBAL SETTINGS  ========================================= */
+        /* ================================================================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+        }
+
+
+        /* ================================================================================================== */
+        /* =======================================  HEADER / NAVIGATION  ===================================== */
+        /* ================================================================================================== */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+
+            display: flex;
+            align-items: center;
+            gap: 24px;
+
+            padding: 12px 5%;
+
+            background: #FFFFFF;
+            border-top: 6px solid var(--red);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 12px;
+            background: var(--red);
+            color: #FFFFFF;
+
+            font-weight: 900;
+        }
+
+        .brand small {
+            display: block;
+            color: #777777;
+        }
+
+        nav {
+            display: flex;
+            gap: 18px;
+            margin-left: auto;
+        }
+
+        nav a {
+            font-size: 14px;
+            color: #555555;
+            text-decoration: none;
+        }
+
+
+        /* ================================================================================================== */
+        /* ==========================================  BUTTONS  ============================================== */
+        /* ================================================================================================== */
+
+        .ai {
+            padding: 12px 16px;
+
+            border: 0;
+            border-radius: 12px;
+
+            background: var(--red);
+            color: #FFFFFF;
+
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .primary {
+            background: #FFFFFF;
+            color: var(--deep);
+            font-weight: 700;
+        }
+
+        .secondary {
+            background: #FFFFFF0D;
+            color: #FFFFFF;
+        }
+
+
+        /* ================================================================================================== */
+        /* ========================================  PAGE WRAPPER  =========================================== */
+        /* ================================================================================================== */
+
+        .wrap {
+            max-width: 1450px;
+            margin: auto;
+            padding: 28px 5%;
+        }
+
+
+        /* ================================================================================================== */
+        /* ==========================================  HERO  ================================================= */
+        /* ================================================================================================== */
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 30px;
+
+            padding: 34px;
+
+            border-radius: 30px;
+
+            background: linear-gradient(
+                135deg,
+                #27111F,
+                #74113A 60%,
+                #AF144B
+            );
+
+            color: #FFFFFF;
+            box-shadow: 0 18px 45px #5D17312B;
+        }
+
+        .hero h1 {
+            max-width: 760px;
+            margin: 12px 0;
+            font-size: 48px;
+        }
+
+        .hero p {
+            max-width: 730px;
+            line-height: 1.7;
+            color: #FFE7EF;
+        }
+
+        .tag {
+            display: inline-block;
+
+            padding: 7px 12px;
+
+            border: 1px solid #FFFFFF38;
+            border-radius: 999px;
+
+            background: #FFFFFF12;
+
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .buttons button {
+            padding: 12px 16px;
+            margin-right: 8px;
+
+            border: 1px solid #FFFFFF50;
+            border-radius: 12px;
+
+            cursor: pointer;
+        }
+
+
+        /* ================================================================================================== */
+        /* ========================================  HERO STATISTICS  ======================================== */
+        /* ================================================================================================== */
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            align-self: end;
+        }
+
+        .stat {
+            padding: 18px;
+
+            border: 1px solid #FFFFFF20;
+            border-radius: 18px;
+
+            background: #FFFFFF11;
+        }
+
+        .stat b {
+            display: block;
+            font-size: 26px;
+        }
+
+
+        /* ================================================================================================== */
+        /* ========================================  SECTION HEADINGS  ======================================= */
+        /* ================================================================================================== */
+
+        .sectionHead {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+
+            margin: 30px 0 14px;
+        }
+
+        .sectionHead p {
+            margin: 0;
+
+            color: var(--red);
+
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .sectionHead h2 {
+            margin: 5px 0;
+            font-size: 28px;
+        }
+
+
+        /* ================================================================================================== */
+        /* ======================================  SECTOR CAMPUS LAYOUT  ===================================== */
+        /* ================================================================================================== */
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 22px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 13px;
+        }
+
+
+        /* ================================================================================================== */
+        /* =========================================  SECTOR CARDS  ========================================== */
+        /* ================================================================================================== */
+
+        .card,
+        .side,
+        .bottom {
+            padding: 18px;
+
+            border: 1px solid #F1E5E8;
+            border-radius: 20px;
+
+            background: #FFFFFF;
+            box-shadow: 0 5px 17px #35111D0C;
+        }
+
+        .card {
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .card:hover,
+        .card.active {
+            transform: translateY(-3px);
+
+            border-color: var(--red);
+            box-shadow: 0 10px 25px #AF144B20;
+        }
+
+        .icon {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 13px;
+
+            color: #FFFFFF;
+            font-size: 21px;
+        }
+
+        .card h3 {
+            margin: 14px 0 5px;
+            font-size: 15px;
+        }
+
+        .card p {
+            min-height: 37px;
+
+            margin-top: 0;
+
+            color: #666666;
+
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .bar {
+            height: 6px;
+
+            overflow: hidden;
+
+            border-radius: 8px;
+            background: #EEEEEE;
+        }
+
+        .bar i {
+            display: block;
+            height: 100%;
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+
+            margin-top: 7px;
+
+            color: #777777;
+
+            font-size: 11px;
+        }
+
+
+        /* ================================================================================================== */
+        /* =====================================  RIGHT-HAND FACULTY VIEW  =================================== */
+        /* ================================================================================================== */
+
+        .side h3 {
+            margin: 12px 0 4px;
+        }
+
+        .faculty-label {
+            color: var(--red);
+            font-weight: 800;
+        }
+
+        .faculty-description {
+            color: #777777;
+            font-size: 12px;
+        }
+
+        .steps {
+            margin: 18px 0;
+        }
+
+        .step {
+            padding: 10px;
+
+            border-radius: 10px;
+
+            color: #777777;
+
+            font-size: 13px;
+        }
+
+        .step.done {
+            color: #28754A;
+        }
+
+        .step.now {
+            background: #FFF0F5;
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .next {
+            padding: 15px;
+
+            border-radius: 16px;
+
+            background: var(--cream);
+        }
+
+        .next p {
+            color: #777777;
+            font-size: 12px;
+        }
+
+        .next button {
+            width: 100%;
+            margin-top: 12px;
+        }
+
+
+        /* ================================================================================================== */
+        /* ===================================  INTEGRATED CAPABILITY PILLARS  =============================== */
+        /* ================================================================================================== */
+
+        .pillars {
+            margin-top: 30px;
+            padding: 26px;
+
+            border-radius: 28px;
+
+            background: #241720;
+            color: #FFFFFF;
+        }
+
+        .pillars > small {
+            color: #F7A9C3;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .pillarsGrid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+        }
+
+        .pillar {
+            padding: 16px;
+
+            border: 1px solid #FFFFFF18;
+            border-radius: 16px;
+
+            background: #FFFFFF08;
+
+            cursor: pointer;
+        }
+
+        .pillar:hover {
+            background: #FFFFFF13;
+        }
+
+        .pillar b {
+            display: block;
+
+            margin: 13px 0 6px;
+
+            font-size: 13px;
+        }
+
+        .pillar span {
+            color: #AAAAAA;
+
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+
+        /* ================================================================================================== */
+        /* =======================================  LOWER CONTENT CARDS  ===================================== */
+        /* ================================================================================================== */
+
+        .footerGrid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+
+            margin-top: 24px;
+        }
+
+        .bottom h3 {
+            margin-top: 0;
+        }
+
+        .link {
+            padding: 12px;
+            margin-top: 8px;
+
+            border-radius: 11px;
+
+            background: #FAF7F8;
+
+            font-size: 13px;
+
+            cursor: pointer;
+        }
+
+        .recognition {
+            background: linear-gradient(
+                135deg,
+                #AF144B,
+                #75052F
+            );
+
+            color: #FFFFFF;
+        }
+
+
+        /* ================================================================================================== */
+        /* ============================================  MODAL  ============================================== */
+        /* ================================================================================================== */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 20;
+
+            display: none;
+            place-items: center;
+
+            background: #00000066;
+        }
+
+        .modal.show {
+            display: grid;
+        }
+
+        .dialog {
+            width: min(550px, 90vw);
+            padding: 25px;
+
+            border-radius: 24px;
+
+            background: #FFFFFF;
+            box-shadow: 0 30px 80px #00000044;
+        }
+
+        .dialog > button {
+            float: right;
+        }
+
+        .dialog > small {
+            color: var(--red);
+            font-weight: 800;
+        }
+
+        .dialog p {
+            color: #666666;
+            line-height: 1.6;
+        }
+
+
+        /* ================================================================================================== */
+        /* ==========================================  TOAST MESSAGE  ======================================== */
+        /* ================================================================================================== */
+
+        .toast {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            z-index: 30;
+
+            display: none;
+
+            padding: 12px 20px;
+
+            transform: translateX(-50%);
+
+            border-radius: 99px;
+
+            background: #241720;
+            color: #FFFFFF;
+        }
+
+
+        /* ================================================================================================== */
+        /* =====================================  RESPONSIVE - TABLET  ======================================= */
+        /* ================================================================================================== */
+
+        @media (max-width: 1000px) {
+
+            nav {
+                display: none;
+            }
+
+            .hero,
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pillarsGrid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+
+        /* ================================================================================================== */
+        /* ======================================  RESPONSIVE - MOBILE  ====================================== */
+        /* ================================================================================================== */
+
+        @media (max-width: 650px) {
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .grid,
+            .footerGrid,
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .pillarsGrid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+    </style>
+
+    <!-- ==================================================================================================== -->
+    <!-- ========================================  PAGE STYLES END  ========================================== -->
+    <!-- ==================================================================================================== -->
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================================================================== -->
+    <!-- =======================================  HEADER / NAVIGATION  ======================================= -->
+    <!-- ==================================================================================================== -->
+
+    <header>
+
+        <div class="brand">
+            <div class="logo">SCU</div>
+
+            <div>
+                <b>Sector Corporate University</b>
+                <small>From sector strategy to sector authority</small>
+            </div>
+        </div>
+
+        <nav>
+            <a href="#campus">Campus</a>
+            <a href="#faculties">Faculties</a>
+            <a href="#journey">My Journey</a>
+            <a href="#library">Knowledge Library</a>
+            <a href="#council">Council</a>
+        </nav>
+
+        <button
+            class="ai"
+            onclick="openModal(
+                'SCU AI Coach',
+                'Ask for sector insights, client preparation, playbooks or your next learning activity.'
+            )"
+        >
+            ✦ Ask SCU AI
+        </button>
+
+    </header>
+
+
+    <!-- ==================================================================================================== -->
+    <!-- ========================================  MAIN PAGE CONTENT  ======================================== -->
+    <!-- ==================================================================================================== -->
+
+    <main class="wrap">
+
+
+        <!-- ================================================================================================= -->
+        <!-- ===========================================  HERO  =============================================== -->
+        <!-- ================================================================================================= -->
+
+        <section class="hero" id="campus">
+
+            <div>
+
+                <span class="tag">
+                    DIGITAL CAMPUS
+                </span>
+
+                <h1>
+                    Build sector mastery. Create client value.
+                </h1>
+
+                <p>
+                    A business-led capability ecosystem connecting assessments,
+                    personalised pathways, expert faculty, playbooks, experiential
+                    learning and measurable business outcomes.
+                </p>
+
+                <div class="buttons">
+
+                    <button
+                        class="primary"
+                        onclick="openModal(
+                            'My personalised journey',
+                            'Assessment-led placement guides you from orientation through applied practice, evidence, credentials and sector mastery.'
+                        )"
+                    >
+                        Continue my journey
+                    </button>
+
+                    <button
+                        class="secondary"
+                        onclick="toast('Campus map opened')"
+                    >
+                        Explore campus
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- --------------------------------------------------------------------------------------------- -->
+            <!-- -----------------------------------  HERO STATISTICS  --------------------------------------- -->
+            <!-- --------------------------------------------------------------------------------------------- -->
+
+            <div class="stats">
+
+                <div class="stat">
+                    <b>6</b>
+                    <small>Active faculty pathways</small>
+                </div>
+
+                <div class="stat">
+                    <b>68%</b>
+                    <small>Public Sector progress</small>
+                </div>
+
+                <div class="stat">
+                    <b>12</b>
+                    <small>Badges &amp; credentials</small>
+                </div>
+
+                <div class="stat">
+                    <b>4</b>
+                    <small>Live faculty events</small>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================================================================= -->
+        <!-- ====================================  CHOOSE YOUR SECTOR CAMPUS  ================================ -->
+        <!-- ================================================================================================= -->
+
+        <div class="sectionHead" id="faculties">
+
+            <div>
+                <p>UNIVERSITY FACULTIES</p>
+                <h2>Choose your sector campus</h2>
+            </div>
+
+        </div>
+
+
+        <section class="layout">
+
+
+            <!-- --------------------------------------------------------------------------------------------- -->
+            <!-- -------------------------------------  SECTOR CARDS  ---------------------------------------- -->
+            <!-- --------------------------------------------------------------------------------------------- -->
+
+            <div class="grid" id="sectorGrid">
+
+
+                <!-- ========================================================================================= -->
+                <!-- ====================================  AGRICULTURE  ====================================== -->
+                <!-- ========================================================================================= -->
+
+                <div
+                    class="card"
+                    data-name="Agriculture"
+                    data-description="Value chains, seasonal economics, agri-finance and climate risk"
+                    data-next="Agri ecosystem diagnostic"
+                    onclick="selectSector(this)"
+                >
+                    <div class="icon" style="background:#3F8F5B;">🌱</div>
+
+                    <h3>Agriculture</h3>
+
+                    <p>
+                        Value chains, seasonal economics, agri-finance and climate risk
+                    </p>
+
+                    <div class="bar">
+                        <i style="width:42%; background:#3F8F5B;"></i>
+                    </div>
+
+                    <div class="meta">
+                        <span>Foundational</span>
+                        <span>42%</span>
+                    </div>
+                </div>
+
+
+                <!-- ========================================================================================= -->
+                <!-- ===================================  PUBLIC SECTOR  ===================================== -->
+                <!-- ========================================================================================= -->
+
+                <div
+                    class="card active"
+                    data-name="Public Sector"
+                    data-description="Institutions, fiscal cycles, governance and infrastructure advisory"
+                    data-next="Public economics case"
+                    onclick="selectSector(this)"
+                >
+                    <div class="icon" style="background:#6A55A5;">🏛</div>
+
+                    <h3>Public Sector</h3>
+
+                    <p>
+                        Institutions, fiscal cycles, governance and infrastructure advisory
+                    </p>
+
+                    <div class="bar">
+                        <i style="width:68%; background:#6A55A5;"></i>
+                    </div>
+
+                    <div class="meta">
+                        <span>Developing</span>
+                        <span>68%</span>
+                    </div>
+                </div>
+
+
+                <!-- ========================================================================================= -->
+                <!-- ============================  WHOLESALE, RETAIL & FRANCHISE  ============================ -->
+                <!-- ========================================================================================= -->
+
+                <div
+                    class="card"
+                    data-name="Wholesale, Retail &amp; Franchise"
+                    data-description="Inventory cycles, franchise economics, payments and ecosystem plays"
+                    data-next="WRF client lab"
+                    onclick="selectSector(this)"
+                >
+                    <div class="icon" style="background:#E45F2B;">🛍</div>
+
+                    <h3>Wholesale, Retail &amp; Franchise</h3>
+
+                    <p>
+                        Inventory cycles, franchise economics, payments and ecosystem plays
+                    </p>
+
+                    <div class="bar">
+                        <i style="width:55%; background:#E45F2B;"></i>
+                    </div>
+
+                    <div class="meta">
+                        <span>Developing</span>
+                        <span>55%</span>
+                    </div>
+                </div>
+
+
+                <!-- ========================================================================================= -->
+                <!-- ===================================  MANUFACTURING  ===================================== -->
+                <!-- ========================================================================================= -->
+
+                <div
+                    class="card"
+                    data-name="Manufacturing"
+                    data-description="Production systems, working capital, automation and export enablement"
+                    data-next="Deal clinic: automation"
+                    onclick="selectSector(this)"
+                >
+                    <div class="icon" style="background:#1E7898;">🏭</div>
+
+                    <h3>Manufacturing</h3>
+
+                    <p>
+                        Production systems, working capital, automation and export enablement
+                    </p>
+
+                    <div class="bar">
+                        <i style="width:36%; background:#1E7898;"></i>
+                    </div>
+
+                    <div class="meta">
+                        <span>Foundational</span>
+                        <span>36%</span>
+                    </div>
+                </div>
+
+
+                <!-- ========================================================================================= -->
+                <!-- ================================  TRANSPORT & LOGISTICS  ================================ -->
+                <!-- ========================================================================================= -->
+
+                <div
+                    class="card"
+                    data-name="Transport &amp; Logistics"
+                    data-description="Fleet economics, corridors, infrastructure and smart mobility"
+                    data-next="Fleet finance simulation"
+                    onclick="selectSector(this)"
+                >
+                    <div class="icon" style="background:#287D8E;">🚚</div>
+
+                    <h3>Transport &amp; Logistics</h3>
+
+                    <p>
+                        Fleet economics, corridors, infrastructure and smart mobility
+                    </p>
+
+                    <div class="bar">
+                        <i style="width:74%; background:#287D8E;"></i>
+                    </div>
+
+                    <div class="meta">
+                        <span>Developing</span>
+                        <span>74%</span>
+                    </div>
+                </div>
+
+
+                <!-- ========================================================================================= -->
+                <!-- =================================  RENEWABLE ENERGY  ==================================== -->
+                <!-- ========================================================================================= -->
+
+                <div
+                    class="card"
+                    data-name="Renewable Energy"
+                    data-description="Energy markets, project finance, PPAs and sustainable transition"
+                    data-next="Energy market primer"
+                    onclick="selectSector(this)"
+                >
+                    <div class="icon" style="background:#D19522;">☀</div>
+
+                    <h3>Renewable Energy</h3>
+
+                    <p>
+                        Energy markets, project finance, PPAs and sustainable transition
+                    </p>
+
+                    <div class="bar">
+                        <i style="width:24%; background:#D19522;"></i>
+                    </div>
+
+                    <div class="meta">
+                        <span>Foundational</span>
+                        <span>24%</span>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- --------------------------------------------------------------------------------------------- -->
+            <!-- ---------------------------------  RIGHT-HAND FACULTY VIEW  -------------------------------- -->
+            <!-- --------------------------------------------------------------------------------------------- -->
+
+            <aside class="side" id="journey">
+
+                <small class="faculty-label">
+                    YOUR FACULTY VIEW
+                </small>
+
+                <h3 id="sideName">
+                    Public Sector
+                </h3>
+
+                <div
+                    class="faculty-description"
+                    id="sideDesc"
+                >
+                    Institutions, fiscal cycles, governance and infrastructure advisory
+                </div>
+
+
+                <!-- ----------------------------------------------------------------------------------------- -->
+                <!-- ----------------------------------  FACULTY LEVELS  ------------------------------------- -->
+                <!-- ----------------------------------------------------------------------------------------- -->
+
+                <div class="steps">
+
+                    <div class="step done">
+                        ✓ Foundational
+                    </div>
+
+                    <div class="step now">
+                        2 Developing
+                    </div>
+
+                    <div class="step">
+                        3 Experienced
+                    </div>
+
+                    <div class="step">
+                        4 Advanced
+                    </div>
+
+                    <div class="step">
+                        5 Expert / Mastery
+                    </div>
+
+                </div>
+
+
+                <!-- ----------------------------------------------------------------------------------------- -->
+                <!-- -------------------------------  NEXT RECOMMENDED ACTIVITY  ----------------------------- -->
+                <!-- ----------------------------------------------------------------------------------------- -->
+
+                <div class="next">
+
+                    <small>
+                        NEXT RECOMMENDED
+                    </small>
+
+                    <h4 id="next">
+                        Public economics case
+                    </h4>
+
+                    <p>
+                        AI-personalised from your pathway and proficiency profile.
+                    </p>
+
+                    <button
+                        class="ai"
+                        onclick="toast('Learning activity opened')"
+                    >
+                        Open learning activity
+                    </button>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+
+        <!-- ================================================================================================= -->
+        <!-- ===============================  INTEGRATED CAPABILITY ARCHITECTURE  ============================ -->
+        <!-- ================================================================================================= -->
+
+        <section class="pillars">
+
+            <small>
+                INTEGRATED CAPABILITY ARCHITECTURE
+            </small>
+
+            <h2>
+                One university. Connected functional pillars.
+            </h2>
+
+            <div class="pillarsGrid">
+
+
+                <!-- ----------------------------------------------------------------------------------------- -->
+                <!-- ----------------------------------  SECTOR FACULTIES  ----------------------------------- -->
+                <!-- ----------------------------------------------------------------------------------------- -->
+
+                <div
+                    class="pillar"
+                    onclick="openModal(
+                        'Sector Faculties',
+                        'Deep pathways and specialist communities'
+                    )"
+                >
+                    <div>🏫</div>
+                    <b>Sector Faculties</b>
+                    <span>Deep pathways and specialist communities</span>
+                </div>
+
+
+                <!-- ----------------------------------------------------------------------------------------- -->
+                <!-- ---------------------------------  PRODUCT SOLUTIONING  --------------------------------- -->
+                <!-- ----------------------------------------------------------------------------------------- -->
+
+                <div
+                    class="pillar"
+                    onclick="openModal(
+                        'Product Solutioning',
+                        'Golden baskets, CVPs and client solutions'
+                    )"
+                >
+                    <div>🎯</div>
+                    <b>Product Solutioning</b>
+                    <span>Golden baskets, CVPs and client solutions</span>
+                </div>
+
+
+                <!-- ----------------------------------------------------------------------------------------- -->
+                <!-- -------------------------------  RISK, CREDIT & CONTROLS  ------------------------------- -->
+                <!-- ----------------------------------------------------------------------------------------- -->
+
+                <div
+                    class="pillar"
+                    onclick="openModal(
+                        'Risk, Credit & Controls',
+                        'Applied judgement, appetite and governance'
+                    )"
+                >
+                    <div>🛡</div>
+                    <b>Risk, Credit &amp; Controls</b>
+                    <span>Applied judgement, appetite and governance</span>
+                </div>
+
+
+                <!-- ----------------------------------------------------------------------------------------- -->
+                <!-- --------------------------------  DIGITAL, DATA & AI  ----------------------------------- -->
+                <!-- ----------------------------------------------------------------------------------------- -->
+
+                <div
+                    class="pillar"
+                    onclick="openModal(
+                        'Digital, Data & AI',
+                        'AI agents, analytics and flow-of-work'
+                    )"
+                >
+                    <div>✦</div>
+                    <b>Digital, Data &amp; AI</b>
+                    <span>AI agents, analytics and flow-of-work</span>
+                </div>
+
+
+                <!-- ----------------------------------------------------------------------------------------- -->
+                <!-- --------------------------------  LEADERSHIP & CULTURE  -------------------------------- -->
+                <!-- ----------------------------------------------------------------------------------------- -->
+
+                <div
+                    class="pillar"
+                    onclick="openModal(
+                        'Leadership & Culture',
+                        'Trusted-advisor identity and faculty leadership'
+                    )"
+                >
+                    <div>👥</div>
+                    <b>Leadership &amp; Culture</b>
+                    <span>Trusted-advisor identity and faculty leadership</span>
+                </div>
+
+
+                <!-- ----------------------------------------------------------------------------------------- -->
+                <!-- --------------------------------  ESG & SUSTAINABILITY  -------------------------------- -->
+                <!-- ----------------------------------------------------------------------------------------- -->
+
+                <div
+                    class="pillar"
+                    onclick="openModal(
+                        'ESG & Sustainability',
+                        'Transition risks and sustainable opportunity'
+                    )"
+                >
+                    <div>🌱</div>
+                    <b>ESG &amp; Sustainability</b>
+                    <span>Transition risks and sustainable opportunity</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================================================================= -->
+        <!-- =====================================  LOWER INFORMATION CARDS  ================================= -->
+        <!-- ================================================================================================= -->
+
+        <section class="footerGrid">
+
+
+            <!-- --------------------------------------------------------------------------------------------- -->
+            <!-- -------------------------------------  LEARNING COMMONS  ------------------------------------ -->
+            <!-- --------------------------------------------------------------------------------------------- -->
+
+            <div class="bottom" id="library">
+
+                <h3>
+                    Learning commons
+                </h3>
+
+                <p>
+                    Playbooks, cases, sector signals and quick-reference assets.
+                </p>
+
+                <div
+                    class="link"
+                    onclick="toast('Golden product baskets opened')"
+                >
+                    Golden product baskets →
+                </div>
+
+                <div
+                    class="link"
+                    onclick="toast('Client archetype library opened')"
+                >
+                    Client archetype library →
+                </div>
+
+                <div
+                    class="link"
+                    onclick="toast('Sector deal playbooks opened')"
+                >
+                    Sector deal playbooks →
+                </div>
+
+            </div>
+
+
+            <!-- --------------------------------------------------------------------------------------------- -->
+            <!-- ---------------------------------------  FACULTY LIFE  -------------------------------------- -->
+            <!-- --------------------------------------------------------------------------------------------- -->
+
+            <div class="bottom">
+
+                <h3>
+                    Faculty life
+                </h3>
+
+                <p>
+                    Masterclasses, deal clinics, communities, coaching and client
+                    visits connect learning to work.
+                </p>
+
+                <div
+                    class="link"
+                    onclick="toast('Faculty events opened')"
+                >
+                    View faculty events →
+                </div>
+
+                <div
+                    class="link"
+                    onclick="toast('Community opened')"
+                >
+                    Join a community →
+                </div>
+
+            </div>
+
+
+            <!-- --------------------------------------------------------------------------------------------- -->
+            <!-- ------------------------------------  RECOGNITION HALL  ------------------------------------- -->
+            <!-- --------------------------------------------------------------------------------------------- -->
+
+            <div class="bottom recognition">
+
+                <h3>
+                    Recognition hall
+                </h3>
+
+                <p>
+                    Build a visible professional identity through evidence,
+                    credentials and contribution.
+                </p>
+
+                <h2>
+                    🏅 Sector Scholar
+                </h2>
+
+                <button
+                    class="primary"
+                    onclick="openModal(
+                        'Credentials and recognition',
+                        'Track badges, assessment evidence, certifications and contributions to sector knowledge.'
+                    )"
+                >
+                    View credentials
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==================================================================================================== -->
+    <!-- ============================================  MODAL  ================================================ -->
+    <!-- ==================================================================================================== -->
+
+    <div
+        class="modal"
+        id="modal"
+        onclick="if (event.target === this) closeModal()"
+    >
+
+        <div class="dialog">
+
+            <button onclick="closeModal()">
+                ✕
+            </button>
+
+            <small>
+                SCU DIGITAL CAMPUS
+            </small>
+
+            <h2 id="modalTitle"></h2>
+
+            <p id="modalText"></p>
+
+            <button
+                class="ai"
+                onclick="closeModal(); toast('Workspace opened')"
+            >
+                Open workspace
+            </button>
+
+            <div style="clear: both;"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================================================================== -->
+    <!-- ==========================================  TOAST MESSAGE  ========================================== -->
+    <!-- ==================================================================================================== -->
+
+    <div
+        class="toast"
+        id="toast"
+    ></div>
+
+
+    <!-- ==================================================================================================== -->
+    <!-- =======================================  PAGE JAVASCRIPT START  ===================================== -->
+    <!-- ==================================================================================================== -->
+
+    <script>
+
+
+        /* ================================================================================================== */
+        /* ==============================  CHANGE THE SELECTED SECTOR / FACULTY  ============================= */
+        /* ================================================================================================== */
+
+        function selectSector(card) {
+
+            /* Remove the active highlight from every sector card */
+            document.querySelectorAll(".card").forEach(function (item) {
+                item.classList.remove("active");
+            });
+
+            /* Highlight the sector card that was clicked */
+            card.classList.add("active");
+
+            /* Read the sector information stored in the card */
+            const sectorName = card.dataset.name;
+            const sectorDescription = card.dataset.description;
+            const nextActivity = card.dataset.next;
+
+            /* Update the right-hand faculty panel */
+            document.getElementById("sideName").textContent = sectorName;
+            document.getElementById("sideDesc").textContent = sectorDescription;
+            document.getElementById("next").textContent = nextActivity;
+        }
+
+
+        /* ================================================================================================== */
+        /* ========================================  OPEN THE MODAL  ========================================= */
+        /* ================================================================================================== */
+
+        function openModal(title, text) {
+
+            document.getElementById("modalTitle").textContent = title;
+            document.getElementById("modalText").textContent = text;
+
+            document.getElementById("modal").classList.add("show");
+        }
+
+
+        /* ================================================================================================== */
+        /* =======================================  CLOSE THE MODAL  ========================================= */
+        /* ================================================================================================== */
+
+        function closeModal() {
+
+            document.getElementById("modal").classList.remove("show");
+        }
+
+
+        /* ================================================================================================== */
+        /* ========================================  SHOW A TOAST  =========================================== */
+        /* ================================================================================================== */
+
+        function toast(message) {
+
+            const toastBox = document.getElementById("toast");
+
+            toastBox.textContent = message;
+            toastBox.style.display = "block";
+
+            setTimeout(function () {
+                toastBox.style.display = "none";
+            }, 1800);
+        }
+
+
+    </script>
+
+    <!-- ==================================================================================================== -->
+    <!-- ========================================  PAGE JAVASCRIPT END  ====================================== -->
+    <!-- ==================================================================================================== -->
+
+
+</body>
+
+</html>
