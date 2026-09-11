@@ -817,6 +817,311 @@
         }
 
 
+
+
+        /* ==================================================================================================== */
+        /* =====================================  AI ASSISTANT SIDEBAR  ======================================== */
+        /* ==================================================================================================== */
+
+        .ai-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 80;
+            background: rgba(38, 22, 32, 0.32);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .ai-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .ai-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 90;
+            width: min(430px, 92vw);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #FFFFFF;
+            box-shadow: -18px 0 55px rgba(38, 22, 32, 0.18);
+            transform: translateX(105%);
+            transition: transform 0.28s ease;
+        }
+
+        .ai-panel.open {
+            transform: translateX(0);
+        }
+
+        .ai-panel-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            align-items: flex-start;
+            padding: 20px 20px 16px;
+            color: white;
+            background:
+                radial-gradient(circle at 88% 12%, rgba(255,255,255,0.12), transparent 28%),
+                linear-gradient(135deg, var(--public-deep), var(--public), var(--deep));
+        }
+
+        .ai-panel-brand {
+            display: flex;
+            gap: 11px;
+            align-items: center;
+        }
+
+        .ai-panel-mark {
+            width: 42px;
+            height: 42px;
+            flex: 0 0 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            background: rgba(255,255,255,0.16);
+            border: 1px solid rgba(255,255,255,0.24);
+            font-weight: 800;
+        }
+
+        .ai-panel-header strong {
+            display: block;
+            font-size: 16px;
+        }
+
+        .ai-panel-header small {
+            display: block;
+            margin-top: 4px;
+            color: rgba(255,255,255,0.78);
+            line-height: 1.35;
+        }
+
+        .ai-close {
+            width: 36px;
+            height: 36px;
+            flex: 0 0 36px;
+            border: 1px solid rgba(255,255,255,0.22);
+            border-radius: 11px;
+            background: rgba(255,255,255,0.10);
+            color: white;
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .ai-context {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--line);
+            background: var(--public-soft);
+        }
+
+        .ai-context-label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--public);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .ai-context strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .ai-context small {
+            display: block;
+            margin-top: 3px;
+            color: var(--muted);
+            line-height: 1.35;
+        }
+
+        .ai-chat {
+            flex: 1;
+            overflow-y: auto;
+            padding: 18px;
+            background: #FFFCFB;
+        }
+
+        .ai-message {
+            display: flex;
+            gap: 9px;
+            margin-bottom: 14px;
+            align-items: flex-start;
+        }
+
+        .ai-message.user {
+            justify-content: flex-end;
+        }
+
+        .ai-avatar {
+            width: 29px;
+            height: 29px;
+            flex: 0 0 29px;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--public), var(--deep));
+            color: white;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .ai-bubble {
+            max-width: 82%;
+            padding: 12px 13px;
+            border-radius: 15px;
+            background: white;
+            border: 1px solid var(--line);
+            color: #4E4149;
+            font-size: 13px;
+            line-height: 1.55;
+            box-shadow: 0 5px 16px rgba(78, 23, 48, 0.05);
+        }
+
+        .ai-message.user .ai-bubble {
+            background: var(--public);
+            border-color: var(--public);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .ai-message.assistant .ai-bubble {
+            border-bottom-left-radius: 5px;
+        }
+
+        .ai-thinking {
+            display: inline-flex;
+            gap: 4px;
+            align-items: center;
+            min-height: 20px;
+        }
+
+        .ai-thinking span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--muted);
+            opacity: 0.45;
+            animation: aiPulse 1s infinite ease-in-out;
+        }
+
+        .ai-thinking span:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .ai-thinking span:nth-child(3) {
+            animation-delay: 0.30s;
+        }
+
+        @keyframes aiPulse {
+            0%, 80%, 100% { transform: scale(0.75); opacity: 0.30; }
+            40% { transform: scale(1); opacity: 0.85; }
+        }
+
+        .ai-suggestions {
+            padding: 12px 18px 10px;
+            border-top: 1px solid var(--line);
+            background: white;
+        }
+
+        .ai-suggestions-title {
+            margin-bottom: 8px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+        }
+
+        .ai-prompt-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .ai-prompt {
+            border: 1px solid #D8CFEC;
+            border-radius: 999px;
+            padding: 8px 10px;
+            background: var(--public-soft);
+            color: var(--public-deep);
+            font-size: 11px;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .ai-prompt:hover {
+            border-color: var(--public);
+            background: #E9E2F5;
+        }
+
+        .ai-prompt.preview {
+            opacity: 0.48;
+            background: #F7F4FA;
+            border-style: dashed;
+        }
+
+        .ai-prompt.preview:hover {
+            opacity: 0.68;
+            border-color: #CFC3E7;
+            background: #F7F4FA;
+        }
+
+        .ai-input-wrap {
+            padding: 10px 18px 18px;
+            background: white;
+        }
+
+        .ai-input-row {
+            display: grid;
+            grid-template-columns: 1fr 42px;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .ai-input {
+            width: 100%;
+            height: 44px;
+            border: 1px solid var(--line);
+            border-radius: 13px;
+            padding: 0 13px;
+            outline: none;
+            color: var(--ink);
+            background: #FFFCFB;
+        }
+
+        .ai-input:focus {
+            border-color: var(--public);
+            box-shadow: 0 0 0 3px rgba(106,85,165,0.10);
+        }
+
+        .ai-send {
+            width: 42px;
+            height: 42px;
+            border: 0;
+            border-radius: 12px;
+            background: var(--deep);
+            color: white;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .ai-disclaimer {
+            margin-top: 7px;
+            color: #9A8791;
+            font-size: 10px;
+            line-height: 1.35;
+        }
+
+        body.ai-open {
+            overflow: hidden;
+        }
+
+
         /* ==================================================================================================== */
         /* =======================================  RESPONSIVE DESIGN  ======================================== */
         /* ==================================================================================================== */
@@ -919,7 +1224,7 @@
         <nav class="topnav">
             <a class="nav-link" href="public.html">← Public Sector learning</a>
             <a class="nav-link" href="index.html">Campus home</a>
-            <button class="nav-ai" onclick="toast('SCU AI Coach opened')">Ask SCU AI</button>
+            <button class="nav-ai" onclick="openAIAssistant()">Ask SCU AI</button>
         </nav>
 
     </header>
@@ -1520,6 +1825,66 @@
 
     <div class="toast" id="toast"></div>
 
+    <!-- ==================================================================================================== -->
+    <!-- =====================================  AI ASSISTANT SIDEBAR  ======================================== -->
+    <!-- ==================================================================================================== -->
+
+    <div class="ai-overlay" id="aiOverlay" onclick="closeAIAssistant()"></div>
+
+    <aside class="ai-panel" id="aiPanel" aria-label="SCU AI Coach">
+
+        <div class="ai-panel-header">
+
+            <div class="ai-panel-brand">
+                <div class="ai-panel-mark">AI</div>
+
+                <div>
+                    <strong>SCU AI Coach</strong>
+                    <small>Public Sector · Public Economics Case</small>
+                </div>
+            </div>
+
+            <button class="ai-close" onclick="closeAIAssistant()" aria-label="Close AI Coach">×</button>
+
+        </div>
+
+        <div class="ai-context">
+            <span class="ai-context-label">Current learning context</span>
+            <strong id="aiContextTitle">Institution context</strong>
+            <small id="aiContextSubtitle">Mandate, stakeholders and delivery ecosystem</small>
+        </div>
+
+        <div class="ai-chat" id="aiChat"></div>
+
+        <div class="ai-suggestions">
+            <div class="ai-suggestions-title">Suggested questions</div>
+            <div class="ai-prompt-grid" id="aiPromptGrid"></div>
+        </div>
+
+        <div class="ai-input-wrap">
+
+            <div class="ai-input-row">
+                <input
+                    class="ai-input"
+                    id="aiInput"
+                    type="text"
+                    placeholder="Ask SCU AI..."
+                    autocomplete="off"
+                    onkeydown="handleAIKeydown(event)"
+                >
+
+                <button class="ai-send" onclick="sendAIQuestion()" aria-label="Send question">➤</button>
+            </div>
+
+            <div class="ai-disclaimer">
+                Prototype AI interaction for demonstration purposes. Responses are scripted to illustrate the intended experience.
+            </div>
+
+        </div>
+
+    </aside>
+
+
 
     <!-- ==================================================================================================== -->
     <!-- ===========================================  JAVASCRIPT  ============================================ -->
@@ -1562,6 +1927,10 @@
             currentStep = stepNumber;
 
             updateProgress();
+
+            if (document.getElementById("aiPanel").classList.contains("open")) {
+                refreshAIContext(false);
+            }
 
             window.scrollTo({
                 top: 0,
@@ -1716,6 +2085,479 @@
             toastTimer = setTimeout(function() {
                 toastBox.classList.remove("show");
             }, 3200);
+        }
+
+
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* AI ASSISTANT DEMO CONTENT
+           Each phase has:
+           - two live clickable questions
+           - two additional illustrative prompt chips
+           - scripted free-text responses for likely demo questions
+           - a contextual fallback response
+        ---------------------------------------------------------------------------------------------------- */
+
+        const aiPhaseData = [
+
+            {
+                title: "Institution context",
+                subtitle: "Mandate, stakeholders and delivery ecosystem",
+                welcome:
+                    "You are in the Institution context phase. I can help you understand the agency's mandate, who influences delivery and why that context matters before you discuss banking solutions.",
+
+                prompts: [
+                    {
+                        text: "What should I focus on?",
+                        live: true,
+                        response:
+                            "Start with four things: the institution's mandate, who makes and influences decisions, how it is funded, and which partners are involved in delivery. In this case, the supplier-payment issue matters, but it should be understood within the wider institutional and delivery ecosystem before you jump to a solution."
+                    },
+                    {
+                        text: "Help me understand the stakeholder ecosystem",
+                        live: true,
+                        response:
+                            "Think beyond the institution itself. The ecosystem may include government departments, municipal structures, funding authorities, contractors, suppliers and the communities that depend on service delivery. Understanding who approves, funds, delivers and is affected helps you see where decisions, constraints and risks really sit."
+                    },
+                    {
+                        text: "How does governance affect the conversation?",
+                        live: false
+                    },
+                    {
+                        text: "What evidence should I gather first?",
+                        live: false
+                    }
+                ],
+
+                freeTextRules: [
+                    {
+                        keywords: ["mandate", "why does the mandate", "mandate matter"],
+                        response:
+                            "The mandate tells you what the institution is authorised and expected to deliver. That matters because its financial needs, decision pathways and acceptable solutions should support that public purpose. If you understand the mandate first, you are less likely to make a product-led assumption that does not fit the institution's role or governance environment."
+                    },
+                    {
+                        keywords: ["stakeholder", "stakeholders", "most important stakeholders", "who are"],
+                        response:
+                            "For this case, I would map the institution's decision-makers, relevant government or funding bodies, procurement and finance functions, delivery partners, contractors and suppliers. The important point is not simply to make a list, but to understand who controls funding, who approves decisions, who executes delivery and who experiences the consequences of delays."
+                    }
+                ],
+
+                fallback:
+                    "In this phase, try to connect the institution's mandate, decision-makers, funding relationships and delivery ecosystem. I can help you explore the mandate, stakeholders, governance or the current supplier-payment challenge."
+            },
+
+            {
+                title: "Fiscal dynamics",
+                subtitle: "Revenue, expenditure, cash timing and liquidity",
+                welcome:
+                    "You are now in Fiscal dynamics. This is where we separate the annual budget position from the timing and predictability of actual cash flows.",
+
+                prompts: [
+                    {
+                        text: "What should I focus on?",
+                        live: true,
+                        response:
+                            "Focus on the timing as much as the totals. Look at where revenue and transfers come from, when they become available, when contractor and supplier payments fall due, and whether cash requirements cluster around project milestones. The key question is whether the pressure is a temporary timing mismatch or points to a deeper affordability or execution problem."
+                    },
+                    {
+                        text: "Help me understand the cash-flow issue",
+                        live: true,
+                        response:
+                            "The case suggests that expenditure may be approved, but the cash needed for supplier payments is not necessarily available at the same time. That creates a timing mismatch. Before assuming the institution needs new funding, you would want to understand the predictability of inflows, restrictions on those funds and the timing of major payment obligations."
+                    },
+                    {
+                        text: "Explain budget versus liquidity",
+                        live: false
+                    },
+                    {
+                        text: "What information should I ask the client for?",
+                        live: false
+                    }
+                ],
+
+                freeTextRules: [
+                    {
+                        keywords: ["liquidity", "expenditure already approved", "approved expenditure", "why does liquidity"],
+                        response:
+                            "Approved expenditure means the institution has authority to spend within the relevant budget framework, but it does not guarantee that cash is available at exactly the moment a supplier payment falls due. In this case, the useful question is whether the pressure comes from a predictable timing mismatch between inflows and payments, or whether it signals a deeper funding, affordability or execution issue."
+                    },
+                    {
+                        keywords: ["funding problem", "necessarily a funding", "need funding", "is this funding"],
+                        response:
+                            "Not necessarily. A delayed supplier payment can result from cash timing, administrative approvals, procurement processes, restricted funding or project execution issues as well as insufficient funding. The case gives you a liquidity hypothesis to test, not a conclusion that long-term borrowing is required."
+                    }
+                ],
+
+                fallback:
+                    "For Fiscal dynamics, focus on revenue sources, expenditure timing, cash availability, liquidity and the distinction between a timing issue and a structural funding problem. Ask me about any of those areas."
+            },
+
+            {
+                title: "Needs & risk",
+                subtitle: "Banking hypotheses, governance and root causes",
+                welcome:
+                    "You are in Needs & risk. The aim here is to develop informed hypotheses without deciding on a product before the underlying need and constraints are understood.",
+
+                prompts: [
+                    {
+                        text: "What risks should I consider?",
+                        live: true,
+                        response:
+                            "Consider at least four risk areas: whether cash pressure is structural or timing-related; whether governance and approvals limit available options; whether procurement or project execution is the real bottleneck; and whether delayed payments could disrupt suppliers and programme delivery. The banking conversation should respond to the root cause, not just the visible symptom."
+                    },
+                    {
+                        text: "Help me identify the banking need",
+                        live: true,
+                        response:
+                            "Start with the operational problem, then test possible needs. If timing mismatches are recurring, cash visibility or liquidity management may matter. If payment execution is creating friction, transaction and supplier-payment capabilities may be more relevant. If the issue is approvals, procurement or project execution, a banking product may not be the primary answer."
+                    },
+                    {
+                        text: "Where would specialist support help?",
+                        live: false
+                    },
+                    {
+                        text: "How do policy boundaries affect solutions?",
+                        live: false
+                    }
+                ],
+
+                freeTextRules: [
+                    {
+                        keywords: ["offer them a loan", "just offer", "loan", "funding facility"],
+                        response:
+                            "Because a loan assumes that additional financing is the right response before the cause of the problem has been established. In this case, delayed supplier payments could reflect cash timing, approvals, procurement or execution. A credible Public Sector approach is to diagnose those factors first and only then determine whether financing is appropriate and permissible."
+                    },
+                    {
+                        keywords: ["payments or liquidity", "payment or liquidity", "payments problem", "liquidity problem"],
+                        response:
+                            "Look at the evidence. If cash is available but payment processing, approvals or transaction execution are causing delays, the problem may be payments-related. If obligations fall due before usable cash arrives, liquidity becomes more relevant. The two can also interact, which is why you would test cash-flow timing and the payment process separately."
+                    }
+                ],
+
+                fallback:
+                    "In Needs & risk, try to separate the underlying problem from the possible banking response. I can help you think through liquidity, payments, governance, execution risk or when specialist support may be needed."
+            },
+
+            {
+                title: "Stakeholder prep",
+                subtitle: "Discovery questions, hypotheses and next actions",
+                welcome:
+                    "You are preparing for the stakeholder conversation. The goal is to ask open, evidence-seeking questions that test your hypotheses rather than steer the client toward a predetermined product.",
+
+                prompts: [
+                    {
+                        text: "Help me prepare for the meeting",
+                        live: true,
+                        response:
+                            "Go into the meeting with a small number of hypotheses, not conclusions. I would prepare questions around the institution's priority programmes, the timing of major inflows and payments, the approvals that govern financial decisions, and where payment or cash-management friction is affecting delivery. Be ready to listen for evidence that changes your initial view."
+                    },
+                    {
+                        text: "What should I avoid doing?",
+                        live: true,
+                        response:
+                            "Avoid leading with products, assuming that delayed payments automatically mean a funding need, or asking questions that merely confirm your preferred solution. Also avoid ignoring governance and policy boundaries. A strong conversation is mandate-led, diagnostic and clear about where specialist input may be required."
+                    },
+                    {
+                        text: "How should I open the conversation?",
+                        live: false
+                    },
+                    {
+                        text: "What should my follow-up actions be?",
+                        live: false
+                    }
+                ],
+
+                freeTextRules: [
+                    {
+                        keywords: ["three most important questions", "3 most important questions", "what questions should i ask", "questions should i ask"],
+                        response:
+                            "Three strong questions would be: 1) Which programmes or service outcomes are most affected when payment timing deteriorates? 2) How predictable are your major cash inflows relative to contractor and supplier payment commitments? 3) Which approvals or policy constraints shape the options available to manage short-term cash or payment pressures? Together, these test mandate, fiscal timing and governance."
+                    },
+                    {
+                        keywords: ["without sounding too direct", "financial position", "ask about their financial", "too direct"],
+                        response:
+                            "Anchor the question in delivery rather than asking bluntly whether they have a cash problem. For example: 'How do the timing of your major funding inflows and supplier-payment commitments affect programme delivery during the year?' That invites the client to explain the operating reality without presuming financial distress."
+                    }
+                ],
+
+                fallback:
+                    "For Stakeholder prep, I can help you frame discovery questions, test your hypotheses and avoid product-led assumptions. Ask me about meeting questions, governance, how to phrase a sensitive question or what to do next."
+            },
+
+            {
+                title: "Reflect & evidence",
+                subtitle: "Learning reflection and capability evidence",
+                welcome:
+                    "You are at the reflection stage. The aim is to capture what you can now do differently, not simply to record that you completed the activity.",
+
+                prompts: [
+                    {
+                        text: "What have I demonstrated?",
+                        live: true,
+                        response:
+                            "You have practised connecting institutional mandate and stakeholder context to fiscal dynamics, distinguishing cash timing from broader funding issues, forming risk and banking hypotheses, and preparing mandate-led discovery questions. Those are all relevant signals of progress toward Developing capability."
+                    },
+                    {
+                        text: "What should I develop next?",
+                        live: true,
+                        response:
+                            "The next useful step is practice under greater realism: stakeholder-meeting preparation, a guided client simulation or observed engagement with coaching. That would test whether you can apply the same reasoning dynamically rather than only in a structured case."
+                    },
+                    {
+                        text: "How could this become formal evidence?",
+                        live: false
+                    },
+                    {
+                        text: "What would a coach validate?",
+                        live: false
+                    }
+                ],
+
+                freeTextRules: [
+                    {
+                        keywords: ["include in my reflection", "what should i include", "my reflection"],
+                        response:
+                            "A strong reflection should capture three things: what changed in your understanding, how that would change your behaviour in a real stakeholder conversation, and what you still need to practise. For this case, you might reflect on the importance of separating mandate, cash timing, governance constraints and potential banking solutions before forming a recommendation."
+                    },
+                    {
+                        keywords: ["ready for a real client", "ready for real client", "am i ready", "client meeting"],
+                        response:
+                            "This case is evidence of guided application, but it would not by itself prove full independent readiness. A sensible next step would be a simulation, shadowed meeting or coached client engagement where your questioning, judgement and use of policy boundaries can be observed in a more realistic setting."
+                    }
+                ],
+
+                fallback:
+                    "At this stage, focus on what you learned, what you would do differently in a real engagement and what evidence shows progress. I can help you shape your reflection or think about the next practice activity."
+            }
+        ];
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* OPEN / CLOSE THE AI ASSISTANT
+        ---------------------------------------------------------------------------------------------------- */
+
+        let aiLastStep = -1;
+        let aiReplyTimer;
+
+        function openAIAssistant() {
+
+            const panel = document.getElementById("aiPanel");
+            const overlay = document.getElementById("aiOverlay");
+
+            panel.classList.add("open");
+            overlay.classList.add("show");
+            document.body.classList.add("ai-open");
+
+            refreshAIContext(true);
+
+            setTimeout(function() {
+                document.getElementById("aiInput").focus();
+            }, 300);
+        }
+
+
+        function closeAIAssistant() {
+
+            document.getElementById("aiPanel").classList.remove("open");
+            document.getElementById("aiOverlay").classList.remove("show");
+            document.body.classList.remove("ai-open");
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* UPDATE THE AI WHEN THE LEARNER MOVES TO ANOTHER PHASE
+        ---------------------------------------------------------------------------------------------------- */
+
+        function refreshAIContext(forceReset) {
+
+            const stepIndex = Math.min(currentStep, 4);
+            const phase = aiPhaseData[stepIndex];
+
+            document.getElementById("aiContextTitle").textContent = phase.title;
+            document.getElementById("aiContextSubtitle").textContent = phase.subtitle;
+
+            renderAIPrompts(phase);
+
+            if (forceReset || aiLastStep !== stepIndex) {
+
+                const chat = document.getElementById("aiChat");
+                chat.innerHTML = "";
+
+                addAIMessage("assistant", phase.welcome);
+
+                aiLastStep = stepIndex;
+            }
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* SHOW THE FOUR SUGGESTED PROMPTS FOR THE CURRENT PHASE
+           Two are interactive. Two are deliberately illustrative in this prototype.
+        ---------------------------------------------------------------------------------------------------- */
+
+        function renderAIPrompts(phase) {
+
+            const grid = document.getElementById("aiPromptGrid");
+            grid.innerHTML = "";
+
+            phase.prompts.forEach(function(prompt) {
+
+                const button = document.createElement("button");
+                button.className = "ai-prompt" + (prompt.live ? "" : " preview");
+                button.textContent = prompt.text;
+
+                if (prompt.live) {
+                    button.onclick = function() {
+                        runPresetPrompt(prompt);
+                    };
+                } else {
+                    button.onclick = function() {
+                        toast("This suggested interaction is illustrative in the current prototype.");
+                    };
+                }
+
+                grid.appendChild(button);
+            });
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* RUN A LIVE PRESET QUESTION
+        ---------------------------------------------------------------------------------------------------- */
+
+        function runPresetPrompt(prompt) {
+
+            addAIMessage("user", prompt.text);
+            showAIThinking(prompt.response);
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* SEND A FREE-TEXT QUESTION
+        ---------------------------------------------------------------------------------------------------- */
+
+        function sendAIQuestion() {
+
+            const input = document.getElementById("aiInput");
+            const question = input.value.trim();
+
+            if (!question) {
+                return;
+            }
+
+            addAIMessage("user", question);
+            input.value = "";
+
+            const response = getAIResponse(question);
+            showAIThinking(response);
+        }
+
+
+        function handleAIKeydown(event) {
+
+            if (event.key === "Enter") {
+                event.preventDefault();
+                sendAIQuestion();
+            }
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* CHOOSE A SCRIPTED RESPONSE FOR FREE TEXT
+        ---------------------------------------------------------------------------------------------------- */
+
+        function getAIResponse(question) {
+
+            const stepIndex = Math.min(currentStep, 4);
+            const phase = aiPhaseData[stepIndex];
+            const normalisedQuestion = question.toLowerCase();
+
+            for (const rule of phase.freeTextRules) {
+
+                const matched = rule.keywords.some(function(keyword) {
+                    return normalisedQuestion.includes(keyword.toLowerCase());
+                });
+
+                if (matched) {
+                    return rule.response;
+                }
+            }
+
+            return phase.fallback;
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* ADD CHAT BUBBLES
+        ---------------------------------------------------------------------------------------------------- */
+
+        function addAIMessage(role, message) {
+
+            const chat = document.getElementById("aiChat");
+
+            const wrapper = document.createElement("div");
+            wrapper.className = "ai-message " + role;
+
+            if (role === "assistant") {
+
+                const avatar = document.createElement("div");
+                avatar.className = "ai-avatar";
+                avatar.textContent = "AI";
+                wrapper.appendChild(avatar);
+            }
+
+            const bubble = document.createElement("div");
+            bubble.className = "ai-bubble";
+            bubble.textContent = message;
+
+            wrapper.appendChild(bubble);
+            chat.appendChild(wrapper);
+
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* SHORT "THINKING" ANIMATION BEFORE THE SCRIPTED RESPONSE
+        ---------------------------------------------------------------------------------------------------- */
+
+        function showAIThinking(response) {
+
+            const chat = document.getElementById("aiChat");
+
+            const wrapper = document.createElement("div");
+            wrapper.className = "ai-message assistant";
+            wrapper.id = "aiThinkingMessage";
+
+            const avatar = document.createElement("div");
+            avatar.className = "ai-avatar";
+            avatar.textContent = "AI";
+
+            const bubble = document.createElement("div");
+            bubble.className = "ai-bubble";
+            bubble.innerHTML =
+                '<span class="ai-thinking"><span></span><span></span><span></span></span>';
+
+            wrapper.appendChild(avatar);
+            wrapper.appendChild(bubble);
+            chat.appendChild(wrapper);
+
+            chat.scrollTop = chat.scrollHeight;
+
+            clearTimeout(aiReplyTimer);
+
+            aiReplyTimer = setTimeout(function() {
+
+                const thinkingMessage = document.getElementById("aiThinkingMessage");
+
+                if (thinkingMessage) {
+                    thinkingMessage.remove();
+                }
+
+                addAIMessage("assistant", response);
+
+            }, 650);
         }
 
 
