@@ -2955,7 +2955,7 @@
 
             activateStep(0);
 
-            [700, 1400, 2100].forEach(function(delay, i) {
+            [1400, 2800, 4200].forEach(function(delay, i) {
                 microGenerationTimers.push(setTimeout(function() {
                     activateStep(i + 1);
                 }, delay));
@@ -2964,7 +2964,7 @@
             microGenerationTimers.push(setTimeout(function() {
                 microGeneratedStep = stepIndex;
                 renderGeneratedMicroLearning();
-            }, 3000));
+            }, 5600));
         }
 
 
@@ -3355,7 +3355,7 @@
         function runPresetPrompt(prompt) {
 
             addAIMessage("user", prompt.text);
-            showAIThinking(prompt.response, "Considering this question in your current case context");
+            showAIThinking(prompt.response, "Considering this question in your current case context", 1450);
         }
 
 
@@ -3376,7 +3376,7 @@
             input.value = "";
 
             const response = getAIResponse(question);
-            showAIThinking(response, "Interpreting your question in the current case context");
+            showAIThinking(response, "Interpreting your question in the current case context", 2000);
         }
 
 
@@ -3448,7 +3448,7 @@
         /* SHORT "THINKING" ANIMATION BEFORE THE SCRIPTED RESPONSE
         ---------------------------------------------------------------------------------------------------- */
 
-        function showAIThinking(response, thinkingText) {
+        function showAIThinking(response, thinkingText, delayMs) {
 
             const chat = document.getElementById("aiChat");
 
@@ -3484,7 +3484,7 @@
 
                 addAIMessage("assistant", response);
 
-            }, 900);
+            }, delayMs || 1600);
         }
 
 
