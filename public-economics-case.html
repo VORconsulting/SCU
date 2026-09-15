@@ -1122,6 +1122,136 @@
         }
 
 
+
+
+        /* ==================================================================================================== */
+        /* ======================================  AI COACH MODE 3  ========================================== */
+        /* ==================================================================================================== */
+
+        .ai-mode-tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--line);
+            background: white;
+        }
+
+        .ai-mode-tab {
+            border: 1px solid var(--line);
+            border-radius: 11px;
+            padding: 9px 10px;
+            background: #FFFCFB;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .ai-mode-tab.active {
+            border-color: var(--public);
+            background: var(--public-soft);
+            color: var(--public-deep);
+        }
+
+        .ai-microlearning {
+            display: none;
+            flex: 1;
+            overflow-y: auto;
+            padding: 18px;
+            background: #FFFCFB;
+        }
+
+        .ai-microlearning.show {
+            display: block;
+        }
+
+        .micro-card {
+            border: 1px solid #D8CFEC;
+            border-radius: 17px;
+            padding: 18px;
+            background: white;
+            box-shadow: 0 7px 22px rgba(78, 23, 48, 0.06);
+        }
+
+        .micro-label {
+            display: inline-flex;
+            margin-bottom: 10px;
+            padding: 6px 9px;
+            border-radius: 999px;
+            background: var(--public-soft);
+            color: var(--public-deep);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+        }
+
+        .micro-card h3 {
+            margin: 0 0 8px;
+            font-size: 19px;
+            line-height: 1.25;
+        }
+
+        .micro-card > p {
+            margin: 0 0 15px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        .micro-section {
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid var(--line);
+        }
+
+        .micro-section strong {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--ink);
+            font-size: 12px;
+        }
+
+        .micro-section p,
+        .micro-section li {
+            color: #564B5B;
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        .micro-section p {
+            margin: 0;
+        }
+
+        .micro-section ul {
+            margin: 7px 0 0;
+            padding-left: 18px;
+        }
+
+        .micro-download {
+            width: 100%;
+            margin-top: 17px;
+            border: 0;
+            border-radius: 12px;
+            padding: 12px 14px;
+            background: var(--deep);
+            color: white;
+            font-weight: 800;
+        }
+
+        .micro-download:hover {
+            background: var(--red);
+        }
+
+        .micro-note {
+            margin-top: 9px;
+            color: #9A8791;
+            font-size: 10px;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+
         /* ==================================================================================================== */
         /* =======================================  RESPONSIVE DESIGN  ======================================== */
         /* ==================================================================================================== */
@@ -1854,6 +1984,15 @@
             <small id="aiContextSubtitle">Mandate, stakeholders and delivery ecosystem</small>
         </div>
 
+
+
+        <div class="ai-mode-tabs">
+            <button class="ai-mode-tab active" id="aiAskModeTab" onclick="setAIMode('ask')">Ask & Explore</button>
+            <button class="ai-mode-tab" id="aiMicroModeTab" onclick="setAIMode('micro')">Micro Learning</button>
+        </div>
+
+        <div class="ai-microlearning" id="aiMicroLearning"></div>
+
         <div class="ai-chat" id="aiChat"></div>
 
         <div class="ai-suggestions">
@@ -2333,6 +2472,89 @@
         ];
 
 
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* AI COACH MODE 3: MICRO LEARNING
+           One context-specific micro-learning brief is available for each of the five case phases.
+           The learner can preview the brief in the AI Coach and download it as a one-page PDF.
+        ---------------------------------------------------------------------------------------------------- */
+
+        const microLearningData = [
+            {
+                title: "Institutional Context Before Solutions",
+                summary: "Public Sector conversations start with the institution's purpose and operating environment, not with a banking product.",
+                keyIdea: "Mandate, governance, funding relationships and the delivery ecosystem shape both the institution's needs and the solutions it can legitimately use.",
+                inThisCase: "The Metro Infrastructure & Services Agency coordinates urban infrastructure programmes through multiple delivery partners. Supplier-payment pressure is important, but it must be understood within the agency's mandate, decision pathways and wider delivery ecosystem.",
+                lookFor: [
+                    "The institution's formal mandate and priority service outcomes",
+                    "Who makes, influences and approves key decisions",
+                    "How funding reaches the institution and what restrictions apply",
+                    "Which contractors, suppliers and public bodies influence delivery"
+                ],
+                clientApplication: "Use institutional context to frame better discovery questions. Establish how the institution creates public value and how decisions are made before forming a banking hypothesis.",
+                takeaway: "Context first, solution second."
+            },
+            {
+                title: "Budget vs Liquidity in Public Institutions",
+                summary: "An approved budget does not necessarily mean that cash is available when expenditure falls due.",
+                keyIdea: "Budget authority, funding availability and cash timing are related but different. A fully budgeted programme can still experience short-term liquidity pressure when inflows and payment obligations do not align.",
+                inThisCase: "Transfers, own-source revenue and capital allocations arrive on different schedules, while large supplier payments cluster around project milestones. The result may be a timing mismatch rather than a structural funding shortfall.",
+                lookFor: [
+                    "Timing and predictability of major cash inflows",
+                    "Timing of contractor and supplier payment obligations",
+                    "Restrictions attached to different funding sources",
+                    "Whether pressure is temporary, recurring or structural",
+                    "Whether delays arise from cash, approvals, procurement or execution"
+                ],
+                clientApplication: "Do not assume that delayed payments mean the institution needs borrowing. Test the cash-flow timing and root cause before deciding whether liquidity support, transaction services or another response is relevant.",
+                takeaway: "Approved expenditure is not the same as available cash."
+            },
+            {
+                title: "From Visible Problem to Banking Hypothesis",
+                summary: "A credible banking response begins by separating the symptom from its underlying cause.",
+                keyIdea: "Delayed supplier payments could reflect liquidity, payment execution, governance approvals, procurement or project delivery. Each root cause points to a different response and some may not require a banking product at all.",
+                inThisCase: "Possible needs include cash visibility, liquidity management and supplier-payment support, but governance and execution constraints must be tested before any solution is recommended.",
+                lookFor: [
+                    "Whether cash pressure is timing-related or structural",
+                    "Whether payment processes are creating operational friction",
+                    "Which approvals and policy boundaries govern financial options",
+                    "Whether procurement or project execution is the real bottleneck"
+                ],
+                clientApplication: "Frame needs as hypotheses to investigate. Connect each possible banking need to evidence and involve specialists where the issue crosses policy, credit, transaction or sector boundaries.",
+                takeaway: "Diagnose the root cause before prescribing the response."
+            },
+            {
+                title: "Mandate-Led Stakeholder Discovery",
+                summary: "Strong stakeholder questions test hypotheses and uncover operating reality without steering the client toward a predetermined solution.",
+                keyIdea: "Discovery should connect mandate, fiscal timing, governance and delivery. Open, evidence-seeking questions help the learner understand what is actually constraining outcomes.",
+                inThisCase: "The meeting should explore which programmes are exposed to payment delays, how inflows align with supplier commitments, what approvals shape available options and where financial or transaction friction affects delivery.",
+                lookFor: [
+                    "Questions that begin with service outcomes and institutional priorities",
+                    "Evidence about cash-flow timing rather than assumptions about distress",
+                    "Governance and policy boundaries that shape possible actions",
+                    "Signals that specialist support or follow-up analysis is needed"
+                ],
+                clientApplication: "Enter the meeting with hypotheses, not conclusions. Listen for evidence that confirms, changes or rejects your initial view, then agree targeted next actions.",
+                takeaway: "Ask to understand, not to confirm a product."
+            },
+            {
+                title: "Turning Learning into Capability Evidence",
+                summary: "Completing content is not the same as demonstrating capability. Reflection should show what the learner can now understand or do differently.",
+                keyIdea: "Useful evidence links learning to judgement and behaviour: what changed, how it would influence a real stakeholder engagement and what still needs practice.",
+                inThisCase: "The learner has connected mandate to fiscal dynamics, distinguished liquidity from broader funding issues, developed risk and banking hypotheses and prepared mandate-led discovery questions.",
+                lookFor: [
+                    "A clear change in understanding or judgement",
+                    "How learning would change behaviour in a real meeting",
+                    "Evidence of diagnostic rather than product-led thinking",
+                    "Specific areas that still require practice or observation"
+                ],
+                clientApplication: "Use the reflection as a bridge to the next experience. A simulation, shadowed meeting or coached client engagement can test whether the learner applies the same reasoning under more realistic conditions.",
+                takeaway: "Capability evidence shows application, not just completion."
+            }
+        ];
+
+
         /* ---------------------------------------------------------------------------------------------------- */
         /* OPEN / CLOSE THE AI ASSISTANT
         ---------------------------------------------------------------------------------------------------- */
@@ -2365,6 +2587,363 @@
         }
 
 
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* AI COACH MODE SWITCHING
+        ---------------------------------------------------------------------------------------------------- */
+
+        let aiMode = "ask";
+
+        function setAIMode(mode) {
+
+            aiMode = mode;
+
+            const askTab = document.getElementById("aiAskModeTab");
+            const microTab = document.getElementById("aiMicroModeTab");
+            const chat = document.getElementById("aiChat");
+            const suggestions = document.querySelector(".ai-suggestions");
+            const inputWrap = document.querySelector(".ai-input-wrap");
+            const micro = document.getElementById("aiMicroLearning");
+
+            if (mode === "micro") {
+                askTab.classList.remove("active");
+                microTab.classList.add("active");
+                chat.style.display = "none";
+                suggestions.style.display = "none";
+                inputWrap.style.display = "none";
+                micro.classList.add("show");
+                renderMicroLearning();
+            } else {
+                microTab.classList.remove("active");
+                askTab.classList.add("active");
+                micro.classList.remove("show");
+                chat.style.display = "block";
+                suggestions.style.display = "block";
+                inputWrap.style.display = "block";
+            }
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* RENDER THE MICRO-LEARNING BRIEF FOR THE CURRENT PHASE
+        ---------------------------------------------------------------------------------------------------- */
+
+        function renderMicroLearning() {
+
+            const stepIndex = Math.min(currentStep, 4);
+            const item = microLearningData[stepIndex];
+            const container = document.getElementById("aiMicroLearning");
+
+            const listItems = item.lookFor.map(function(point) {
+                return "<li>" + escapeHTML(point) + "</li>";
+            }).join("");
+
+            container.innerHTML =
+                '<div class="micro-card">' +
+                    '<span class="micro-label">Micro Learning · ' + escapeHTML(aiPhaseData[stepIndex].title) + '</span>' +
+                    '<h3>' + escapeHTML(item.title) + '</h3>' +
+                    '<p>' + escapeHTML(item.summary) + '</p>' +
+                    '<div class="micro-section"><strong>Key idea</strong><p>' + escapeHTML(item.keyIdea) + '</p></div>' +
+                    '<div class="micro-section"><strong>In this case</strong><p>' + escapeHTML(item.inThisCase) + '</p></div>' +
+                    '<div class="micro-section"><strong>What to look for</strong><ul>' + listItems + '</ul></div>' +
+                    '<div class="micro-section"><strong>Client application</strong><p>' + escapeHTML(item.clientApplication) + '</p></div>' +
+                    '<div class="micro-section"><strong>Remember</strong><p><b>' + escapeHTML(item.takeaway) + '</b></p></div>' +
+                    '<button class="micro-download" onclick="downloadMicroLearningPDF()">Download Micro Learning PDF</button>' +
+                    '<div class="micro-note">One-page SCU learning resource generated for the current case phase.</div>' +
+                '</div>';
+        }
+
+
+        function escapeHTML(value) {
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/\"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* DOWNLOAD THE CURRENT MICRO-LEARNING BRIEF AS A REAL PDF
+           This uses a small built-in PDF writer so the standalone prototype needs no external library or server.
+        ---------------------------------------------------------------------------------------------------- */
+
+        function downloadMicroLearningPDF() {
+
+            const stepIndex = Math.min(currentStep, 4);
+            const phase = aiPhaseData[stepIndex];
+            const item = microLearningData[stepIndex];
+
+            const pdfBlob = buildDesignedMicroLearningPDF(stepIndex, phase, item);
+            const url = URL.createObjectURL(pdfBlob);
+            const link = document.createElement("a");
+
+            link.href = url;
+            link.download = "SCU-Micro-Learning-" + (stepIndex + 1) + "-" + slugify(item.title) + ".pdf";
+
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+
+            setTimeout(function() {
+                URL.revokeObjectURL(url);
+            }, 1000);
+
+            toast("Micro Learning PDF downloaded.");
+        }
+
+
+        function slugify(text) {
+            return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* DESIGNED ONE-PAGE MICRO LEARNING PDF
+           The PDF is generated entirely in the browser so this page remains a single, portable HTML file.
+           It deliberately mirrors the visual language of the SCU prototype rather than looking like a text export.
+        ---------------------------------------------------------------------------------------------------- */
+
+        function buildDesignedMicroLearningPDF(stepIndex, phase, item) {
+
+            const NL = String.fromCharCode(10);
+            const PAGE_W = 595;
+            const PAGE_H = 842;
+            const LEFT = 48;
+            const RIGHT = 48;
+            const CONTENT_W = PAGE_W - LEFT - RIGHT;
+
+            const C = {
+                red: [0.686, 0.078, 0.294],
+                deep: [0.459, 0.020, 0.184],
+                ink: [0.149, 0.086, 0.125],
+                cream: [1.000, 0.973, 0.961],
+                line: [0.941, 0.851, 0.875],
+                muted: [0.451, 0.369, 0.408],
+                public: [0.416, 0.333, 0.647],
+                publicSoft: [0.941, 0.925, 0.973],
+                publicDeep: [0.275, 0.220, 0.463],
+                roseSoft: [1.000, 0.953, 0.965],
+                white: [1, 1, 1]
+            };
+
+            let content = "";
+
+            function colour(c) {
+                return c[0] + " " + c[1] + " " + c[2];
+            }
+
+            function escapePDF(text) {
+                return String(text)
+                    .replace(/\\/g, "\\\\")
+                    .replace(/\(/g, "\\(")
+                    .replace(/\)/g, "\\)")
+                    .replace(/[–—]/g, "-")
+                    .replace(/[‘’]/g, "'")
+                    .replace(/[“”]/g, '"')
+                    .replace(/·/g, "|")
+                    .replace(/[^\x20-\x7E]/g, "");
+            }
+
+            function estimateTextWidth(text, size, bold) {
+                const factor = bold ? 0.54 : 0.50;
+                return escapePDF(text).length * size * factor;
+            }
+
+            function drawText(text, x, y, size, font, fill) {
+                content += "BT /" + font + " " + size + " Tf " + colour(fill) + " rg " +
+                    x.toFixed(2) + " " + y.toFixed(2) + " Td (" + escapePDF(text) + ") Tj ET" + NL;
+            }
+
+            function drawRightText(text, rightX, y, size, font, fill) {
+                const width = estimateTextWidth(text, size, font === "F2");
+                drawText(text, rightX - width, y, size, font, fill);
+            }
+
+            function drawRect(x, y, w, h, fill, stroke, lineWidth) {
+                if (fill) {
+                    content += colour(fill) + " rg ";
+                }
+                if (stroke) {
+                    content += colour(stroke) + " RG " + (lineWidth || 1) + " w ";
+                }
+                content += x.toFixed(2) + " " + y.toFixed(2) + " " + w.toFixed(2) + " " + h.toFixed(2) + " re ";
+                content += fill && stroke ? "B" : (fill ? "f" : "S");
+                content += NL;
+            }
+
+            function drawLine(x1, y1, x2, y2, stroke, lineWidth) {
+                content += colour(stroke) + " RG " + (lineWidth || 1) + " w " +
+                    x1 + " " + y1 + " m " + x2 + " " + y2 + " l S" + NL;
+            }
+
+            function wrapText(text, maxWidth, size, bold) {
+                const words = escapePDF(text).split(/\s+/).filter(Boolean);
+                const lines = [];
+                let line = "";
+
+                words.forEach(function(word) {
+                    const candidate = line ? line + " " + word : word;
+                    if (estimateTextWidth(candidate, size, bold) > maxWidth && line) {
+                        lines.push(line);
+                        line = word;
+                    } else {
+                        line = candidate;
+                    }
+                });
+
+                if (line) lines.push(line);
+                return lines.length ? lines : [""];
+            }
+
+            function drawWrapped(text, x, y, maxWidth, size, leading, font, fill, maxLines) {
+                let lines = wrapText(text, maxWidth, size, font === "F2");
+                if (maxLines) lines = lines.slice(0, maxLines);
+
+                lines.forEach(function(line, index) {
+                    drawText(line, x, y - index * leading, size, font, fill);
+                });
+
+                return y - lines.length * leading;
+            }
+
+            function sectionLabel(label, y) {
+                drawText(label.toUpperCase(), LEFT, y, 8.2, "F2", C.public);
+                return y - 14;
+            }
+
+            /* PAGE BACKGROUND */
+            drawRect(0, 0, PAGE_W, PAGE_H, C.white, null, 0);
+
+            /* HEADER */
+            drawRect(0, PAGE_H - 82, PAGE_W, 82, C.publicDeep, null, 0);
+            drawRect(0, PAGE_H - 82, 8, 82, C.red, null, 0);
+
+            drawRect(LEFT, PAGE_H - 61, 34, 34, C.red, null, 0);
+            drawText("SCU", LEFT + 6.2, PAGE_H - 49, 11.5, "F2", C.white);
+
+            drawText("SECTOR CORPORATE UNIVERSITY", LEFT + 46, PAGE_H - 39, 9.3, "F2", C.white);
+            drawText("Public Sector Faculty", LEFT + 46, PAGE_H - 53, 8.2, "F1", [0.91, 0.88, 0.96]);
+            drawRightText("MICRO LEARNING", PAGE_W - RIGHT, PAGE_H - 46, 8.7, "F2", C.white);
+
+            /* TITLE AREA */
+            let y = PAGE_H - 112;
+            drawText("PUBLIC SECTOR  |  " + phase.title.toUpperCase(), LEFT, y, 8.2, "F2", C.public);
+            y -= 25;
+
+            const titleLines = wrapText(item.title, CONTENT_W, 21.5, true);
+            titleLines.forEach(function(line, index) {
+                drawText(line, LEFT, y - index * 24, 21.5, "F2", C.ink);
+            });
+            y -= titleLines.length * 24 + 2;
+
+            drawText("Developing Pathway  |  Public Economics Case", LEFT, y, 9.1, "F2", C.publicDeep);
+            y -= 18;
+            y = drawWrapped(
+                "A short learning brief generated from your current learning context to support practical Public Sector capability development.",
+                LEFT, y, CONTENT_W, 9.2, 13, "F1", C.muted
+            );
+            y -= 8;
+
+            /* KEY IDEA BOX */
+            const keyLines = wrapText(item.keyIdea, CONTENT_W - 28, 9.5, false);
+            const keyH = 36 + keyLines.length * 13;
+            drawRect(LEFT, y - keyH, CONTENT_W, keyH, C.publicSoft, [0.847, 0.812, 0.925], 0.8);
+            drawText("KEY IDEA", LEFT + 14, y - 17, 8.1, "F2", C.publicDeep);
+            keyLines.forEach(function(line, index) {
+                drawText(line, LEFT + 14, y - 35 - index * 13, 9.5, "F1", C.ink);
+            });
+            y -= keyH + 18;
+
+            /* IN THIS CASE */
+            y = sectionLabel("In this case", y);
+            y = drawWrapped(item.inThisCase, LEFT, y, CONTENT_W, 9.1, 12.7, "F1", C.ink);
+            y -= 12;
+
+            /* WHAT TO LOOK FOR
+               Keep a deliberate visual gap below the section heading so the first numbered item
+               never crowds or overlaps the heading. Each item also gets consistent vertical rhythm.
+            */
+            y = sectionLabel("What to look for", y);
+            y -= 9;
+
+            item.lookFor.forEach(function(point, index) {
+                const pointLines = wrapText(point, CONTENT_W - 34, 8.8, false);
+                const itemHeight = Math.max(24, pointLines.length * 11.5 + 8);
+                const squareY = y - 2;
+
+                drawRect(LEFT, squareY, 16, 16, C.public, null, 0);
+
+                const n = String(index + 1);
+                drawText(n, LEFT + (index + 1 < 10 ? 5.2 : 2.6), squareY + 4.4, 7.6, "F2", C.white);
+
+                pointLines.forEach(function(line, lineIndex) {
+                    drawText(line, LEFT + 27, y + 1.8 - lineIndex * 11.5, 8.8, "F1", C.muted);
+                });
+
+                y -= itemHeight;
+            });
+
+            y -= 7;
+
+            /* CLIENT APPLICATION BOX */
+            const clientLines = wrapText(item.clientApplication, CONTENT_W - 32, 9.1, false);
+            const clientH = 37 + clientLines.length * 12.5;
+            drawRect(LEFT, y - clientH, CONTENT_W, clientH, C.roseSoft, [0.91, 0.77, 0.82], 0.8);
+            drawRect(LEFT, y - clientH, 5, clientH, C.red, null, 0);
+            drawText("CLIENT APPLICATION", LEFT + 16, y - 17, 8.1, "F2", C.deep);
+            clientLines.forEach(function(line, index) {
+                drawText(line, LEFT + 16, y - 35 - index * 12.5, 9.1, "F1", C.ink);
+            });
+            y -= clientH + 14;
+
+            /* REMEMBER */
+            const rememberLines = wrapText(item.takeaway, CONTENT_W - 112, 9.2, true);
+            const rememberH = Math.max(42, 22 + rememberLines.length * 12.5);
+            drawRect(LEFT, y - rememberH, CONTENT_W, rememberH, C.cream, C.line, 0.8);
+            drawText("REMEMBER", LEFT + 13, y - 24, 8.1, "F2", C.publicDeep);
+            rememberLines.forEach(function(line, index) {
+                drawText(line, LEFT + 91, y - 24 - index * 12.5, 9.2, "F2", C.ink);
+            });
+
+            /* FOOTER */
+            drawLine(LEFT, 37, PAGE_W - RIGHT, 37, C.line, 0.8);
+            drawText("Public Sector Faculty  |  Developing Pathway", LEFT, 22, 7.4, "F1", C.muted);
+            drawRightText("SCU Micro Learning  |  " + (stepIndex + 1), PAGE_W - RIGHT, 22, 7.4, "F1", C.muted);
+
+            /* PDF OBJECTS */
+            const objects = [];
+            objects[1] = "<< /Type /Catalog /Pages 2 0 R >>";
+            objects[2] = "<< /Type /Pages /Kids [3 0 R] /Count 1 >>";
+            objects[3] = "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 4 0 R >>";
+            objects[4] = "<< /Length " + content.length + " >>" + NL + "stream" + NL + content + "endstream";
+            objects[5] = "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>";
+            objects[6] = "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>";
+
+            let pdf = "%PDF-1.4" + NL;
+            const offsets = [0];
+
+            for (let i = 1; i <= 6; i++) {
+                offsets[i] = pdf.length;
+                pdf += i + " 0 obj" + NL + objects[i] + NL + "endobj" + NL;
+            }
+
+            const xref = pdf.length;
+            pdf += "xref" + NL + "0 7" + NL + "0000000000 65535 f " + NL;
+
+            for (let i = 1; i <= 6; i++) {
+                pdf += String(offsets[i]).padStart(10, "0") + " 00000 n " + NL;
+            }
+
+            pdf += "trailer" + NL + "<< /Size 7 /Root 1 0 R >>" + NL +
+                "startxref" + NL + xref + NL + "%%EOF";
+
+            return new Blob([pdf], { type: "application/pdf" });
+        }
+
+
         /* ---------------------------------------------------------------------------------------------------- */
         /* UPDATE THE AI WHEN THE LEARNER MOVES TO ANOTHER PHASE
         ---------------------------------------------------------------------------------------------------- */
@@ -2378,6 +2957,10 @@
             document.getElementById("aiContextSubtitle").textContent = phase.subtitle;
 
             renderAIPrompts(phase);
+
+            if (aiMode === "micro") {
+                renderMicroLearning();
+            }
 
             if (forceReset || aiLastStep !== stepIndex) {
 
