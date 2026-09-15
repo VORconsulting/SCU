@@ -1125,7 +1125,7 @@
 
 
         /* ==================================================================================================== */
-        /* ======================================  AI COACH MODE 3  ========================================== */
+        /* ================================  AI COACH: ASK + GENERATE LEARNING  =============================== */
         /* ==================================================================================================== */
 
         .ai-mode-tabs {
@@ -1249,6 +1249,160 @@
             font-size: 10px;
             line-height: 1.4;
             text-align: center;
+        }
+
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* MICRO LEARNING GENERATION EXPERIENCE */
+        /* ---------------------------------------------------------------------------------------------------- */
+
+        .micro-generation {
+            border: 1px solid #D8CFEC;
+            border-radius: 17px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 7px 22px rgba(78, 23, 48, 0.06);
+        }
+
+        .micro-generation-kicker {
+            color: var(--public);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .micro-generation h3 {
+            margin: 8px 0 6px;
+            font-size: 19px;
+            line-height: 1.3;
+        }
+
+        .micro-generation > p {
+            margin: 0 0 17px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        .generation-context {
+            margin-bottom: 17px;
+            padding: 12px 13px;
+            border-radius: 12px;
+            background: var(--public-soft);
+            color: var(--public-deep);
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .generation-steps {
+            display: grid;
+            gap: 10px;
+        }
+
+        .generation-step {
+            display: grid;
+            grid-template-columns: 24px 1fr;
+            gap: 9px;
+            align-items: start;
+            color: #8E7B85;
+            font-size: 12px;
+            line-height: 1.45;
+            transition: 0.2s ease;
+        }
+
+        .generation-step .generation-icon {
+            width: 22px;
+            height: 22px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: #F4EEF1;
+            color: #A38F99;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .generation-step.active {
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .generation-step.active .generation-icon {
+            background: var(--public-soft);
+            color: var(--public);
+        }
+
+        .generation-step.complete {
+            color: #4E4149;
+        }
+
+        .generation-step.complete .generation-icon {
+            background: var(--success-soft);
+            color: var(--success);
+        }
+
+        .generation-thinking {
+            display: inline-flex;
+            gap: 3px;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+
+        .generation-thinking span {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--public);
+            opacity: 0.35;
+            animation: aiPulse 1s infinite ease-in-out;
+        }
+
+        .generation-thinking span:nth-child(2) { animation-delay: 0.15s; }
+        .generation-thinking span:nth-child(3) { animation-delay: 0.30s; }
+
+        .micro-ready {
+            margin-bottom: 12px;
+            padding: 11px 12px;
+            border-radius: 12px;
+            background: var(--success-soft);
+            color: var(--success);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .micro-actions {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+            margin-top: 17px;
+        }
+
+        .micro-actions .micro-download {
+            margin-top: 0;
+        }
+
+        .micro-regenerate {
+            border: 1px solid #D8CFEC;
+            border-radius: 12px;
+            padding: 12px 13px;
+            background: white;
+            color: var(--public-deep);
+            font-weight: 800;
+        }
+
+        .micro-regenerate:hover {
+            background: var(--public-soft);
+        }
+
+        .ai-thinking-copy {
+            display: inline-flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+            color: var(--muted);
+            font-size: 11px;
         }
 
 
@@ -1988,7 +2142,7 @@
 
         <div class="ai-mode-tabs">
             <button class="ai-mode-tab active" id="aiAskModeTab" onclick="setAIMode('ask')">Ask & Explore</button>
-            <button class="ai-mode-tab" id="aiMicroModeTab" onclick="setAIMode('micro')">Micro Learning</button>
+            <button class="ai-mode-tab" id="aiMicroModeTab" onclick="setAIMode('micro')">Generate Micro Learning</button>
         </div>
 
         <div class="ai-microlearning" id="aiMicroLearning"></div>
@@ -1996,7 +2150,7 @@
         <div class="ai-chat" id="aiChat"></div>
 
         <div class="ai-suggestions">
-            <div class="ai-suggestions-title">Suggested questions</div>
+            <div class="ai-suggestions-title">Suggested questions · or ask your own below</div>
             <div class="ai-prompt-grid" id="aiPromptGrid"></div>
         </div>
 
@@ -2232,10 +2386,10 @@
         /* ---------------------------------------------------------------------------------------------------- */
         /* AI ASSISTANT DEMO CONTENT
            Each phase has:
-           - two live clickable questions
-           - two additional illustrative prompt chips
-           - scripted free-text responses for likely demo questions
-           - a contextual fallback response
+           - four live context-aware suggested questions
+           - broader scripted free-text intent recognition
+           - contextual thinking before each response
+           - a phase-specific fallback response
         ---------------------------------------------------------------------------------------------------- */
 
         const aiPhaseData = [
@@ -2261,11 +2415,15 @@
                     },
                     {
                         text: "How does governance affect the conversation?",
-                        live: false
+                        live: true,
+                        response:
+                            "Considering this institution's context, governance tells you who has authority to decide, approve and commit the organisation. It shapes which financial options are permissible, who must be involved and how quickly action can occur. In a Public Sector conversation, understanding those boundaries early prevents you from proposing something the institution cannot legitimately implement."
                     },
                     {
                         text: "What evidence should I gather first?",
-                        live: false
+                        live: true,
+                        response:
+                            "Start with evidence that clarifies the operating model: the institution's mandate, key decision and approval roles, major funding relationships, priority programmes and the delivery partners affected by the current issue. You do not need every document before the meeting; you need enough context to ask informed questions and test your initial hypotheses."
                     }
                 ],
 
@@ -2279,6 +2437,16 @@
                         keywords: ["stakeholder", "stakeholders", "most important stakeholders", "who are"],
                         response:
                             "For this case, I would map the institution's decision-makers, relevant government or funding bodies, procurement and finance functions, delivery partners, contractors and suppliers. The important point is not simply to make a list, but to understand who controls funding, who approves decisions, who executes delivery and who experiences the consequences of delays."
+                    },
+                    {
+                        keywords: ["governance", "approval", "authority", "decision maker", "decision-maker"],
+                        response:
+                            "Governance matters because the institution's mandate does not automatically give every stakeholder authority to make financial decisions. In this case, identify who can approve, who influences, and which policy or delegated-authority boundaries shape the conversation before discussing possible solutions."
+                    },
+                    {
+                        keywords: ["supplier", "contractor", "delivery partner", "ecosystem", "public value"],
+                        response:
+                            "The supplier and contractor ecosystem matters because the institution delivers public outcomes through other parties. Payment delays can therefore become a service-delivery issue, not only a finance issue. Map who depends on whom and where disruption would affect the mandate most directly."
                     }
                 ],
 
@@ -2307,11 +2475,15 @@
                     },
                     {
                         text: "Explain budget versus liquidity",
-                        live: false
+                        live: true,
+                        response:
+                            "In this case, budget tells you that expenditure has been planned and authorised within the relevant framework. Liquidity is about whether usable cash is actually available when payments fall due. The agency can therefore have an approved capital programme and still experience short-term payment pressure if inflows and supplier obligations occur at different times."
                     },
                     {
                         text: "What information should I ask the client for?",
-                        live: false
+                        live: true,
+                        response:
+                            "Ask for the timing and predictability of major inflows, the profile of large contractor and supplier payments, any restrictions attached to funding sources, and where delays occur in the approval-to-payment process. That information helps distinguish a cash-timing issue from a structural funding, governance or execution problem."
                     }
                 ],
 
@@ -2325,6 +2497,16 @@
                         keywords: ["funding problem", "necessarily a funding", "need funding", "is this funding"],
                         response:
                             "Not necessarily. A delayed supplier payment can result from cash timing, administrative approvals, procurement processes, restricted funding or project execution issues as well as insufficient funding. The case gives you a liquidity hypothesis to test, not a conclusion that long-term borrowing is required."
+                    },
+                    {
+                        keywords: ["cash flow", "cash-flow", "timing", "inflow", "outflow", "transfer", "revenue"],
+                        response:
+                            "Map the cash cycle rather than relying on the annual total. Compare when transfers and other revenues become usable with when milestone-linked contractor and supplier payments fall due. The pattern will help you see whether the pressure is predictable and temporary or something more structural."
+                    },
+                    {
+                        keywords: ["affordability", "borrowing", "long-term", "structural", "capital programme"],
+                        response:
+                            "Affordability is a different question from short-term liquidity. If the institution cannot sustainably meet obligations over the programme life, that may indicate a structural issue. But if funding is adequate and the problem is only when cash arrives, the diagnosis and potential response are different. Test that distinction before discussing borrowing."
                     }
                 ],
 
@@ -2353,11 +2535,15 @@
                     },
                     {
                         text: "Where would specialist support help?",
-                        live: false
+                        live: true,
+                        response:
+                            "Specialist support becomes useful once the underlying issue is clearer. Transaction specialists may help where payment execution is the constraint; liquidity or credit specialists where recurring cash-timing pressure is evidenced; and Public Sector or governance expertise where policy, authority or approval boundaries shape what is possible. The relationship team should diagnose first, then bring in the right expertise."
                     },
                     {
                         text: "How do policy boundaries affect solutions?",
-                        live: false
+                        live: true,
+                        response:
+                            "Public institutions operate within mandates, delegated authorities, procurement rules and approval frameworks. A commercially sensible solution may still be inappropriate if the institution lacks authority to use it or if additional approvals are required. That is why policy and governance boundaries are part of the needs diagnosis, not an afterthought."
                     }
                 ],
 
@@ -2371,6 +2557,16 @@
                         keywords: ["payments or liquidity", "payment or liquidity", "payments problem", "liquidity problem"],
                         response:
                             "Look at the evidence. If cash is available but payment processing, approvals or transaction execution are causing delays, the problem may be payments-related. If obligations fall due before usable cash arrives, liquidity becomes more relevant. The two can also interact, which is why you would test cash-flow timing and the payment process separately."
+                    },
+                    {
+                        keywords: ["risk", "risks", "execution", "procurement", "bottleneck"],
+                        response:
+                            "Treat risk as part of the diagnosis. Ask whether the visible payment pressure could disrupt suppliers or programme delivery, and whether the root cause sits in cash timing, approvals, procurement or execution. Those distinctions determine both the risk and whether a banking response is relevant."
+                    },
+                    {
+                        keywords: ["specialist", "specialists", "policy", "boundary", "boundaries", "governance"],
+                        response:
+                            "Bring in specialist support when the evidence points beyond general relationship discovery. That could include transaction, liquidity, credit or Public Sector expertise. Governance and policy boundaries should also be clarified before a solution is advanced, because they determine what the institution can legitimately approve and use."
                     }
                 ],
 
@@ -2399,11 +2595,15 @@
                     },
                     {
                         text: "How should I open the conversation?",
-                        live: false
+                        live: true,
+                        response:
+                            "Open with the institution's priorities and delivery context rather than the payment problem or a product. For example: 'We understand you are managing a significant infrastructure programme. It would be useful to understand which delivery priorities are most exposed to payment timing and how the funding and payment cycle works in practice.' That signals preparation while leaving room for the stakeholder to explain the reality."
                     },
                     {
                         text: "What should my follow-up actions be?",
-                        live: false
+                        live: true,
+                        response:
+                            "After the meeting, separate confirmed facts from hypotheses, identify any evidence still required, clarify governance or approval questions, and decide whether specialist support is needed. Your follow-up should show that you understood the institution's mandate and operating challenge rather than simply sending a generic product proposal."
                     }
                 ],
 
@@ -2417,6 +2617,16 @@
                         keywords: ["without sounding too direct", "financial position", "ask about their financial", "too direct"],
                         response:
                             "Anchor the question in delivery rather than asking bluntly whether they have a cash problem. For example: 'How do the timing of your major funding inflows and supplier-payment commitments affect programme delivery during the year?' That invites the client to explain the operating reality without presuming financial distress."
+                    },
+                    {
+                        keywords: ["open the conversation", "start the meeting", "opening", "first question"],
+                        response:
+                            "Start with mandate and delivery. A useful opening is to acknowledge the institution's priority programme and ask where payment timing or funding-cycle friction is having the greatest operational effect. That creates a mandate-led conversation and gives the stakeholder room to correct or refine your assumptions."
+                    },
+                    {
+                        keywords: ["follow up", "follow-up", "next action", "after the meeting", "specialist"],
+                        response:
+                            "After the meeting, record what was confirmed, what remains a hypothesis and what evidence is still needed. Then identify any governance questions and the right specialist support. A strong follow-up should respond to the institution's actual operating problem rather than defaulting to a generic product discussion."
                     }
                 ],
 
@@ -2445,11 +2655,15 @@
                     },
                     {
                         text: "How could this become formal evidence?",
-                        live: false
+                        live: true,
+                        response:
+                            "The case can contribute structured evidence of guided application: your interpretation of the institution, your fiscal reasoning, the hypotheses you formed, the stakeholder questions you prepared and your reflection. For stronger capability evidence, combine this with observed performance in a simulation, shadowed meeting or coached client engagement."
                     },
                     {
                         text: "What would a coach validate?",
-                        live: false
+                        live: true,
+                        response:
+                            "A coach would look for more than correct terminology. They would validate whether you start from mandate and context, distinguish evidence from assumptions, interpret cash timing sensibly, recognise governance boundaries, ask effective discovery questions and know when to involve specialist support. The emphasis is on applied judgement."
                     }
                 ],
 
@@ -2463,6 +2677,16 @@
                         keywords: ["ready for a real client", "ready for real client", "am i ready", "client meeting"],
                         response:
                             "This case is evidence of guided application, but it would not by itself prove full independent readiness. A sensible next step would be a simulation, shadowed meeting or coached client engagement where your questioning, judgement and use of policy boundaries can be observed in a more realistic setting."
+                    },
+                    {
+                        keywords: ["evidence", "formal evidence", "capability", "prove", "demonstrate"],
+                        response:
+                            "Useful capability evidence should show what you actually applied: your institutional interpretation, fiscal reasoning, hypotheses, stakeholder questions and reflection. The strongest evidence would then add observation from a simulation or coached engagement so that a reviewer can see how you use the same judgement in practice."
+                    },
+                    {
+                        keywords: ["coach", "validate", "assessment", "assess", "next step", "develop next"],
+                        response:
+                            "A coach would validate the quality of your reasoning and behaviour: whether you begin with mandate, distinguish assumptions from evidence, interpret liquidity appropriately, recognise governance constraints and ask questions that genuinely test the situation. Your next development step should give someone an opportunity to observe those behaviours in a more realistic interaction."
                     }
                 ],
 
@@ -2590,10 +2814,14 @@
 
 
         /* ---------------------------------------------------------------------------------------------------- */
-        /* AI COACH MODE SWITCHING
+        /* AI COACH: ASK OR GENERATE MICRO LEARNING
+           Suggested questions and free text share one conversational experience.
+           Generate Micro Learning is a separate synthesis action using the learner's current phase context.
         ---------------------------------------------------------------------------------------------------- */
 
         let aiMode = "ask";
+        let microGeneratedStep = -1;
+        let microGenerationTimers = [];
 
         function setAIMode(mode) {
 
@@ -2613,7 +2841,13 @@
                 suggestions.style.display = "none";
                 inputWrap.style.display = "none";
                 micro.classList.add("show");
-                renderMicroLearning();
+
+                const stepIndex = Math.min(currentStep, 4);
+                if (microGeneratedStep === stepIndex) {
+                    renderGeneratedMicroLearning();
+                } else {
+                    generateMicroLearning();
+                }
             } else {
                 microTab.classList.remove("active");
                 askTab.classList.add("active");
@@ -2626,10 +2860,119 @@
 
 
         /* ---------------------------------------------------------------------------------------------------- */
-        /* RENDER THE MICRO-LEARNING BRIEF FOR THE CURRENT PHASE
+        /* CONTEXTUAL MICRO LEARNING GENERATION
         ---------------------------------------------------------------------------------------------------- */
 
-        function renderMicroLearning() {
+        const microGenerationSteps = [
+            [
+                "Reading the institution's mandate and operating context",
+                "Mapping decision-makers, funding relationships and delivery partners",
+                "Connecting the supplier-payment issue to the wider ecosystem",
+                "Building your contextual learning brief"
+            ],
+            [
+                "Analysing budget, revenue and cash-flow concepts",
+                "Connecting cash timing to the Metro Infrastructure & Services Agency case",
+                "Identifying practical liquidity and client implications",
+                "Building your contextual learning brief"
+            ],
+            [
+                "Reviewing the visible client need and possible root causes",
+                "Separating liquidity, payments, governance and execution hypotheses",
+                "Identifying risk and appropriate specialist boundaries",
+                "Building your contextual learning brief"
+            ],
+            [
+                "Reviewing your stakeholder preparation context",
+                "Identifying effective mandate-led discovery principles",
+                "Connecting questions to fiscal dynamics, governance and delivery",
+                "Building your contextual learning brief"
+            ],
+            [
+                "Reviewing the capability demonstrated across the case",
+                "Connecting reflection to observable Developing-level behaviours",
+                "Identifying useful evidence and the next practice step",
+                "Building your contextual learning brief"
+            ]
+        ];
+
+        function clearMicroGenerationTimers() {
+            microGenerationTimers.forEach(function(timer) {
+                clearTimeout(timer);
+            });
+            microGenerationTimers = [];
+        }
+
+        function generateMicroLearning() {
+
+            clearMicroGenerationTimers();
+
+            const stepIndex = Math.min(currentStep, 4);
+            const phase = aiPhaseData[stepIndex];
+            const container = document.getElementById("aiMicroLearning");
+            const steps = microGenerationSteps[stepIndex];
+
+            microGeneratedStep = -1;
+
+            container.innerHTML =
+                '<div class="micro-generation">' +
+                    '<span class="micro-generation-kicker">SCU AI Coach · Generating</span>' +
+                    '<h3>Creating Micro Learning for you...</h3>' +
+                    '<p>I am using your current position in the Public Economics Case to create a short, practical learning brief.</p>' +
+                    '<div class="generation-context"><b>Current context:</b> ' + escapeHTML(phase.title) +
+                    '<br>Developing Pathway · Public Economics Case</div>' +
+                    '<div class="generation-steps" id="generationSteps">' +
+                        steps.map(function(text, index) {
+                            return '<div class="generation-step" id="generationStep' + index + '">' +
+                                '<span class="generation-icon">' + (index + 1) + '</span>' +
+                                '<span>' + escapeHTML(text) + '</span>' +
+                            '</div>';
+                        }).join("") +
+                    '</div>' +
+                '</div>';
+
+            function activateStep(index) {
+                for (let i = 0; i < steps.length; i++) {
+                    const row = document.getElementById("generationStep" + i);
+                    if (!row) continue;
+
+                    const icon = row.querySelector(".generation-icon");
+                    const copy = row.querySelector("span:last-child");
+
+                    row.classList.remove("active");
+
+                    if (i < index) {
+                        row.classList.add("complete");
+                        icon.textContent = "✓";
+                    } else if (i === index) {
+                        row.classList.add("active");
+                        icon.textContent = "AI";
+                        copy.innerHTML = escapeHTML(steps[i]) +
+                            ' <span class="generation-thinking"><span></span><span></span><span></span></span>';
+                    }
+                }
+            }
+
+            activateStep(0);
+
+            [700, 1400, 2100].forEach(function(delay, i) {
+                microGenerationTimers.push(setTimeout(function() {
+                    activateStep(i + 1);
+                }, delay));
+            });
+
+            microGenerationTimers.push(setTimeout(function() {
+                microGeneratedStep = stepIndex;
+                renderGeneratedMicroLearning();
+            }, 3000));
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
+        /* SHOW THE GENERATED MICRO LEARNING BRIEF
+        ---------------------------------------------------------------------------------------------------- */
+
+        function renderGeneratedMicroLearning() {
 
             const stepIndex = Math.min(currentStep, 4);
             const item = microLearningData[stepIndex];
@@ -2640,8 +2983,9 @@
             }).join("");
 
             container.innerHTML =
+                '<div class="micro-ready">✓ Your Micro Learning is ready</div>' +
                 '<div class="micro-card">' +
-                    '<span class="micro-label">Micro Learning · ' + escapeHTML(aiPhaseData[stepIndex].title) + '</span>' +
+                    '<span class="micro-label">Generated Micro Learning · ' + escapeHTML(aiPhaseData[stepIndex].title) + '</span>' +
                     '<h3>' + escapeHTML(item.title) + '</h3>' +
                     '<p>' + escapeHTML(item.summary) + '</p>' +
                     '<div class="micro-section"><strong>Key idea</strong><p>' + escapeHTML(item.keyIdea) + '</p></div>' +
@@ -2649,8 +2993,11 @@
                     '<div class="micro-section"><strong>What to look for</strong><ul>' + listItems + '</ul></div>' +
                     '<div class="micro-section"><strong>Client application</strong><p>' + escapeHTML(item.clientApplication) + '</p></div>' +
                     '<div class="micro-section"><strong>Remember</strong><p><b>' + escapeHTML(item.takeaway) + '</b></p></div>' +
-                    '<button class="micro-download" onclick="downloadMicroLearningPDF()">Download Micro Learning PDF</button>' +
-                    '<div class="micro-note">One-page SCU learning resource generated for the current case phase.</div>' +
+                    '<div class="micro-actions">' +
+                        '<button class="micro-download" onclick="downloadMicroLearningPDF()">Download PDF</button>' +
+                        '<button class="micro-regenerate" onclick="generateMicroLearning()">Regenerate</button>' +
+                    '</div>' +
+                    '<div class="micro-note">Generated by SCU AI Coach from your current learning context.</div>' +
                 '</div>';
         }
 
@@ -2959,7 +3306,11 @@
             renderAIPrompts(phase);
 
             if (aiMode === "micro") {
-                renderMicroLearning();
+                if (microGeneratedStep === stepIndex) {
+                    renderGeneratedMicroLearning();
+                } else {
+                    generateMicroLearning();
+                }
             }
 
             if (forceReset || aiLastStep !== stepIndex) {
@@ -2975,8 +3326,7 @@
 
 
         /* ---------------------------------------------------------------------------------------------------- */
-        /* SHOW THE FOUR SUGGESTED PROMPTS FOR THE CURRENT PHASE
-           Two are interactive. Two are deliberately illustrative in this prototype.
+        /* SHOW FOUR LIVE SUGGESTED QUESTIONS FOR THE CURRENT PHASE
         ---------------------------------------------------------------------------------------------------- */
 
         function renderAIPrompts(phase) {
@@ -2987,18 +3337,11 @@
             phase.prompts.forEach(function(prompt) {
 
                 const button = document.createElement("button");
-                button.className = "ai-prompt" + (prompt.live ? "" : " preview");
+                button.className = "ai-prompt";
                 button.textContent = prompt.text;
-
-                if (prompt.live) {
-                    button.onclick = function() {
-                        runPresetPrompt(prompt);
-                    };
-                } else {
-                    button.onclick = function() {
-                        toast("This suggested interaction is illustrative in the current prototype.");
-                    };
-                }
+                button.onclick = function() {
+                    runPresetPrompt(prompt);
+                };
 
                 grid.appendChild(button);
             });
@@ -3012,7 +3355,7 @@
         function runPresetPrompt(prompt) {
 
             addAIMessage("user", prompt.text);
-            showAIThinking(prompt.response);
+            showAIThinking(prompt.response, "Considering this question in your current case context");
         }
 
 
@@ -3033,7 +3376,7 @@
             input.value = "";
 
             const response = getAIResponse(question);
-            showAIThinking(response);
+            showAIThinking(response, "Interpreting your question in the current case context");
         }
 
 
@@ -3105,7 +3448,7 @@
         /* SHORT "THINKING" ANIMATION BEFORE THE SCRIPTED RESPONSE
         ---------------------------------------------------------------------------------------------------- */
 
-        function showAIThinking(response) {
+        function showAIThinking(response, thinkingText) {
 
             const chat = document.getElementById("aiChat");
 
@@ -3120,7 +3463,8 @@
             const bubble = document.createElement("div");
             bubble.className = "ai-bubble";
             bubble.innerHTML =
-                '<span class="ai-thinking"><span></span><span></span><span></span></span>';
+                '<span class="ai-thinking-copy">' + escapeHTML(thinkingText || "Considering the current learning context") +
+                ' <span class="ai-thinking"><span></span><span></span><span></span></span></span>';
 
             wrapper.appendChild(avatar);
             wrapper.appendChild(bubble);
@@ -3140,7 +3484,7 @@
 
                 addAIMessage("assistant", response);
 
-            }, 650);
+            }, 900);
         }
 
 
