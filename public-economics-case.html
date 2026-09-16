@@ -22,9 +22,9 @@
             --muted: #735E68;
             --soft: #F8ECEF;
 
-            --public: #6A55A5;
-            --public-soft: #F0ECF8;
-            --public-deep: #463876;
+            --public: #FF780F;
+            --public-soft: #FFF3E8;
+            --public-deep: #A94A00;
 
             --success: #3F7C5A;
             --success-soft: #EDF6F0;
@@ -351,7 +351,7 @@
 
         .step-button.active {
             background: var(--public-soft);
-            border-color: #D8CFEC;
+            border-color: #CFE2F4;
         }
 
         .step-number {
@@ -551,7 +551,7 @@
         }
 
         .option:hover {
-            border-color: #CFC3E7;
+            border-color: #B9D7F2;
             background: #FCFAFF;
         }
 
@@ -580,7 +580,7 @@
 
         .feedback.coach {
             background: var(--public-soft);
-            border: 1px solid #D8CFEC;
+            border: 1px solid #CFE2F4;
         }
 
         .feedback.warning {
@@ -603,8 +603,8 @@
             border-radius: 17px;
             padding: 19px;
             background:
-                linear-gradient(135deg, rgba(106,85,165,0.10), rgba(175,20,75,0.08));
-            border: 1px solid #D9CEE7;
+                linear-gradient(135deg, rgba(255,120,15,0.12), rgba(175,20,75,0.08));
+            border: 1px solid #FFD4B2;
         }
 
         .ai-coach-header {
@@ -672,7 +672,7 @@
 
         textarea:focus {
             border-color: var(--public);
-            box-shadow: 0 0 0 3px rgba(106,85,165,0.10);
+            box-shadow: 0 0 0 3px rgba(255,120,15,0.12);
         }
 
 
@@ -1044,7 +1044,7 @@
         }
 
         .ai-prompt {
-            border: 1px solid #D8CFEC;
+            border: 1px solid #CFE2F4;
             border-radius: 999px;
             padding: 8px 10px;
             background: var(--public-soft);
@@ -1056,19 +1056,19 @@
 
         .ai-prompt:hover {
             border-color: var(--public);
-            background: #E9E2F5;
+            background: #EDF5FD;
         }
 
         .ai-prompt.preview {
             opacity: 0.48;
-            background: #F7F4FA;
+            background: #F6FAFE;
             border-style: dashed;
         }
 
         .ai-prompt.preview:hover {
             opacity: 0.68;
-            border-color: #CFC3E7;
-            background: #F7F4FA;
+            border-color: #B9D7F2;
+            background: #F6FAFE;
         }
 
         .ai-input-wrap {
@@ -1096,7 +1096,7 @@
 
         .ai-input:focus {
             border-color: var(--public);
-            box-shadow: 0 0 0 3px rgba(106,85,165,0.10);
+            box-shadow: 0 0 0 3px rgba(255,120,15,0.12);
         }
 
         .ai-send {
@@ -1166,7 +1166,7 @@
         }
 
         .micro-card {
-            border: 1px solid #D8CFEC;
+            border: 1px solid #CFE2F4;
             border-radius: 17px;
             padding: 18px;
             background: white;
@@ -1258,7 +1258,7 @@
         /* ---------------------------------------------------------------------------------------------------- */
 
         .micro-generation {
-            border: 1px solid #D8CFEC;
+            border: 1px solid #CFE2F4;
             border-radius: 17px;
             padding: 20px;
             background: white;
@@ -1384,7 +1384,7 @@
         }
 
         .micro-regenerate {
-            border: 1px solid #D8CFEC;
+            border: 1px solid #CFE2F4;
             border-radius: 12px;
             padding: 12px 13px;
             background: white;
@@ -1486,6 +1486,162 @@
         }
 
     </style>
+
+
+    <style>
+        /* ==================================================================================================== */
+        /* ==========================  COLOUR REFRESH ONLY — PUBLIC + SCU AI  ================================ */
+        /* Public Sector = Absa Energy orange. SCU AI = blue intelligence layer.                              */
+        /* ==================================================================================================== */
+        :root {
+            --ai: #2B82DA;
+            --ai-dark: #1F4D7A;
+            --ai-soft: #EDF5FD;
+            --ai-line: #CFE2F4;
+        }
+
+        /* Public Sector faculty identity */
+        .faculty-pill, .path-step.active, .step.active, .phase.active,
+        .progress-fill, .case-progress-fill {
+            accent-color: var(--public);
+        }
+
+        /* Embedded AI Coach callout */
+        .ai-coach {
+            background: linear-gradient(135deg, var(--ai-soft), #FFFFFF);
+            border-color: var(--ai-line);
+        }
+        .ai-icon {
+            background: linear-gradient(135deg, var(--ai-dark), var(--ai));
+        }
+        .ai-coach p { color: #40576D; }
+
+        /* Ask SCU AI entry point */
+        .nav-ai {
+            background: linear-gradient(135deg, var(--ai-dark), var(--ai));
+            border-color: var(--ai);
+            color: #FFFFFF;
+        }
+
+        /* AI sidebar */
+        .ai-overlay { background: rgba(19, 16, 16, 0.34); }
+        .ai-panel { box-shadow: -18px 0 55px rgba(31, 77, 122, 0.20); }
+        .ai-panel-header {
+            background:
+                radial-gradient(circle at 88% 12%, rgba(255,255,255,0.13), transparent 28%),
+                linear-gradient(135deg, #131010, var(--ai-dark), var(--ai));
+        }
+        .ai-context { background: var(--ai-soft); border-bottom-color: var(--ai-line); }
+        .ai-context-label { color: var(--ai-dark); }
+        .ai-avatar { background: linear-gradient(135deg, var(--ai-dark), var(--ai)); }
+        .ai-message.user .ai-bubble {
+            background: var(--ai);
+            border-color: var(--ai);
+        }
+        .ai-prompt {
+            border-color: var(--ai-line);
+            background: var(--ai-soft);
+            color: var(--ai-dark);
+        }
+        .ai-prompt:hover { border-color: var(--ai); background: #E2F0FC; }
+        .ai-prompt.preview { background: #F6FAFE; }
+        .ai-prompt.preview:hover { border-color: #B9D7F2; background: #F6FAFE; }
+        .ai-input:focus {
+            border-color: var(--ai);
+            box-shadow: 0 0 0 3px rgba(43,130,218,0.12);
+        }
+        .ai-send { background: linear-gradient(135deg, var(--ai-dark), var(--ai)); }
+        .ai-mode-tab.active {
+            border-color: var(--ai);
+            background: var(--ai-soft);
+            color: var(--ai-dark);
+        }
+
+        /* AI-generated micro-learning remains visually part of the blue AI layer */
+        .micro-card, .micro-generation { border-color: var(--ai-line); }
+        .micro-label { background: var(--ai-soft); color: var(--ai-dark); }
+        .micro-generation-kicker { color: var(--ai-dark); }
+        .generation-context { background: var(--ai-soft); color: var(--ai-dark); }
+        .micro-download { background: var(--ai-dark); }
+        .micro-download:hover { background: var(--ai); }
+    </style>
+
+
+<style>
+/* ================== SCU PRESENTATION PASS — PUBLIC SECTOR APPLIED WORKSPACE ================== */
+/* Visual-only refinement. Structure, content, learning logic and JavaScript are unchanged. */
+:root{
+ --hope:#95052A;--inspire:#77021E;--passion:#DC0037;--power:#B50232;--energy:#FF780F;
+ --enrich:#131010;--serene:#FFFFFF;--grey04:#F8F6F6;--grey08:#ECE9E9;--grey24:#C7C5C5;
+ --grey40:#A19F9F;--grey60:#686666;--grey72:#4C4949;
+ --public:#FF780F;--public-soft:#FFF3E8;--public-deep:#A94A00;
+ --ai-blue:#2B82DA;--ai-blue-deep:#1F4D7A;--ai-blue-soft:#EDF5FD;
+ --red:var(--hope);--deep:var(--inspire);--ink:var(--enrich);--cream:var(--grey04);
+ --white:var(--serene);--line:var(--grey08);--muted:var(--grey60);--soft:#FBF8F8;
+ --shadow:0 8px 24px rgba(19,16,16,.07);--shadow-small:0 4px 14px rgba(19,16,16,.05)
+}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(--enrich)}
+
+/* Compact navigation */
+.topbar{min-height:64px;padding:8px 24px;gap:16px;background:rgba(255,255,255,.97);border-top:4px solid var(--hope);border-bottom:1px solid var(--grey08);box-shadow:0 2px 10px rgba(19,16,16,.035)}
+.brand-wrap{gap:8px}.logo{width:40px;height:40px;flex:0 0 40px;border-radius:12px;background:linear-gradient(135deg,var(--hope),var(--power))}
+.brand-text b{font-size:14px}.brand-text small{margin-top:2px;font-size:11px;color:var(--grey60)}
+.topnav{gap:8px}.nav-link{padding:8px 12px;border-radius:8px;font-size:13px;color:var(--grey72)}
+.nav-link:hover{background:var(--grey04);color:var(--hope)}
+.nav-ai{padding:8px 12px;border-radius:8px;font-size:13px;background:linear-gradient(135deg,var(--ai-blue-deep),var(--ai-blue));box-shadow:0 4px 12px rgba(43,130,218,.16)}
+
+/* Compact Public Sector activity identity */
+.hero{padding:24px 32px;background:radial-gradient(circle at 88% 10%,rgba(255,255,255,.14),transparent 24%),linear-gradient(125deg,var(--public-deep) 0%,var(--public) 62%,#F46A00 100%)}
+.hero-grid{grid-template-columns:minmax(0,1.65fr) minmax(250px,.55fr);gap:24px;align-items:center}
+.eyebrow{gap:8px;margin-bottom:8px;font-size:10px;letter-spacing:1px}.eyebrow-dot{width:6px;height:6px}
+.hero h1{max-width:820px;font-size:clamp(30px,3.1vw,38px);line-height:1.08;letter-spacing:-1px}
+.hero p{max-width:780px;margin:8px 0 0;font-size:14px;line-height:1.5}
+.hero-actions{gap:8px;margin-top:16px}.btn{padding:9px 14px;border-radius:8px;font-size:13px}
+.hero-card{padding:16px;border-radius:12px;background:rgba(255,255,255,.12);box-shadow:none}
+.hero-card-label{font-size:9px;letter-spacing:.9px}.hero-card h3{margin:4px 0;font-size:18px}
+.hero-card p{font-size:12px;line-height:1.45}.progress-track{height:6px;margin-top:12px}
+
+/* Denser, calmer workspace */
+.workspace{gap:16px;padding:24px 32px 40px}
+.sidebar,.case-card,.content-card,.activity-card,.question-card,.evidence-card{border-color:var(--grey08);box-shadow:var(--shadow-small)}
+.sidebar{border-radius:12px}.case-card{border-radius:14px}
+.content-card,.activity-card,.question-card,.evidence-card{border-radius:12px}
+.case-card,.content-card,.activity-card,.question-card,.evidence-card{padding:24px}
+.section-title,.case-title{line-height:1.18}.case-title{font-size:clamp(24px,2.4vw,30px)}
+.section-title{font-size:24px}.card-title{font-size:18px}
+.case-card p,.content-card p,.activity-card p,.question-card p,.evidence-card p{line-height:1.55}
+
+/* Public Sector remains orange; working surfaces remain neutral */
+.phase.active,.step.active,.journey-item.active{border-color:#FFD4B2;background:var(--public-soft)}
+.feedback.coach{border-color:#FFD4B2;background:#FFF8F2}
+
+/* Embedded AI Coach = blue */
+.ai-coach{margin-top:16px;padding:16px;border-radius:12px;border:1px solid #CFE2F4;background:linear-gradient(135deg,var(--ai-blue-soft),#FFFFFF)}
+.ai-coach-header{gap:8px;margin-bottom:8px}.ai-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--ai-blue-deep),var(--ai-blue));box-shadow:0 4px 12px rgba(43,130,218,.16)}
+.ai-coach-header small{color:var(--grey60)}.ai-coach p{color:var(--grey72);line-height:1.55}
+
+/* AI side panel = blue intelligence layer */
+.ai-overlay{background:rgba(19,16,16,.30)}.ai-panel{box-shadow:-14px 0 40px rgba(19,16,16,.16)}
+.ai-panel-header{padding:16px;background:radial-gradient(circle at 88% 12%,rgba(255,255,255,.10),transparent 28%),linear-gradient(135deg,var(--enrich),var(--ai-blue-deep) 58%,var(--ai-blue))}
+.ai-panel-mark{width:40px;height:40px;flex:0 0 40px;border-radius:10px}.ai-close{width:32px;height:32px;flex:0 0 32px;border-radius:8px}
+.ai-context{padding:12px 16px;border-bottom:1px solid #D7E8F8;background:var(--ai-blue-soft)}
+.ai-context-label{color:var(--ai-blue-deep)}.ai-chat{background:#FBFDFF}
+.ai-avatar{background:linear-gradient(135deg,var(--ai-blue-deep),var(--ai-blue))}
+.ai-message.user .ai-bubble{background:var(--ai-blue);border-color:var(--ai-blue)}
+.ai-message.assistant .ai-bubble{border-color:#D7E8F8}.ai-thinking span{background:var(--ai-blue)}
+.ai-prompt{border-color:#CFE2F4;background:var(--ai-blue-soft);color:var(--ai-blue-deep)}
+.ai-prompt:hover{border-color:var(--ai-blue);background:#E5F1FC}
+.ai-input{background:#FFFFFF;border-color:#CFE2F4}.ai-input:focus{border-color:var(--ai-blue)}
+.ai-send{background:linear-gradient(135deg,var(--ai-blue-deep),var(--ai-blue))}
+.ai-mode-tab.active{border-color:var(--ai-blue);background:var(--ai-blue-soft);color:var(--ai-blue-deep)}
+
+@media(max-width:900px){
+ .topbar{padding:8px 16px}.hero{padding:24px 16px}.hero-grid{grid-template-columns:1fr}
+ .workspace{padding:16px 16px 32px}
+}
+@media(max-width:640px){.hero h1{font-size:30px}.hero p{font-size:13px}.hero-card{padding:12px}}
+</style>
+
 </head>
 
 <body>
@@ -3062,17 +3218,21 @@
             const RIGHT = 48;
             const CONTENT_W = PAGE_W - LEFT - RIGHT;
 
+            /* Absa-aligned PDF palette:
+               Hope = primary brand anchor, Energy = Public Sector faculty,
+               Enrich = dark contrast, Grey 04/08/60/72 = neutral hierarchy. */
             const C = {
-                red: [0.686, 0.078, 0.294],
-                deep: [0.459, 0.020, 0.184],
-                ink: [0.149, 0.086, 0.125],
-                cream: [1.000, 0.973, 0.961],
-                line: [0.941, 0.851, 0.875],
-                muted: [0.451, 0.369, 0.408],
-                public: [0.416, 0.333, 0.647],
-                publicSoft: [0.941, 0.925, 0.973],
-                publicDeep: [0.275, 0.220, 0.463],
-                roseSoft: [1.000, 0.953, 0.965],
+                red: [0.584, 0.020, 0.165],          // Hope #95052A
+                deep: [0.467, 0.008, 0.118],         // Inspire #77021E
+                ink: [0.075, 0.063, 0.063],          // Enrich #131010
+                cream: [0.973, 0.965, 0.965],        // Grey 04 #F8F6F6
+                line: [0.925, 0.914, 0.914],         // Grey 08 #ECE9E9
+                muted: [0.408, 0.400, 0.400],        // Grey 60 #686666
+                public: [1.000, 0.471, 0.059],       // Energy #FF780F
+                publicSoft: [1.000, 0.953, 0.910],   // soft Public Sector orange
+                publicDeep: [0.663, 0.290, 0.000],   // deep orange for accessible labels
+                roseSoft: [0.984, 0.929, 0.941],     // soft Hope surface
+                grey72: [0.298, 0.286, 0.286],       // Grey 72 #4C4949
                 white: [1, 1, 1]
             };
 
@@ -3165,14 +3325,14 @@
             drawRect(0, 0, PAGE_W, PAGE_H, C.white, null, 0);
 
             /* HEADER */
-            drawRect(0, PAGE_H - 82, PAGE_W, 82, C.publicDeep, null, 0);
+            drawRect(0, PAGE_H - 82, PAGE_W, 82, C.public, null, 0);
             drawRect(0, PAGE_H - 82, 8, 82, C.red, null, 0);
 
             drawRect(LEFT, PAGE_H - 61, 34, 34, C.red, null, 0);
             drawText("SCU", LEFT + 6.2, PAGE_H - 49, 11.5, "F2", C.white);
 
             drawText("SECTOR CORPORATE UNIVERSITY", LEFT + 46, PAGE_H - 39, 9.3, "F2", C.white);
-            drawText("Public Sector Faculty", LEFT + 46, PAGE_H - 53, 8.2, "F1", [0.91, 0.88, 0.96]);
+            drawText("Public Sector Faculty", LEFT + 46, PAGE_H - 53, 8.2, "F1", C.white);
             drawRightText("MICRO LEARNING", PAGE_W - RIGHT, PAGE_H - 46, 8.7, "F2", C.white);
 
             /* TITLE AREA */
