@@ -21,6 +21,102 @@
 .modal{position:fixed;inset:0;background:rgba(38,22,32,.35);z-index:80;display:none;align-items:center;justify-content:center}.modal.show{display:flex}.mcard{background:#fff;border-radius:18px;width:min(540px,92vw);padding:23px}.mcard h3{margin:4px 0}.mcard p{font-size:12px;color:var(--muted)}.mcard button{border:0;background:var(--ink);color:#fff;border-radius:9px;padding:9px 12px}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,15px);background:var(--ink);color:#fff;padding:10px 13px;border-radius:9px;font-size:10px;opacity:0;transition:.3s;z-index:120}.toast.show{opacity:1;transform:translate(-50%,0)}
 @media(max-width:900px){.hero,.sectors{grid-template-columns:1fr}.domains{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.crow{grid-template-columns:35px 1fr 90px}.hide{display:none}}@media(max-width:600px){.shell{width:94vw}.nav a{display:none}.hero h1{font-size:29px}.srow{grid-template-columns:1fr 48px}.strack{grid-column:1/-1}.tabs,.prompts{grid-template-columns:1fr}}
 </style>
+
+<style>
+/* ====================== SCU CAPABILITY EXPERIENCE — ABSA-ALIGNED VISUAL REFRESH ====================== */
+:root{
+ --hope:#95052A;--inspire:#77021E;--power:#B50232;--passion:#DC0037;--energy:#FF780F;
+ --enrich:#131010;--serene:#FFFFFF;--grey04:#F8F6F6;--grey08:#ECE9E9;--grey24:#C7C5C5;
+ --grey40:#A19F9F;--grey60:#686666;--grey72:#4C4949;
+ --ai:#2B82DA;--ai-dark:#1F4D7A;--ai-soft:#EDF5FD;
+ --red:var(--hope);--deep:var(--inspire);--ink:var(--enrich);--cream:var(--grey04);
+ --line:var(--grey08);--muted:var(--grey60);--purple:var(--hope);--psoft:#FBF0F3;
+ --green:#168335;--gsoft:#F3FCE9;--amber:#87310F;--asoft:#FFF4EA;--white:#fff;
+ --shadow:0 10px 28px rgba(19,16,16,.07)
+}
+body{background:var(--grey04);color:var(--enrich)}
+.top{height:68px;padding:0 5vw;border-top:4px solid var(--hope);border-bottom:1px solid var(--grey08);background:rgba(255,255,255,.97);box-shadow:0 3px 14px rgba(19,16,16,.04);backdrop-filter:blur(12px)}
+.logo{background:linear-gradient(145deg,var(--hope),var(--power));box-shadow:0 5px 14px rgba(149,5,42,.18)}
+.brand small{color:var(--grey60)}
+.nav a,.nav button{border-color:var(--grey08);border-radius:8px;color:var(--grey72);font-weight:700}
+.nav .ai{border-color:var(--ai);background:linear-gradient(135deg,var(--ai-dark),var(--ai));color:#fff;box-shadow:0 6px 16px rgba(43,130,218,.20)}
+.shell{width:min(1240px,92vw);padding:22px 0 56px}
+
+/* Compact personal dashboard masthead */
+.hero{grid-template-columns:1.55fr .72fr;gap:14px}
+.hero-main{min-height:154px;padding:23px 27px;border-radius:18px;background:radial-gradient(circle at 90% 0%,rgba(43,130,218,.16),transparent 28%),linear-gradient(125deg,var(--enrich),var(--inspire) 58%,var(--hope));box-shadow:0 12px 30px rgba(119,2,30,.12)}
+.hero h1{font-size:34px;line-height:1.02;margin:7px 0 8px;letter-spacing:-1px}
+.hero-main p{margin:0;color:rgba(255,255,255,.78);font-size:12px;line-height:1.5}
+.tags{margin-top:14px;gap:6px}.tag{padding:5px 8px;font-size:9px;background:rgba(255,255,255,.08)}
+.summary{min-height:154px;padding:19px 21px;border:1px solid var(--grey08);border-radius:18px;box-shadow:0 8px 22px rgba(19,16,16,.05)}
+.big{font-size:43px;color:var(--hope)}.big small{font-size:15px}.summary h3{margin:5px 0 2px}.summary p{font-size:10px}
+.track{height:6px;margin:10px 0 6px;background:var(--grey08)}.fill{background:linear-gradient(90deg,var(--hope),var(--power))}
+
+.section{margin-top:16px;padding:21px;border-color:var(--grey08);border-radius:17px;box-shadow:0 5px 18px rgba(19,16,16,.035)}
+.head{margin-bottom:15px}.head h2{font-size:19px;letter-spacing:-.25px}.head p{color:var(--grey60);font-size:11px}
+
+/* Capability cards and visible score-to-standard logic */
+.domains{gap:10px 14px}
+.domain{position:relative;padding:14px;border:1px solid var(--grey08);border-radius:12px;background:#fff}
+.domain:nth-child(5),.domain:nth-child(6){border-color:#F1C7D2;background:linear-gradient(135deg,#FFF,#FFF7F9)}
+.domain:nth-child(5):before,.domain:nth-child(6):before{position:absolute;right:12px;top:10px;color:var(--hope);font-size:8px;font-weight:900;letter-spacing:.8px}
+.domain:nth-child(5):before{content:"PRIORITY 02"}.domain:nth-child(6):before{content:"PRIORITY 01"}
+.dtop{font-size:11px}.dtop b:first-child{font-size:12px}.vals{color:var(--grey60)}
+.domain:nth-child(5) .vals,.domain:nth-child(6) .vals{padding-right:72px}
+.barwrap{height:9px;margin-top:10px;background:var(--grey08)}.bar{background:linear-gradient(90deg,var(--inspire),var(--hope))}
+.marker{width:2px;background:var(--enrich)}.status{margin-top:7px;padding:3px 7px}
+.domain:nth-child(5) .status,.domain:nth-child(6) .status{background:#FBE8ED;color:var(--hope)}
+
+/* Public Sector = Energy orange */
+.srow{background:var(--grey04);border:1px solid transparent;border-radius:10px}
+.srow.focus{background:#FFF5EC;outline:0;border-color:#FFD4B2}.sname small{color:#A94A00}
+.strack{background:var(--grey08)}.sbar{background:var(--grey40)}.focus .sbar{background:var(--energy)}
+.detail{border-color:#FFD4B2;border-radius:14px;background:linear-gradient(145deg,#FFF5EC,#FFF)}
+.detail .eyebrow{color:#A94A00!important}.mtrack{background:#F3E7DE}.mfill{background:var(--energy)}
+
+/* SCU AI interpreted insight */
+.insight{position:relative;overflow:hidden;grid-template-columns:48px 1fr auto;padding:18px 20px;border:1px solid rgba(43,130,218,.25);border-radius:15px;background:linear-gradient(125deg,var(--enrich),#152A3D 62%,var(--ai-dark));box-shadow:0 10px 28px rgba(31,77,122,.14)}
+.insight:after{content:"";position:absolute;width:170px;height:170px;right:-80px;top:-105px;border-radius:50%;border:1px solid rgba(43,130,218,.28);box-shadow:0 0 0 22px rgba(43,130,218,.035)}
+.orb{background:linear-gradient(135deg,var(--ai-dark),var(--ai));box-shadow:0 0 20px rgba(43,130,218,.32)}
+.insight p{color:#DCEAF7}.insight button{position:relative;z-index:1;color:var(--ai-dark)}
+
+/* Recommended development = visible sequence */
+.cards{gap:12px}.course{position:relative;border-color:var(--grey08);border-radius:14px;min-height:180px;background:#fff}
+.course.primary{border-color:#FFD4B2;background:linear-gradient(145deg,#FFF4E8,#FFF);box-shadow:0 8px 22px rgba(255,120,15,.08)}
+.course.primary:before,.course:nth-child(2):before,.course:nth-child(3):before{position:absolute;right:14px;top:14px;font-size:20px;font-weight:900;opacity:.16}
+.course.primary:before{content:"01";color:var(--energy)}.course:nth-child(2):before{content:"02";color:var(--ai)}.course:nth-child(3):before{content:"03";color:var(--enrich)}
+.badge{background:#FBE8ED;color:var(--hope)}.primary .badge{background:#FFE7D3;color:#A94A00}
+.course:nth-child(2){border-top:3px solid var(--ai)}.course:nth-child(2) .badge{background:var(--ai-soft);color:var(--ai-dark)}
+.why{border-color:var(--grey08);background:var(--grey04)}.primary .why{background:#FFF9F4;border-color:#FFE1C9}
+.link{color:var(--hope)}.course:nth-child(2) .link{color:var(--ai-dark)}
+
+/* Quiet evidence ledger */
+.completed{border-color:var(--grey08);border-radius:12px}.crow{padding:11px 14px;border-color:var(--grey08);background:#fff}
+.check{width:25px;height:25px}.evidence{background:var(--gsoft);color:var(--green)}
+
+/* Longer capability recalculation experience */
+.calc{background:rgba(19,16,16,.86);backdrop-filter:blur(8px)}
+.ccard{position:relative;overflow:hidden;width:min(560px,90vw);border:1px solid var(--grey08);border-radius:18px;padding:25px;box-shadow:0 30px 80px rgba(0,0,0,.28)}
+.ccard:before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--hope),var(--ai))}
+.clogo{background:linear-gradient(145deg,var(--hope),var(--power))}.cstep.active{color:var(--ai-dark)}
+
+/* Consistent blue SCU AI intelligence layer */
+.overlay{background:rgba(19,16,16,.35);backdrop-filter:blur(2px)}
+.panel{box-shadow:-20px 0 60px rgba(19,16,16,.20)}
+.aihead{background:linear-gradient(125deg,var(--enrich),var(--ai-dark));border-bottom:1px solid rgba(255,255,255,.08)}
+.aihead small{color:#CFE3F5}.context{background:var(--ai-soft);border-bottom-color:#D7E8F8}.context b{color:var(--ai-dark)}
+.tabs{background:#F2F6FA}.tab.gen.active,.tab.active{color:var(--ai-dark)}
+.prompt{border-color:#CFE2F4;color:var(--ai-dark)}.prompt:hover{background:var(--ai-soft)}
+.rlabel{color:var(--ai-dark)}.ask,.gbtn{background:linear-gradient(135deg,var(--ai-dark),var(--ai))}
+.gintro,.gbox{border-color:#CFE2F4;background:linear-gradient(135deg,var(--ai-soft),#fff)}
+.gintro .eyebrow{color:var(--ai-dark)!important}.gorb{background:linear-gradient(135deg,var(--ai-dark),var(--ai))}
+.gstep.active{color:var(--ai-dark)}.pcover{background:linear-gradient(135deg,var(--ai-dark),var(--ai))}
+.priority{background:var(--ai-soft);color:var(--ai-dark)}.pnum{background:var(--ai)}.pmeta{color:var(--ai-dark)}
+.pactions button{border-color:#CFE2F4;color:var(--ai-dark)}.pactions .primary{background:var(--ai);color:#fff}
+
+@media(max-width:900px){.hero{grid-template-columns:1fr}.hero-main,.summary{min-height:auto}}
+</style>
+
 </head>
 <body>
 <div class="calc" id="calc"><div class="ccard"><div class="ctop"><div class="clogo">SCU</div><div><h2>Updating your capability profile</h2><p>Analysing your latest assessment and development data.</p></div></div>
@@ -84,7 +180,7 @@ const suggested=[
 'After the <b>Public Economics Case</b>, SCU recommends <b>Stakeholder Meeting Preparation</b>, then a <b>Public Sector Client Simulation</b>, followed by supported client experience and evidence capture. The progression is <b>learn → practise → experience → evidence → progress</b>.',
 'SCU compares your assessed capability with the required standard for your current role and pathway. The gaps are combined with your sector focus and completed learning to prioritise what you should learn or practise next. Your pathway can evolve as capability and evidence develop.'
 ];
-window.addEventListener('load',()=>{for(let i=1;i<=5;i++){setTimeout(()=>{if(i>1)doneCalc(i-1);let e=document.getElementById('cs'+i);e.classList.add('active');e.querySelector('.ci').textContent='◌'},250+(i-1)*700)}setTimeout(()=>{doneCalc(5);document.getElementById('calc').classList.add('hide');setTimeout(animate,350)},4100)});
+window.addEventListener('load',()=>{for(let i=1;i<=5;i++){setTimeout(()=>{if(i>1)doneCalc(i-1);let e=document.getElementById('cs'+i);e.classList.add('active');e.querySelector('.ci').textContent='◌'},500+(i-1)*1400)}setTimeout(()=>{doneCalc(5);document.getElementById('calc').classList.add('hide');setTimeout(animate,350)},8200)});
 function doneCalc(i){let e=document.getElementById('cs'+i);e.classList.remove('active');e.classList.add('done');e.querySelector('.ci').textContent='✓'}
 function animate(){let n=0,t=setInterval(()=>{n+=2;document.getElementById('progressCount').textContent=Math.min(n,68);if(n>=68)clearInterval(t)},22);document.getElementById('progressFill').style.width='68%';document.querySelectorAll('.domain').forEach((d,i)=>setTimeout(()=>{let s=d.dataset.score,st=d.dataset.standard;d.querySelector('.bar').style.width=s+'%';d.querySelector('.marker').style.left=`calc(${st}% - 1px)`;d.querySelector('.marker').style.opacity=1;d.querySelector('.vals b').textContent=s+'%';d.querySelector('.status').style.opacity=1},i*90));document.querySelectorAll('.srow').forEach((e,i)=>setTimeout(()=>e.querySelector('.sbar').style.width=e.dataset.v+'%',400+i*80));document.querySelectorAll('.mini').forEach((e,i)=>setTimeout(()=>e.querySelector('.mfill').style.width=e.dataset.v+'%',650+i*80));setTimeout(()=>document.getElementById('insight').classList.add('show'),1250)}
 function openAI(){document.getElementById('panel').classList.add('open');document.getElementById('overlay').classList.add('show')}function closeAI(){document.getElementById('panel').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
