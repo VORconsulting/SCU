@@ -690,6 +690,303 @@
     <!-- ========================================  PAGE STYLES END  ========================================== -->
     <!-- ==================================================================================================== -->
 
+
+<style>
+/* ==================================================================================================== */
+/* =========================  SCU PRESENTATION PASS — PUBLIC SECTOR FACULTY  =========================== */
+/* ==================================================================================================== */
+/* Visual-only refinement. Existing content, learning rows, links and JavaScript are unchanged. */
+
+:root{
+    /* Absa digital palette */
+    --hope:#95052A;
+    --inspire:#77021E;
+    --passion:#DC0037;
+    --power:#B50232;
+    --energy:#FF780F;
+    --uplift:#F93F24;
+    --enrich:#131010;
+    --serene:#FFFFFF;
+    --grey04:#F8F6F6;
+    --grey08:#ECE9E9;
+    --grey24:#C7C5C5;
+    --grey40:#A19F9F;
+    --grey60:#686666;
+    --grey72:#4C4949;
+
+    /* Faculty + AI identities */
+    --public-sector:#FF780F;
+    --public-sector-dark:#A94A00;
+    --public-soft:#FFF3E8;
+    --ai-blue:#2B82DA;
+    --ai-blue-deep:#1F4D7A;
+    --ai-blue-soft:#EDF5FD;
+
+    /* Map legacy variables onto the approved system */
+    --red:var(--hope);
+    --deep:var(--inspire);
+    --ink:var(--enrich);
+    --cream:var(--grey04);
+    --line:var(--grey08);
+    --muted:var(--grey60);
+    --card-bg:var(--serene);
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--grey04);
+    color:var(--enrich);
+}
+
+/* -------------------------------- Compact SCU navigation -------------------------------- */
+header{
+    min-height:64px;
+    gap:16px;
+    padding:8px 4%;
+    border-top:4px solid var(--hope);
+    border-bottom:1px solid var(--grey08);
+    background:rgba(255,255,255,.97);
+    box-shadow:0 2px 10px rgba(19,16,16,.035);
+}
+.brand{gap:8px}
+.logo{
+    min-width:40px;
+    width:40px;
+    height:40px;
+    padding:0;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--hope),var(--power));
+    font-size:11px;
+}
+.brand b{font-size:14px}
+.brand small{margin-top:2px;color:var(--grey60);font-size:11px}
+nav{gap:16px}
+nav a{font-size:13px;color:var(--grey72)}
+nav a:hover,.back-link:hover{color:var(--hope)}
+.back-link{gap:6px;color:var(--hope)}
+.ai{
+    padding:8px 12px;
+    border-radius:8px;
+    background:linear-gradient(135deg,var(--ai-blue-deep),var(--ai-blue));
+    box-shadow:0 4px 12px rgba(43,130,218,.16);
+    font-size:13px;
+}
+
+/* -------------------------------- Faculty browse canvas -------------------------------- */
+.wrap{
+    max-width:1360px;
+    padding:24px 4% 48px;
+}
+
+/* Compact identity masthead: this page is a browse environment, not a marketing landing page */
+.facultyHero{
+    grid-template-columns:minmax(0,1.55fr) minmax(250px,.55fr);
+    gap:24px;
+    padding:24px 28px;
+    border-radius:16px;
+    background:
+        radial-gradient(circle at 84% 20%,rgba(255,255,255,.14) 0 8%,transparent 9%),
+        radial-gradient(circle at 92% 68%,rgba(255,255,255,.09) 0 11%,transparent 12%),
+        linear-gradient(125deg,#8F3D00 0%,var(--public-sector-dark) 25%,var(--energy) 72%,#F46A00 100%);
+    box-shadow:0 8px 24px rgba(169,74,0,.12);
+}
+.facultyHero h1{
+    max-width:760px;
+    margin:8px 0;
+    font-size:clamp(30px,3.2vw,38px);
+    line-height:1.08;
+    letter-spacing:-.8px;
+}
+.facultyHero p{
+    max-width:720px;
+    color:#FFF7F0;
+    font-size:14px;
+    line-height:1.5;
+}
+.tag{
+    padding:5px 8px;
+    border-radius:999px;
+    font-size:10px;
+    letter-spacing:1px;
+}
+.heroButtons{gap:8px;margin-top:16px}
+.heroButtons button{
+    padding:9px 14px;
+    border-radius:8px;
+    font-size:13px;
+}
+.primary{color:var(--public-sector-dark)}
+.heroPanel{
+    padding:16px;
+    border-radius:12px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(4px);
+}
+.heroPanel small{color:#FFF3E8;font-size:10px}
+.heroPanel h3{margin:4px 0;font-size:18px}
+.heroPanel p{font-size:12px;line-height:1.45}
+.progressTrack{height:6px;margin-top:12px}
+.progressMeta{margin-top:8px;color:#FFF3E8;font-size:11px}
+
+/* -------------------------------- Browse-row hierarchy -------------------------------- */
+.rowSection{margin-top:24px}
+.sectionHead{
+    gap:16px;
+    margin-bottom:12px;
+}
+.sectionHead p{
+    color:var(--public-sector-dark);
+    font-size:10px;
+    letter-spacing:1.4px;
+}
+.sectionHead h2{
+    margin:4px 0 0;
+    font-size:24px;
+    line-height:1.15;
+}
+.sectionHead .subtext{
+    max-width:500px;
+    color:var(--grey60);
+    font-size:12px;
+    line-height:1.45;
+}
+.courseRow{
+    gap:12px;
+    padding:4px 2px 12px;
+    scrollbar-color:var(--grey24) transparent;
+}
+.courseRow::-webkit-scrollbar{height:6px}
+.courseRow::-webkit-scrollbar-thumb{background:var(--grey24)}
+
+/* -------------------------------- Course cards -------------------------------- */
+.courseCard{
+    flex-basis:268px;
+    border:1px solid var(--grey08);
+    border-radius:14px;
+    box-shadow:0 3px 12px rgba(19,16,16,.045);
+    transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+.courseCard:hover{
+    transform:translateY(-3px);
+    border-color:#FFD4B2;
+    box-shadow:0 8px 20px rgba(169,74,0,.10);
+}
+.recommendedRow .courseCard{flex-basis:304px}
+.courseVisual{
+    height:132px;
+    padding:16px;
+}
+.courseIcon{
+    top:14px;
+    right:14px;
+    font-size:26px;
+}
+.courseType{
+    padding:4px 7px;
+    font-size:9px;
+}
+.courseVisual h3{
+    margin:6px 0 0;
+    max-width:220px;
+    font-size:17px;
+    line-height:1.15;
+}
+.courseBody{padding:12px 14px 14px}
+.courseBody p{
+    min-height:50px;
+    margin-bottom:10px;
+    color:var(--grey60);
+    font-size:12px;
+    line-height:1.45;
+}
+.courseMeta{gap:6px;margin-bottom:10px}
+.chip{
+    padding:4px 7px;
+    background:var(--grey04);
+    color:var(--grey72);
+    font-size:9px;
+}
+.recommended{
+    background:var(--public-soft);
+    color:var(--public-sector-dark);
+}
+.cardProgress{height:4px;background:var(--grey08)}
+.cardProgress span{background:var(--public-sector)}
+.cardFooter{margin-top:7px;color:var(--grey60);font-size:9px}
+
+/* Faculty visual language: varied orange/Absa treatments instead of the old unrelated rainbow palette */
+.visual-purple{
+    background:linear-gradient(135deg,#8F3D00,var(--public-sector));
+}
+.visual-gold{
+    background:linear-gradient(135deg,#A94A00,#FF9A3D);
+}
+.visual-green{
+    background:linear-gradient(135deg,var(--enrich),#5C3B2B 52%,var(--public-sector));
+}
+.visual-teal{
+    background:linear-gradient(135deg,#7A3100,#E76500);
+}
+.visual-red{
+    background:linear-gradient(135deg,var(--inspire),var(--hope));
+}
+.visual-blue{
+    background:linear-gradient(135deg,var(--enrich),var(--grey72));
+}
+
+/* AI-labelled learning experiences get the deliberate blue intelligence identity */
+.courseCard:has(.courseType){
+    --card-ai-blue:var(--ai-blue);
+}
+.courseVisual:has(.courseType){
+    /* no generic override; only explicit AI labels below are changed by script-added classes */
+}
+.courseCard.ai-learning .courseVisual{
+    background:linear-gradient(135deg,var(--ai-blue-deep),var(--ai-blue));
+}
+.courseCard.ai-learning:hover{
+    border-color:#CFE2F4;
+    box-shadow:0 8px 20px rgba(43,130,218,.12);
+}
+.courseCard.ai-learning .recommended{
+    background:var(--ai-blue-soft);
+    color:var(--ai-blue-deep);
+}
+
+/* -------------------------------- Modal / system surfaces -------------------------------- */
+.modal{background:rgba(19,16,16,.38)}
+.dialog{
+    padding:24px;
+    border:1px solid var(--grey08);
+    border-radius:16px;
+    box-shadow:0 20px 56px rgba(19,16,16,.18);
+}
+.dialog small{color:var(--public-sector-dark)}
+.dialog h2{margin:8px 0;font-size:24px}
+.dialog p{color:var(--grey60);line-height:1.55}
+.dialogActions{gap:8px;margin-top:16px}
+.dialogActions .ai{background:var(--hope);box-shadow:none}
+.toast{
+    bottom:24px;
+    padding:10px 16px;
+    border-radius:999px;
+    background:var(--enrich);
+    font-size:13px;
+}
+
+/* -------------------------------- Responsive -------------------------------- */
+@media(max-width:1000px){
+    .facultyHero{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+    header{padding:8px 16px}
+    .wrap{padding:16px 16px 32px}
+    .facultyHero{padding:20px 16px}
+    .facultyHero h1{font-size:30px}
+    .courseCard,.recommendedRow .courseCard{flex-basis:84vw}
+}
+</style>
+
 </head>
 
 
@@ -890,7 +1187,7 @@
                 <!-- ========================================================================================= -->
 
                 <article
-                    class="courseCard"
+                    class="courseCard ai-learning"
                     onclick="openCourse(
                         'Stakeholder Meeting Preparation',
                         'Prepare mandate-led discovery questions, anticipate likely stakeholder priorities and identify appropriate hand-offs before a guided client meeting.'
@@ -1446,7 +1743,7 @@
 
 
                 <article
-                    class="courseCard"
+                    class="courseCard ai-learning"
                     onclick="openCourse(
                         'Public Sector Client Simulation',
                         'Practise a guided stakeholder conversation with an AI client. Explore mandate, fiscal dynamics, needs, risk and appropriate next actions.'
@@ -1701,7 +1998,7 @@
 
 
                 <article
-                    class="courseCard"
+                    class="courseCard ai-learning"
                     onclick="openCourse(
                         'Ask the Public Sector Faculty Agent',
                         'Use the Faculty Agent as a grounded knowledge interface for sector questions, client preparation, explanations, scenarios and learning support.'
