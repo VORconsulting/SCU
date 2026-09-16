@@ -637,6 +637,57 @@
     <!-- ========================================  PAGE STYLES END  ========================================== -->
     <!-- ==================================================================================================== -->
 
+<style>
+/* SCU / Absa-aligned visual refresh — look-and-feel only */
+:root{--hope:#95052A;--inspire:#77021E;--power:#B50232;--passion:#DC0037;--energy:#FF780F;--enrich:#131010;--serene:#FFFFFF;--grey04:#F8F6F6;--grey08:#ECE9E9;--grey40:#A19F9F;--grey60:#686666;--grey72:#4C4949;--red:var(--hope);--deep:var(--inspire);--ink:var(--enrich);--cream:var(--grey04);--line:var(--grey08)}
+html{scroll-behavior:smooth}body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(--enrich)}
+header{min-height:68px;padding:10px 5%;gap:24px;background:rgba(255,255,255,.97);border-top:4px solid var(--hope);border-bottom:1px solid var(--grey08);box-shadow:0 3px 14px rgba(19,16,16,.04);backdrop-filter:blur(12px)}
+.logo{width:42px;height:42px;border-radius:10px;background:linear-gradient(145deg,var(--hope),var(--power));font-size:13px;letter-spacing:.4px;box-shadow:0 5px 14px rgba(149,5,42,.18)}.brand b{font-size:15px}.brand small{margin-top:2px;color:var(--grey60);font-size:11px}nav{gap:22px}nav a{padding:8px 0;color:var(--grey72);font-size:13px;font-weight:700;transition:.18s}nav a:hover{color:var(--hope)}
+.ai{padding:11px 16px;border-radius:10px;background:linear-gradient(120deg,var(--inspire),var(--hope) 45%,var(--passion) 72%,var(--energy));background-size:180% 180%;font-family:inherit;font-size:13px;font-weight:800;box-shadow:0 7px 18px rgba(149,5,42,.20);transition:.2s}.ai:hover{transform:translateY(-1px);background-position:100% 50%;box-shadow:0 10px 22px rgba(149,5,42,.25)}.primary{background:var(--serene);color:var(--hope)}.secondary{background:rgba(255,255,255,.08)}.wrap{padding:22px 5% 36px}
+.hero{align-items:center;grid-template-columns:1.45fr .55fr;gap:28px;padding:26px 30px;border-radius:22px;background:radial-gradient(circle at 90% 0%,rgba(255,120,15,.18),transparent 28%),linear-gradient(128deg,var(--enrich) 0%,var(--inspire) 48%,var(--hope) 78%,var(--power) 100%);box-shadow:0 14px 34px rgba(119,2,30,.14)}.hero:after{content:"";position:absolute;width:220px;height:220px;right:-80px;bottom:-135px;border:1px solid rgba(255,255,255,.16);border-radius:50%;box-shadow:0 0 0 28px rgba(255,255,255,.025),0 0 0 58px rgba(255,120,15,.025);pointer-events:none}.hero>*{position:relative;z-index:1}.hero h1{margin:9px 0 7px;font-size:clamp(32px,3.1vw,42px);line-height:1.03;letter-spacing:-1.3px}.hero p{margin:0 0 16px;color:rgba(255,255,255,.84);font-size:13px;line-height:1.55}.tag{padding:6px 10px;border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.08);font-size:10px;font-weight:800;letter-spacing:1.4px}.buttons{display:flex;flex-wrap:wrap;gap:8px}.buttons button{padding:10px 14px;margin-right:0;border-radius:9px;font-family:inherit;font-size:12px}.stats{gap:8px;align-self:center}.stat{padding:12px 14px;border-color:rgba(255,255,255,.14);border-radius:13px;background:rgba(255,255,255,.075)}.stat b{font-size:22px;line-height:1}.stat small{color:rgba(255,255,255,.70);font-size:10px}
+.sectionHead{margin:24px 0 12px}.sectionHead p{color:var(--hope);font-size:10px;font-weight:900;letter-spacing:1.7px}.sectionHead h2{margin:4px 0 0;font-size:24px;line-height:1.15}.layout{gap:18px}.grid{gap:12px}.card,.side,.bottom{padding:17px;border:1px solid var(--grey08);border-radius:16px;background:var(--serene);box-shadow:0 4px 14px rgba(19,16,16,.035)}.card{position:relative;overflow:hidden}.card:before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:transparent}.card:hover,.card.active{transform:translateY(-3px);border-color:rgba(149,5,42,.30);box-shadow:0 10px 24px rgba(19,16,16,.08)}.card.active{border-color:rgba(255,120,15,.52);background:linear-gradient(180deg,#FFF 0%,#FFF9F4 100%);box-shadow:0 10px 26px rgba(255,120,15,.13)}.card.active:before{background:var(--energy)}.icon{width:40px;height:40px;border-radius:11px;font-size:19px}.card h3{margin:12px 0 5px;font-size:14px}.card p{color:var(--grey60);font-size:11px}.bar{height:5px;background:var(--grey08)}.meta{color:var(--grey60);font-size:10px;font-weight:700}
+.side{position:relative;overflow:hidden}.side:before{content:"";position:absolute;top:0;left:0;width:4px;height:100%;background:var(--energy)}.side h3{margin:10px 0 4px;font-size:20px}.faculty-label{color:var(--energy);font-size:10px;letter-spacing:1.4px}.faculty-description{color:var(--grey60);font-size:11px;line-height:1.5}.steps{margin:14px 0}.step{padding:8px 10px;border-radius:8px;color:var(--grey60);font-size:12px}.step.done{color:var(--hope);font-weight:700}.step.now{background:#FFF3E9;color:#A94A00;font-weight:800}.next{padding:14px;border:1px solid #FFE0C5;border-radius:13px;background:#FFF9F4}.next small{color:#A94A00;font-size:9px;font-weight:900;letter-spacing:1.2px}.next h4{margin:6px 0}.next p{color:var(--grey60);font-size:11px;line-height:1.45}.next button{margin-top:8px}
+.pillars{margin-top:24px;padding:22px;border-radius:20px;background:radial-gradient(circle at 92% 20%,rgba(181,2,50,.18),transparent 24%),var(--enrich)}.pillars>small{color:#FFB2C4;font-size:9px;letter-spacing:1.7px}.pillars h2{margin:7px 0 16px;font-size:22px}.pillarsGrid{gap:8px}.pillar{padding:14px;border-radius:12px;background:rgba(255,255,255,.045);transition:.18s}.pillar:hover{transform:translateY(-2px);background:rgba(255,255,255,.085)}.pillar b{margin:10px 0 5px;font-size:12px}.pillar span{color:var(--grey40);font-size:10px}.footerGrid{gap:14px;margin-top:18px}.bottom h3{margin:0 0 7px;font-size:17px}.bottom>p{margin:0 0 12px;color:var(--grey60);font-size:11px;line-height:1.5}.link{padding:10px 11px;margin-top:7px;border-radius:8px;background:var(--grey04);color:var(--grey72);font-size:11px;font-weight:700}.link:hover{background:var(--serene);color:var(--hope)}.recognition{border:0;background:radial-gradient(circle at 95% 0%,rgba(255,120,15,.25),transparent 28%),linear-gradient(135deg,var(--hope),var(--inspire))}.recognition>p{color:rgba(255,255,255,.76)}.recognition h2{margin:14px 0;font-size:20px}.modal{background:rgba(19,16,16,.62);backdrop-filter:blur(4px)}.dialog{border:1px solid var(--grey08);border-radius:18px;box-shadow:0 30px 80px rgba(19,16,16,.30)}.dialog>small{color:var(--hope);font-size:9px;letter-spacing:1.4px}.dialog p{color:var(--grey60)}.toast{background:var(--enrich);font-size:12px;box-shadow:0 12px 30px rgba(19,16,16,.22)}
+@media(max-width:1000px){.hero{padding:24px}}@media(max-width:650px){header{gap:12px;padding-inline:16px}.brand small{display:none}.ai{padding:10px 12px;font-size:11px}.wrap{padding:16px 14px 28px}.hero{padding:20px;border-radius:17px}.hero h1{font-size:31px}}
+</style>
+
+<style>
+/* ============================================================================================== */
+/* ===================== FACULTY-AWARE PANEL + SCU AI COACH EXTENSION ========================== */
+/* ============================================================================================== */
+:root{--faculty-accent:#FF780F;--faculty-soft:#FFF3E9;--ai-blue:#2B82DA;--ai-blue-deep:#1F4D7A;--ai-blue-soft:#EDF5FD}
+.card.active{border-color:color-mix(in srgb,var(--faculty-accent) 52%,white);background:linear-gradient(180deg,#fff 0%,var(--faculty-soft) 100%);box-shadow:0 10px 26px color-mix(in srgb,var(--faculty-accent) 15%,transparent)}
+.card.active:before,.side:before{background:var(--faculty-accent)}
+.faculty-label{color:var(--faculty-accent)}
+.step.now{background:var(--faculty-soft);color:var(--faculty-accent)}
+.next{border-color:color-mix(in srgb,var(--faculty-accent) 25%,white);background:var(--faculty-soft)}
+.next small{color:var(--faculty-accent)}
+.side.faculty-refresh{animation:facultyRefresh .22s ease}
+@keyframes facultyRefresh{0%{opacity:.68;transform:translateX(5px)}100%{opacity:1;transform:translateX(0)}}
+
+/* Deliberately high-visibility demo treatment for AI. Blue is from the approved Absa digital palette. */
+header>.ai{background:linear-gradient(135deg,var(--ai-blue-deep),var(--ai-blue));box-shadow:0 7px 18px rgba(43,130,218,.24)}
+header>.ai:hover{background:linear-gradient(135deg,#173E65,var(--ai-blue));box-shadow:0 10px 24px rgba(43,130,218,.30)}
+
+.aiCoachModal{position:fixed;inset:0;z-index:40;display:none;place-items:center;padding:24px;background:rgba(19,16,16,.68);backdrop-filter:blur(7px)}
+.aiCoachModal.show{display:grid}
+.aiCoachShell{width:min(900px,96vw);max-height:90vh;overflow:auto;border:1px solid rgba(43,130,218,.28);border-radius:22px;background:#fff;box-shadow:0 30px 90px rgba(0,0,0,.34)}
+.aiCoachTop{position:relative;overflow:hidden;padding:20px 22px;color:#fff;background:radial-gradient(circle at 88% 0%,rgba(255,255,255,.18),transparent 28%),linear-gradient(125deg,#131010 0%,#1F4D7A 55%,#2B82DA 100%)}
+.aiCoachTop small{font-size:9px;font-weight:900;letter-spacing:1.6px;color:#CFE7FF}.aiCoachTop h2{margin:5px 0 4px;font-size:24px}.aiCoachTop p{margin:0;max-width:650px;color:rgba(255,255,255,.78);font-size:12px;line-height:1.5}
+.aiClose{position:absolute;right:16px;top:14px;width:34px;height:34px;border:1px solid rgba(255,255,255,.25);border-radius:50%;background:rgba(255,255,255,.08);color:#fff;cursor:pointer}
+.aiCoachBody{padding:20px 22px 22px}.aiTabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--grey08)}
+.aiTab{padding:9px 12px;border:1px solid var(--grey08);border-radius:9px;background:#fff;color:var(--grey72);font:700 11px Arial;cursor:pointer}.aiTab.active{border-color:var(--ai-blue);background:var(--ai-blue-soft);color:var(--ai-blue-deep)}
+.aiMode{display:none}.aiMode.active{display:block}.aiMode h3{margin:0 0 5px;font-size:17px}.aiModeIntro{margin:0 0 14px;color:var(--grey60);font-size:11px;line-height:1.5}
+.aiQuestionGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.aiQuestion{padding:12px;text-align:left;border:1px solid var(--grey08);border-radius:10px;background:var(--grey04);color:var(--enrich);font:700 11px Arial;line-height:1.4;cursor:pointer;transition:.18s}.aiQuestion:hover{border-color:var(--ai-blue);background:var(--ai-blue-soft);color:var(--ai-blue-deep)}
+.aiInputRow{display:flex;gap:8px}.aiInput{flex:1;min-height:44px;padding:11px 12px;border:1px solid var(--grey24);border-radius:10px;font:12px Arial;outline:none}.aiInput:focus{border-color:var(--ai-blue);box-shadow:0 0 0 3px var(--ai-blue-soft)}
+.aiSend,.aiGenerate{border:0;border-radius:10px;background:linear-gradient(135deg,var(--ai-blue-deep),var(--ai-blue));color:#fff;font:800 11px Arial;cursor:pointer}.aiSend{padding:0 16px}.aiGenerate{padding:11px 16px}
+.aiResponse{display:none;margin-top:14px;padding:14px 15px;border:1px solid #CFE4F8;border-radius:12px;background:linear-gradient(180deg,#F8FCFF,var(--ai-blue-soft));font-size:12px;line-height:1.55;color:#25384A}.aiResponse.show{display:block}.aiResponse b{color:var(--ai-blue-deep)}
+.aiThinking{display:flex;align-items:center;gap:8px;color:var(--ai-blue-deep);font-weight:700}.aiDots span{display:inline-block;width:5px;height:5px;margin:0 2px;border-radius:50%;background:var(--ai-blue);animation:aiPulse 1s infinite}.aiDots span:nth-child(2){animation-delay:.15s}.aiDots span:nth-child(3){animation-delay:.3s}@keyframes aiPulse{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+.guideContext{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0 14px}.guideContext div{padding:10px;border:1px solid var(--grey08);border-radius:9px;background:var(--grey04)}.guideContext small{display:block;color:var(--grey60);font-size:9px}.guideContext b{display:block;margin-top:3px;font-size:11px}
+.guideResult{display:none;margin-top:14px}.guideResult.show{display:block}.guideHero{padding:15px;border-radius:13px;background:linear-gradient(135deg,#131010,#1F4D7A);color:#fff}.guideHero small{color:#BFDFFF;font-size:9px;font-weight:900;letter-spacing:1px}.guideHero h3{margin:5px 0;font-size:18px}.guideHero p{margin:0;color:rgba(255,255,255,.75);font-size:11px}.guideSteps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:9px}.guideStep{padding:11px;border:1px solid var(--grey08);border-radius:10px;background:#fff}.guideStep em{display:block;color:var(--ai-blue);font:900 9px Arial;font-style:normal}.guideStep b{display:block;margin:4px 0;font-size:11px}.guideStep span{color:var(--grey60);font-size:10px;line-height:1.4}.guideActions{display:flex;gap:8px;margin-top:10px}.guideActions button{padding:9px 12px;border-radius:9px;font:800 10px Arial;cursor:pointer}.guidePrimary{border:0;background:var(--ai-blue);color:#fff}.guideSecondary{border:1px solid var(--grey24);background:#fff;color:var(--grey72)}
+@media(max-width:650px){.aiCoachModal{padding:10px}.aiCoachBody{padding:16px}.aiQuestionGrid,.guideContext,.guideSteps{grid-template-columns:1fr}.aiInputRow{flex-direction:column}.aiSend{padding:11px}}
+</style>
+
 </head>
 
 
@@ -667,10 +718,7 @@
 
         <button
             class="ai"
-            onclick="openModal(
-                'SCU AI Coach',
-                'Ask for sector insights, client preparation, playbooks or your next learning activity.'
-            )"
+            onclick="openAICoach()"
         >
             ✦ Ask SCU AI
         </button>
@@ -827,7 +875,7 @@
                     data-next="Public economics case"
                     onclick="selectSector(this)"
                 >
-                    <div class="icon" style="background:#6A55A5;">🏛</div>
+                    <div class="icon" style="background:#FF780F;">🏛</div>
 
                     <h3>Public Sector</h3>
 
@@ -1287,6 +1335,72 @@
     </main>
 
 
+
+    <!-- ==================================================================================================== -->
+    <!-- ==========================================  SCU AI COACH  =========================================== -->
+    <!-- ==================================================================================================== -->
+    <div class="aiCoachModal" id="aiCoachModal" onclick="if(event.target===this) closeAICoach()">
+        <div class="aiCoachShell">
+            <div class="aiCoachTop">
+                <button class="aiClose" onclick="closeAICoach()">✕</button>
+                <small>✦ SCU AI COACH</small>
+                <h2>Your guide to the Sector Corporate University</h2>
+                <p>Ask about faculties, your learning journey and how to use the University, or generate a personalised SCU guide.</p>
+            </div>
+            <div class="aiCoachBody">
+                <div class="aiTabs">
+                    <button class="aiTab active" onclick="switchAIMode('suggested',this)">Suggested questions</button>
+                    <button class="aiTab" onclick="switchAIMode('free',this)">Free text questions</button>
+                    <button class="aiTab" onclick="switchAIMode('guide',this)">✦ Generate My Own SCU Guide</button>
+                </div>
+
+                <div class="aiMode active" id="aiMode-suggested">
+                    <h3>What would you like to understand?</h3>
+                    <p class="aiModeIntro">Choose a question and the Coach will answer in the context of this University campus.</p>
+                    <div class="aiQuestionGrid">
+                        <button class="aiQuestion" onclick="askSuggested('Where should I start in the University?')">Where should I start in the University?</button>
+                        <button class="aiQuestion" onclick="askSuggested('How do the sector faculties work?')">How do the sector faculties work?</button>
+                        <button class="aiQuestion" onclick="askSuggested('How does SCU personalise my learning?')">How does SCU personalise my learning?</button>
+                        <button class="aiQuestion" onclick="askSuggested('What can the AI Coach help me with?')">What can the AI Coach help me with?</button>
+                    </div>
+                    <div class="aiResponse" id="suggestedResponse"></div>
+                </div>
+
+                <div class="aiMode" id="aiMode-free">
+                    <h3>Ask SCU AI</h3>
+                    <p class="aiModeIntro">Ask in your own words about the campus, faculties, learning pathways, credentials or your next step.</p>
+                    <div class="aiInputRow">
+                        <input class="aiInput" id="aiFreeInput" placeholder="e.g. What should I do next in Public Sector?" onkeydown="if(event.key==='Enter') askFreeText()">
+                        <button class="aiSend" onclick="askFreeText()">Ask Coach</button>
+                    </div>
+                    <div class="aiResponse" id="freeResponse"></div>
+                </div>
+
+                <div class="aiMode" id="aiMode-guide">
+                    <h3>Generate My Own SCU Guide</h3>
+                    <p class="aiModeIntro">SCU AI will turn your current campus context into a short orientation guide showing where to go and what to do next.</p>
+                    <div class="guideContext">
+                        <div><small>CURRENT FACULTY</small><b id="guideFaculty">Public Sector</b></div>
+                        <div><small>CURRENT LEVEL</small><b>Developing</b></div>
+                        <div><small>NEXT RECOMMENDED</small><b id="guideNext">Public economics case</b></div>
+                    </div>
+                    <button class="aiGenerate" onclick="generateSCUGuide()">✦ Generate my SCU guide</button>
+                    <div class="aiResponse" id="guideThinking"></div>
+                    <div class="guideResult" id="guideResult">
+                        <div class="guideHero"><small>YOUR PERSONALISED SCU GUIDE</small><h3 id="guideTitle">Your route through the University</h3><p id="guideSummary"></p></div>
+                        <div class="guideSteps">
+                            <div class="guideStep"><em>01 · KNOW ME</em><b>My Journey</b><span>Review your capability position, priorities and recommended development.</span></div>
+                            <div class="guideStep"><em>02 · ENTER FACULTY</em><b id="guideStepFaculty">Public Sector</b><span>Use your sector campus for curated learning, cases and expert knowledge.</span></div>
+                            <div class="guideStep"><em>03 · DO NEXT</em><b id="guideStepNext">Public economics case</b><span>Continue with the activity currently recommended for your pathway.</span></div>
+                            <div class="guideStep"><em>04 · BUILD EVIDENCE</em><b>Practise & progress</b><span>Apply learning, capture evidence and use coaching to move forward.</span></div>
+                        </div>
+                        <div class="guideActions"><button class="guidePrimary" onclick="window.location.href='individual.html'">Open My Journey</button><button class="guideSecondary" onclick="generateSCUGuide()">Regenerate guide</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ==================================================================================================== -->
     <!-- ============================================  MODAL  ================================================ -->
     <!-- ==================================================================================================== -->
@@ -1361,10 +1475,37 @@
             const sectorDescription = card.dataset.description;
             const nextActivity = card.dataset.next;
 
+            /* Read the faculty colour from its icon and create a very light matching surface */
+            const icon = card.querySelector(".icon");
+            const accent = window.getComputedStyle(icon).backgroundColor;
+            const softAccent = makeSoftFacultyColour(accent);
+
+            document.documentElement.style.setProperty("--faculty-accent", accent);
+            document.documentElement.style.setProperty("--faculty-soft", softAccent);
+
             /* Update the right-hand faculty panel */
             document.getElementById("sideName").textContent = sectorName;
             document.getElementById("sideDesc").textContent = sectorDescription;
             document.getElementById("next").textContent = nextActivity;
+
+            /* Keep the AI-generated guide aware of the selected faculty */
+            document.getElementById("guideFaculty").textContent = sectorName;
+            document.getElementById("guideNext").textContent = nextActivity;
+
+            /* Brief visual refresh makes the change of faculty obvious without becoming distracting */
+            const panel = document.getElementById("journey");
+            panel.classList.remove("faculty-refresh");
+            void panel.offsetWidth;
+            panel.classList.add("faculty-refresh");
+        }
+
+        function makeSoftFacultyColour(rgbColour) {
+            const values = rgbColour.match(/\d+/g);
+            if (!values || values.length < 3) return "#FFF8F5";
+            const r = Math.round(Number(values[0]) * 0.10 + 255 * 0.90);
+            const g = Math.round(Number(values[1]) * 0.10 + 255 * 0.90);
+            const b = Math.round(Number(values[2]) * 0.10 + 255 * 0.90);
+            return "rgb(" + r + "," + g + "," + b + ")";
         }
 
 
@@ -1408,6 +1549,99 @@
         }
 
 
+
+        /* ================================================================================================== */
+        /* ==========================================  SCU AI COACH  ========================================== */
+        /* ================================================================================================== */
+
+        function openAICoach() {
+            document.getElementById("aiCoachModal").classList.add("show");
+            syncGuideContext();
+        }
+
+        function closeAICoach() {
+            document.getElementById("aiCoachModal").classList.remove("show");
+        }
+
+        function switchAIMode(mode, button) {
+            document.querySelectorAll(".aiTab").forEach(function(tab){ tab.classList.remove("active"); });
+            document.querySelectorAll(".aiMode").forEach(function(panel){ panel.classList.remove("active"); });
+            button.classList.add("active");
+            document.getElementById("aiMode-" + mode).classList.add("active");
+            if (mode === "guide") syncGuideContext();
+        }
+
+        function thinkingMarkup(message) {
+            return '<div class="aiThinking">✦ ' + message + '<span class="aiDots"><span></span><span></span><span></span></span></div>';
+        }
+
+        function showAIResponse(boxId, question, answer, delay) {
+            const box = document.getElementById(boxId);
+            box.classList.add("show");
+            box.innerHTML = thinkingMarkup("Considering your University context");
+            setTimeout(function(){ box.innerHTML = '<b>' + question + '</b><br><br>' + answer; }, delay || 1500);
+        }
+
+        function askSuggested(question) {
+            const faculty = document.getElementById("sideName").textContent.trim();
+            const next = document.getElementById("next").textContent.trim();
+            const answers = {
+                "Where should I start in the University?": "Start with <b>My Journey</b>. It connects your assessment and capability profile to the learning, practice and evidence most relevant to you. Your current faculty view is <b>" + faculty + "</b>, where your next recommended activity is <b>" + next + "</b>.",
+                "How do the sector faculties work?": "Each faculty is a focused learning environment for a sector. It brings together pathways, expert knowledge, cases, practice, communities and evidence. Selecting a faculty changes the campus view so you can see its pathway and next recommended activity.",
+                "How does SCU personalise my learning?": "SCU uses your assessment results, capability requirements, pathway position, completed learning and evidence to prioritise what you need next. The aim is not simply to recommend content, but to connect <b>learning → practice → experience → evidence → progression</b>.",
+                "What can the AI Coach help me with?": "The Coach can help you navigate the University, understand sector concepts, prepare for learning and client situations, test your thinking, generate practice material and turn your current context into a personalised SCU guide."
+            };
+            showAIResponse("suggestedResponse", question, answers[question], 1450);
+        }
+
+        function askFreeText() {
+            const input = document.getElementById("aiFreeInput");
+            const question = input.value.trim();
+            if (!question) { input.focus(); return; }
+            const q = question.toLowerCase();
+            const faculty = document.getElementById("sideName").textContent.trim();
+            const next = document.getElementById("next").textContent.trim();
+            let answer;
+            if (q.includes("public") || q.includes("faculty") || q.includes("sector")) {
+                answer = "You are currently viewing <b>" + faculty + "</b>. Faculty campuses organise sector-specific knowledge, pathways, cases, expert input and applied learning. Your current next recommendation is <b>" + next + "</b>.";
+            } else if (q.includes("next") || q.includes("start") || q.includes("journey")) {
+                answer = "A useful starting point is <b>My Journey</b>, where SCU connects your capability profile to development priorities. From your current <b>" + faculty + "</b> faculty view, the next recommended activity is <b>" + next + "</b>.";
+            } else if (q.includes("badge") || q.includes("credential") || q.includes("evidence")) {
+                answer = "SCU treats evidence and credentials as part of capability progression. Learning is followed by practice and experience, with evidence captured so development can be reviewed rather than measured only by course completion.";
+            } else if (q.includes("ai") || q.includes("coach")) {
+                answer = "SCU AI is designed as a context-aware learning and knowledge interface. It can explain, guide, prepare, simulate, coach and generate learning support using the learner, faculty and activity context available to it.";
+            } else {
+                answer = "Within this demonstrator I can guide you through the campus, faculties, personalised pathways, learning activities, capability progression and SCU AI experience. For your current <b>" + faculty + "</b> view, I would connect your question back to <b>" + next + "</b> and your wider development journey.";
+            }
+            showAIResponse("freeResponse", question, answer, 1900);
+        }
+
+        function syncGuideContext() {
+            document.getElementById("guideFaculty").textContent = document.getElementById("sideName").textContent.trim();
+            document.getElementById("guideNext").textContent = document.getElementById("next").textContent.trim();
+        }
+
+        function generateSCUGuide() {
+            syncGuideContext();
+            const faculty = document.getElementById("guideFaculty").textContent.trim();
+            const next = document.getElementById("guideNext").textContent.trim();
+            const thinking = document.getElementById("guideThinking");
+            const result = document.getElementById("guideResult");
+            result.classList.remove("show");
+            thinking.classList.add("show");
+            thinking.innerHTML = thinkingMarkup("Reviewing your campus context");
+            setTimeout(function(){ thinking.innerHTML = thinkingMarkup("Connecting your faculty and pathway"); }, 1400);
+            setTimeout(function(){ thinking.innerHTML = thinkingMarkup("Sequencing your next University actions"); }, 2800);
+            setTimeout(function(){
+                thinking.classList.remove("show");
+                document.getElementById("guideTitle").textContent = "Your " + faculty + " route through SCU";
+                document.getElementById("guideSummary").textContent = "A personalised orientation from your capability journey into " + faculty + ", followed by " + next + " and applied evidence-building.";
+                document.getElementById("guideStepFaculty").textContent = faculty;
+                document.getElementById("guideStepNext").textContent = next;
+                result.classList.add("show");
+            }, 4300);
+        }
+
     </script>
 
     <!-- ==================================================================================================== -->
@@ -1415,6 +1649,7 @@
     <!-- ==================================================================================================== -->
 
 
+<script>document.addEventListener("DOMContentLoaded",function(){const c=document.querySelector(".card.active");if(c){selectSector(c);}});</script>
 </body>
 
 </html>
