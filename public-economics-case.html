@@ -1868,7 +1868,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(-
                         </div>
 
                         <div class="feedback good" id="contextFeedback">
-                            <strong>AI Coach</strong>
+                            <strong>Public Sector AI Coach</strong>
                             A strong Public Sector conversation starts with institutional context. Understanding mandate,
                             stakeholders, funding and delivery pathways helps prevent premature product-led assumptions.
                         </div>
@@ -1948,7 +1948,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(-
                         </div>
 
                         <div class="feedback good" id="fiscalFeedback">
-                            <strong>AI Coach</strong>
+                            <strong>Public Sector AI Coach</strong>
                             Correct direction. Budget approval and cash availability are not the same thing.
                             The useful next step is to understand the timing, restrictions and predictability of cash flows
                             before drawing conclusions about financing.
@@ -2043,7 +2043,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(-
                         </div>
 
                         <div class="feedback good" id="needsFeedback">
-                            <strong>AI Coach</strong>
+                            <strong>Public Sector AI Coach</strong>
                             This keeps the discussion mandate-led and diagnostic. It connects potential banking needs to
                             evidence while recognising governance, policy and execution boundaries.
                         </div>
@@ -2111,7 +2111,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(-
                         <div class="ai-coach-header">
                             <div class="ai-icon">AI</div>
                             <div>
-                                <strong>AI Coach guidance</strong>
+                                <strong>Public Sector AI Coach guidance</strong>
                                 <small>What makes a strong question?</small>
                             </div>
                         </div>
@@ -2126,7 +2126,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(-
                         <button class="btn btn-secondary" onclick="goToStep(2)">← Previous</button>
 
                         <div class="action-right">
-                            <button class="btn btn-public" onclick="reviewQuestions()">Ask AI Coach to review</button>
+                            <button class="btn btn-public" onclick="reviewQuestions()">Ask Public Sector AI Coach to review</button>
                             <button class="btn btn-primary" onclick="completeAndNext(3)">Continue to reflection →</button>
                         </div>
                     </div>
@@ -2271,7 +2271,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(-
 
     <div class="ai-overlay" id="aiOverlay" onclick="closeAIAssistant()"></div>
 
-    <aside class="ai-panel" id="aiPanel" aria-label="SCU AI Coach">
+    <aside class="ai-panel" id="aiPanel" aria-label="Public Sector AI Coach">
 
         <div class="ai-panel-header">
 
@@ -2279,12 +2279,12 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(-
                 <div class="ai-panel-mark">AI</div>
 
                 <div>
-                    <strong>SCU AI Coach</strong>
+                    <strong>Public Sector AI Coach</strong>
                     <small>Public Sector · Public Economics Case</small>
                 </div>
             </div>
 
-            <button class="ai-close" onclick="closeAIAssistant()" aria-label="Close AI Coach">×</button>
+            <button class="ai-close" onclick="closeAIAssistant()" aria-label="Close Public Sector AI Coach">×</button>
 
         </div>
 
@@ -2325,9 +2325,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(-
                 <button class="ai-send" onclick="sendAIQuestion()" aria-label="Send question">➤</button>
             </div>
 
-            <div class="ai-disclaimer">
-                Prototype AI interaction for demonstration purposes. Responses are scripted to illustrate the intended experience.
-            </div>
+            
 
         </div>
 
@@ -2471,11 +2469,11 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(-
             const text = document.getElementById("learnerQuestions").value.trim();
 
             if (text.length < 20) {
-                toast("Add one or two questions first, then ask the AI Coach to review them.");
+                toast("Add one or two questions first, then ask the Public Sector AI Coach to review them.");
                 return;
             }
 
-            toast("AI Coach: Good start. Check that your questions test assumptions, explore timing and clarify governance boundaries.");
+            toast("Public Sector AI Coach: Good start. Check that your questions test assumptions, explore timing and clarify governance boundaries.");
         }
 
 
@@ -3072,7 +3070,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(-
 
             container.innerHTML =
                 '<div class="micro-generation">' +
-                    '<span class="micro-generation-kicker">SCU AI Coach · Generating</span>' +
+                    '<span class="micro-generation-kicker">Public Sector AI Coach · Generating</span>' +
                     '<h3>Creating Micro Learning for you...</h3>' +
                     '<p>I am using your current position in the Public Economics Case to create a short, practical learning brief.</p>' +
                     '<div class="generation-context"><b>Current context:</b> ' + escapeHTML(phase.title) +
@@ -3153,7 +3151,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(-
                         '<button class="micro-download" onclick="downloadMicroLearningPDF()">Download PDF</button>' +
                         '<button class="micro-regenerate" onclick="generateMicroLearning()">Regenerate</button>' +
                     '</div>' +
-                    '<div class="micro-note">Generated by SCU AI Coach from your current learning context.</div>' +
+                    '<div class="micro-note">Generated by Public Sector AI Coach from your current learning context.</div>' +
                 '</div>';
         }
 
