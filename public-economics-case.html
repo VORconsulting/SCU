@@ -993,6 +993,61 @@
             border-bottom-left-radius: 5px;
         }
 
+        /* Contextual learning asset surfaced by the Public Sector AI Coach */
+        .ai-learning-asset {
+            max-width: 88%;
+            margin: -2px 0 16px 38px;
+            overflow: hidden;
+            border: 1px solid #D9E7F5;
+            border-radius: 16px;
+            background: white;
+            box-shadow: 0 8px 22px rgba(31, 77, 122, 0.10);
+        }
+
+        .ai-learning-asset-head {
+            padding: 13px 14px 11px;
+            background: var(--ai-soft, #EDF5FD);
+            border-bottom: 1px solid #D9E7F5;
+        }
+
+        .ai-learning-asset-label {
+            display: block;
+            margin-bottom: 4px;
+            color: #1F4D7A;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .ai-learning-asset-head strong {
+            display: block;
+            color: var(--enrich, #131010);
+            font-size: 13px;
+            line-height: 1.35;
+        }
+
+        .ai-learning-asset-head small {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .ai-learning-video {
+            display: block;
+            width: 100%;
+            max-height: 260px;
+            background: #131010;
+        }
+
+        .ai-learning-asset-foot {
+            padding: 10px 14px 12px;
+            color: #5F555A;
+            font-size: 11px;
+            line-height: 1.45;
+        }
+
         .ai-thinking {
             display: inline-flex;
             gap: 4px;
@@ -2317,7 +2372,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(-
                     class="ai-input"
                     id="aiInput"
                     type="text"
-                    placeholder="Ask SCU AI..."
+                    placeholder="Ask the Public Sector AI Coach..."
                     autocomplete="off"
                     onkeydown="handleAIKeydown(event)"
                 >
@@ -2631,7 +2686,8 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(-
                         text: "Explain budget versus liquidity",
                         live: true,
                         response:
-                            "In this case, budget tells you that expenditure has been planned and authorised within the relevant framework. Liquidity is about whether usable cash is actually available when payments fall due. The agency can therefore have an approved capital programme and still experience short-term payment pressure if inflows and supplier obligations occur at different times."
+                            "In this case, budget tells you that expenditure has been planned and authorised within the relevant framework. Liquidity is about whether usable cash is actually available when payments fall due. The agency can therefore have an approved capital programme and still experience short-term payment pressure if inflows and supplier obligations occur at different times. I have a short learning example that may help make the distinction more concrete.",
+                        learningAsset: "loanExample"
                     },
                     {
                         text: "What information should I ask the client for?",
@@ -2643,9 +2699,10 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(-
 
                 freeTextRules: [
                     {
-                        keywords: ["liquidity", "expenditure already approved", "approved expenditure", "why does liquidity"],
+                        keywords: ["liquidity", "expenditure already approved", "approved expenditure", "why does liquidity", "budget versus liquidity", "budget and liquidity", "understand liquidity"],
                         response:
-                            "Approved expenditure means the institution has authority to spend within the relevant budget framework, but it does not guarantee that cash is available at exactly the moment a supplier payment falls due. In this case, the useful question is whether the pressure comes from a predictable timing mismatch between inflows and payments, or whether it signals a deeper funding, affordability or execution issue."
+                            "Approved expenditure means the institution has authority to spend within the relevant budget framework, but it does not guarantee that cash is available at exactly the moment a supplier payment falls due. In this case, the useful question is whether the pressure comes from a predictable timing mismatch between inflows and payments, or whether it signals a deeper funding, affordability or execution issue. I have a short learning example that may help make the distinction more concrete.",
+                        learningAsset: "loanExample"
                     },
                     {
                         keywords: ["funding problem", "necessarily a funding", "need funding", "is this funding"],
@@ -3513,7 +3570,12 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(-
         function runPresetPrompt(prompt) {
 
             addAIMessage("user", prompt.text);
-            showAIThinking(prompt.response, "Considering this question in your current case context", 1450);
+            showAIThinking(
+                prompt.response,
+                "Considering this question in your current case context",
+                1450,
+                prompt.learningAsset
+            );
         }
 
 
@@ -3534,7 +3596,12 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(-
             input.value = "";
 
             const response = getAIResponse(question);
-            showAIThinking(response, "Interpreting your question in the current case context", 2000);
+            showAIThinking(
+                response.text,
+                "Interpreting your question in the current case context",
+                2000,
+                response.learningAsset
+            );
         }
 
 
@@ -3564,11 +3631,17 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(-
                 });
 
                 if (matched) {
-                    return rule.response;
+                    return {
+                        text: rule.response,
+                        learningAsset: rule.learningAsset || null
+                    };
                 }
             }
 
-            return phase.fallback;
+            return {
+                text: phase.fallback,
+                learningAsset: null
+            };
         }
 
 
@@ -3603,10 +3676,43 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(-
 
 
         /* ---------------------------------------------------------------------------------------------------- */
+        /* CONTEXTUAL LEARNING ASSETS
+           The AI Coach can surface existing learning content when it is useful in the learner's current context.
+           Keep Loan_Example.mp4 in the same GitHub Pages folder as this HTML file.
+        ---------------------------------------------------------------------------------------------------- */
+
+        function addAILearningAsset(assetKey) {
+
+            if (assetKey !== "loanExample") {
+                return;
+            }
+
+            const chat = document.getElementById("aiChat");
+            const asset = document.createElement("div");
+            asset.className = "ai-learning-asset";
+
+            asset.innerHTML =
+                '<div class="ai-learning-asset-head">' +
+                    '<span class="ai-learning-asset-label">Recommended learning · Video</span>' +
+                    '<strong>Loan Example: Diagnose the need before choosing the solution</strong>' +
+                    '<small>A short example to help distinguish cash-flow pressure, liquidity needs and a longer-term funding requirement.</small>' +
+                '</div>' +
+                '<video class="ai-learning-video" controls preload="metadata" playsinline>' +
+                    '<source src="Loan_Example.mp4" type="video/mp4">' +
+                    'Your browser does not support embedded video.' +
+                '</video>' +
+                '<div class="ai-learning-asset-foot">As you watch, consider: what evidence would you need before concluding that a loan is the appropriate response?</div>';
+
+            chat.appendChild(asset);
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------- */
         /* SHORT "THINKING" ANIMATION BEFORE THE SCRIPTED RESPONSE
         ---------------------------------------------------------------------------------------------------- */
 
-        function showAIThinking(response, thinkingText, delayMs) {
+        function showAIThinking(response, thinkingText, delayMs, learningAsset) {
 
             const chat = document.getElementById("aiChat");
 
@@ -3641,6 +3747,12 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--grey04);color:var(-
                 }
 
                 addAIMessage("assistant", response);
+
+                if (learningAsset) {
+                    setTimeout(function() {
+                        addAILearningAsset(learningAsset);
+                    }, 260);
+                }
 
             }, delayMs || 1600);
         }
