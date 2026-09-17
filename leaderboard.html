@@ -18,8 +18,8 @@
 
 
 /* =========================================================
-   SCU AI RANKING COACH — STRUCTURED DEMONSTRATOR
-   Mirrors the stronger SCU AI pattern:
+   LEADERBOARD AI COACH — STRUCTURED DEMONSTRATOR
+   Mirrors the structured AI interaction pattern:
    context → modes → suggested questions → visible analysis → synthesis
    ========================================================= */
 .ai-overlay{position:fixed;inset:0;z-index:80;background:rgba(19,16,16,.34);opacity:0;pointer-events:none;transition:.22s}
@@ -64,12 +64,12 @@ body.ai-open{overflow:hidden}
 <div class="snapshot"><div class="snaptop"><div><div class="eyebrow">YOUR COMPETITIVE SNAPSHOT</div><b>Naledi Mokoena</b></div><span>Across 12 leaderboards · this quarter</span></div><div class="stats"><div class="stat"><b>#3</b><span>Best current rank</span><small>Public Sector · strongest position</small></div><div class="stat"><b>3 / 12</b><span>Top 10 appearances</span><small>Top 10 in 25% of rankings</small></div><div class="stat"><b>↑ 4</b><span>Best monthly movement</span><small>Largest rank improvement this month</small></div></div></div></section>
 <section class="section"><div class="sectionhead"><div><div class="eyebrow" style="color:var(--hope)">SECTOR PERFORMANCE</div><h2>Sector leaderboards</h2><p>Top 10 performers in each of the six SCU sector faculties.</p></div><span class="count">6 LEADERBOARDS</span></div><div class="boardgrid" id="sectorGrid"></div></section>
 <section class="section"><div class="sectionhead"><div><div class="eyebrow" style="color:var(--hope)">CAPABILITY PERFORMANCE</div><h2>Capability domain leaderboards</h2><p>Top 10 performers across the six capability domains used in My Journey.</p></div><span class="count">6 LEADERBOARDS</span></div><div class="boardgrid" id="domainGrid"></div></section>
-<div class="footer"><section class="info"><div class="eyebrow" style="color:var(--hope)">HOW MILESTONES WORK</div><h3>Every recommendation starts from your actual rank</h3><p>SCU identifies the next rank milestone you have not yet achieved, calculates the current points gap to that threshold, and recommends suitable development activity. Rankings remain dynamic because colleagues can continue earning points.</p></section><section class="info coach"><div class="eyebrow">SCU AI COACH</div><h3>Want to improve your standing?</h3><p>Ask SCU AI which learning, practice or evidence activities best match your current development priorities and next ranking milestone.</p><button onclick="openAIAssistant()">✦ Ask AI to interpret my rankings</button></section></div>
+<div class="footer"><section class="info"><div class="eyebrow" style="color:var(--hope)">HOW MILESTONES WORK</div><h3>Every recommendation starts from your actual rank</h3><p>SCU identifies the next rank milestone you have not yet achieved, calculates the current points gap to that threshold, and recommends suitable development activity. Rankings remain dynamic because colleagues can continue earning points.</p></section><section class="info coach"><div class="eyebrow">LEADERBOARD AI COACH</div><h3>Want to improve your standing?</h3><p>Ask the Leaderboard AI Coach which learning, practice or evidence activities best match your current development priorities and next ranking milestone.</p><button onclick="openAIAssistant()">✦ Ask AI to interpret my rankings</button></section></div>
 </main>
 <div class="ai-overlay" id="aiOverlay" onclick="closeAIAssistant()"></div>
-<aside class="ai-panel" id="aiPanel" aria-label="SCU AI Ranking Coach">
+<aside class="ai-panel" id="aiPanel" aria-label="Leaderboard AI Coach">
   <div class="ai-panel-header">
-    <div class="ai-panel-brand"><div class="ai-panel-mark">AI</div><div><strong>SCU AI Coach</strong><small>Leaderboard · Capability & recognition</small></div></div>
+    <div class="ai-panel-brand"><div class="ai-panel-mark">AI</div><div><strong>Leaderboard AI Coach</strong><small>Leaderboard · Capability & recognition</small></div></div>
     <button class="ai-close" onclick="closeAIAssistant()" aria-label="Close AI Coach">×</button>
   </div>
   <div class="ai-context">
@@ -90,8 +90,8 @@ body.ai-open{overflow:hidden}
     <div class="ai-prompt-grid" id="aiPromptGrid"></div>
   </div>
   <div class="ai-input-wrap" id="aiInputWrap">
-    <div class="ai-input-row"><input class="ai-input" id="aiInput" placeholder="Ask SCU AI about my rankings..." autocomplete="off" onkeydown="handleAIKeydown(event)"><button class="ai-send" onclick="sendAIQuestion()">➤</button></div>
-    <div class="ai-disclaimer">Prototype AI interaction for demonstration purposes. Responses are scripted to illustrate the intended experience.</div>
+    <div class="ai-input-row"><input class="ai-input" id="aiInput" placeholder="Ask the Leaderboard AI Coach about my rankings..." autocomplete="off" onkeydown="handleAIKeydown(event)"><button class="ai-send" onclick="sendAIQuestion()">➤</button></div>
+    
   </div>
 </aside>
 <div class="toast" id="toast"></div>
@@ -116,8 +116,8 @@ domainGrid.innerHTML=domains.map(x=>card(x,'CAPABILITY DOMAIN')).join('');
 
 
 /* ----------------------------------------------------------------------------------------------------
-   SCU AI RANKING COACH
-   Structured like the stronger SCU AI demonstrator:
+   LEADERBOARD AI COACH
+   Structured like the richer AI demonstrator:
    - contextual welcome
    - four suggested questions
    - free-text intent recognition
@@ -240,7 +240,7 @@ function generateRankingGuide(){
     "Connecting the strongest opportunities to learning, practice and evidence",
     "Building your personalised ranking and development guide"
   ];
-  c.innerHTML='<div class="generation-card"><span class="generation-kicker">SCU AI Coach · Analysing</span><h3>Building your Ranking Guide...</h3><p>I am combining your leaderboard position with capability and development context so the recommendation is not based on rank alone.</p><div class="generation-context"><b>Learner context:</b> Naledi Mokoena<br>12 leaderboards · 3 Top 10 positions · Public Sector pathway · assessment-informed development priorities</div><div class="generation-steps">'+steps.map((x,i)=>'<div class="generation-step" id="guideStep'+i+'"><span class="generation-icon">'+(i+1)+'</span><span>'+x+'</span></div>').join("")+'</div></div>';
+  c.innerHTML='<div class="generation-card"><span class="generation-kicker">Leaderboard AI Coach · Analysing</span><h3>Building your Ranking Guide...</h3><p>I am combining your leaderboard position with capability and development context so the recommendation is not based on rank alone.</p><div class="generation-context"><b>Learner context:</b> Naledi Mokoena<br>12 leaderboards · 3 Top 10 positions · Public Sector pathway · assessment-informed development priorities</div><div class="generation-steps">'+steps.map((x,i)=>'<div class="generation-step" id="guideStep'+i+'"><span class="generation-icon">'+(i+1)+'</span><span>'+x+'</span></div>').join("")+'</div></div>';
   function activate(i){
     steps.forEach((_,j)=>{
       const el=document.getElementById("guideStep"+j); if(!el)return;
@@ -257,7 +257,7 @@ function renderRankingGuide(){
   const c=document.getElementById("aiSynthesis");
   c.innerHTML=`<div class="synthesis-ready">✓ Your Ranking Guide is ready</div>
   <div class="synthesis-card">
-    <span class="synthesis-label">Generated SCU Guide · Leaderboard</span>
+    <span class="synthesis-label">Generated Leaderboard AI Guide</span>
     <h3>Build on sector strength. Deepen applied judgement.</h3>
     <p>Your leaderboard shows a meaningful Public Sector concentration, but the best development plan is not simply to chase the easiest available points.</p>
 
