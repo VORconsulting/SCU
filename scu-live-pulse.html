@@ -36,16 +36,20 @@ nav{display:flex;align-items:center;gap:17px;font-size:10px;font-weight:800;colo
 @keyframes coreBreath{0%,100%{transform:translate(-50%,-50%) scale(.94);filter:brightness(.9)}45%{transform:translate(-50%,-50%) scale(1.06);filter:brightness(1.14)}}
 @keyframes ringBreath{0%,100%{transform:scale(.9);opacity:.28}50%{transform:scale(1.12);opacity:.75}}
 
-.topic{position:absolute;width:118px;height:118px;border-radius:50%;z-index:7;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;background:radial-gradient(circle at 35% 28%,rgba(61,154,218,.28),rgba(5,31,51,.92) 62%);border:1px solid rgba(102,204,255,.55);box-shadow:0 0 22px rgba(43,130,218,.25);transition:filter .7s,box-shadow .7s,border-color .7s,opacity .7s}
+.topic{--topic-size:118px;--pulse-rgb:88,201,255;position:absolute;width:var(--topic-size);height:var(--topic-size);border-radius:50%;z-index:7;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;background:radial-gradient(circle at 35% 28%,rgba(61,154,218,.28),rgba(5,31,51,.92) 62%);border:1px solid rgba(102,204,255,.55);box-shadow:0 0 22px rgba(43,130,218,.25);transition:filter .7s,box-shadow .7s,border-color .7s,opacity .7s}
+.topic:before,.topic:after{content:"";position:absolute;inset:-8px;border-radius:50%;border:1.5px solid rgba(var(--pulse-rgb),.52);opacity:0;pointer-events:none;animation:topicHalo var(--pulse-time,8s) ease-out infinite;animation-delay:var(--pulse-delay,0s)}
+.topic:after{inset:-15px;border-color:rgba(var(--pulse-rgb),.30);animation-delay:calc(var(--pulse-delay,0s) - 2.7s)}
+@keyframes topicHalo{0%,55%{transform:scale(.94);opacity:0}62%{opacity:.72}100%{transform:scale(1.48);opacity:0}}
+.topic>div{animation:topicBreath var(--breath-time,8s) ease-in-out infinite;animation-delay:var(--pulse-delay,0s)}
+@keyframes topicBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.065)}}
 .topic b{font-size:10px;display:block;line-height:1.15}.topic span{display:block;font-size:8px;color:#8bdcff;margin-top:5px}.topic em{display:block;font-style:normal;font-size:7px;color:#7798ab;margin-top:3px}
-.topic.strong{border-color:rgba(255,75,111,.72);box-shadow:0 0 28px rgba(220,0,55,.27);background:radial-gradient(circle at 35% 28%,rgba(220,0,55,.24),rgba(5,31,51,.92) 64%)}.topic.strong span{color:#ff738f}
-.topic.growing{border-color:rgba(255,153,67,.7);box-shadow:0 0 25px rgba(255,120,15,.2)}.topic.growing span{color:#ffad6a}
-.topic.early{opacity:.68}
-.t1{left:5%;top:13%}.t2{left:35%;top:3%}.t3{right:6%;top:13%}.t4{right:0;top:49%}.t5{right:13%;bottom:2%}.t6{left:34%;bottom:0}.t7{left:1%;bottom:11%}.t8{left:-3%;top:45%}
-.topic.scan-hit{filter:brightness(1.55);box-shadow:0 0 42px rgba(88,201,255,.55)}
-.topic.revising{animation:none!important;transition:transform 1.3s ease,opacity 1.3s ease;transform:scale(.78);opacity:.7}
-.topic.retained{animation:none!important;transition:transform 1.3s ease,opacity 1.3s ease;transform:scale(1.14);opacity:1;box-shadow:0 0 38px rgba(88,201,255,.48)}
-
+.topic.strong{--pulse-rgb:242,59,96;border-color:rgba(255,75,111,.72);box-shadow:0 0 28px rgba(220,0,55,.27);background:radial-gradient(circle at 35% 28%,rgba(220,0,55,.24),rgba(5,31,51,.92) 64%)}.topic.strong span{color:#ff738f}
+.topic.growing{--pulse-rgb:255,138,52;border-color:rgba(255,153,67,.7);box-shadow:0 0 25px rgba(255,120,15,.2)}.topic.growing span{color:#ffad6a}
+.topic.early{opacity:.68;--pulse-rgb:215,234,255}
+.t1{--topic-size:164px;--pulse-time:5.9s;--pulse-delay:-1.2s;left:0%;top:8%}.t2{--topic-size:136px;--pulse-time:7.0s;--pulse-delay:-4.1s;left:35%;top:3%}.t3{--topic-size:122px;--pulse-time:8.0s;--pulse-delay:-2.6s;right:7%;top:14%}.t4{--topic-size:86px;--pulse-time:10.2s;--pulse-delay:-6.2s;right:1%;top:51%}.t5{--topic-size:112px;--pulse-time:8.7s;--pulse-delay:-3.4s;right:15%;bottom:3%}.t6{--topic-size:126px;--pulse-time:7.7s;--pulse-delay:-5.1s;left:34%;bottom:0}.t7{--topic-size:154px;--pulse-time:6.3s;--pulse-delay:-2.1s;left:0%;bottom:6%}.t8{--topic-size:144px;--pulse-time:6.8s;--pulse-delay:-6.4s;left:-3%;top:45%}
+.topic.scan-hit{filter:brightness(1.55);box-shadow:0 0 42px rgba(88,201,255,.55)}.topic.revising{opacity:.48;filter:saturate(.65);box-shadow:0 0 12px rgba(88,201,255,.12)}.topic.retained{opacity:1;filter:brightness(1.22);border-color:rgba(126,222,255,.9);box-shadow:0 0 44px rgba(88,201,255,.52)}
+.topic.event-pulse{filter:brightness(1.5);box-shadow:0 0 52px rgba(88,201,255,.62)}.topic.event-pulse:before{animation:impactPulse 1.85s ease-out 1!important}.topic.event-pulse:after{animation:impactPulse 1.85s .20s ease-out 1!important}.topic.event-pulse>div{animation:impactBreath 1.25s ease-in-out 1!important}
+@keyframes impactPulse{0%{transform:scale(.92);opacity:.82}100%{transform:scale(1.62);opacity:0}}@keyframes impactBreath{0%,100%{transform:scale(1)}48%{transform:scale(1.09)}}
 .side{padding-top:8px}.side-card{background:var(--panel);border:1px solid rgba(88,201,255,.23);border-radius:13px;padding:14px;margin-bottom:12px;box-shadow:0 15px 40px rgba(0,0,0,.18);backdrop-filter:blur(12px)}.side-title{font-size:9px;letter-spacing:1.1px;color:#82d9ff;font-weight:900;margin-bottom:10px}.activity{display:grid;grid-template-columns:8px 1fr auto;gap:8px;padding:9px 0;border-top:1px solid rgba(255,255,255,.055);align-items:start}.activity:first-of-type{border-top:0}.dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px rgba(88,201,255,.8);margin-top:2px}.activity b{font-size:8px;display:block}.activity span{font-size:7px;color:#7591a4}.activity time{font-size:7px;color:#5f7d91}
 .legend{display:flex;align-items:center;gap:7px;font-size:8px;color:#a8bdca;margin:7px 0}.lg{width:8px;height:8px;border-radius:50%}.blue{background:#49c9ff}.red{background:#f23b60}.orange{background:#ff8a34}.white{background:#d7eaff}
 
@@ -157,7 +161,7 @@ footer{border-top:1px solid rgba(88,201,255,.1);padding:23px 5vw;color:#648296;f
 
 <section class="concept">
  <div class="eyebrow">A LIVING KNOWLEDGE SYSTEM</div><h2>Knowledge flows. AI revises. What matters becomes clearer.</h2>
- <p>Every pulse works in both directions. New conversations, experiences and expertise flow into SCU Live and strengthen relevant knowledge signals. AI then connects, compares and revises that knowledge, reducing noise, highlighting the strongest signals and sending the most useful insight back into faculties, learning journeys and workplace capability.</p>
+ <p>Every pulse works in both directions. Topic size reflects the relative strength of a knowledge signal, while luminous ripples show knowledge arriving, leaving and being reinforced. New conversations, experiences and expertise flow into SCU Live and strengthen relevant knowledge signals. AI then connects, compares and revises that knowledge, reducing noise, highlighting the strongest signals and sending the most useful insight back into faculties, learning journeys and workplace capability.</p>
  <div class="loop"><div>WORK & EXPERTISE</div><span>⇄</span><div>SCU AI INTELLIGENCE</div><span>⇄</span><div>KNOWLEDGE SIGNALS</div><span>⇄</span><div>CAPABILITY</div></div>
  <p class="quote">The Corporate University does not simply collect more knowledge. <strong>It continuously learns what matters.</strong></p>
 </section>
@@ -181,16 +185,29 @@ function drawStars(t){
 function center(){const u=document.getElementById('universe').getBoundingClientRect(),h=document.querySelector('.hero').getBoundingClientRect();return{x:u.left-h.left+u.width*.5,y:u.top-h.top+u.height*.48}}
 function topicCenters(){const h=document.querySelector('.hero').getBoundingClientRect();return [...document.querySelectorAll('.topic')].map(el=>{const r=el.getBoundingClientRect();return{x:r.left-h.left+r.width/2,y:r.top-h.top+r.height/2,el}})}
 function addWave(dir='out',color='blue'){waves.push({r:18,a:.8,dir,color,max:dir==='out'?330:250})}
+function pulseTopic(el){
+ if(!el)return;
+ el.classList.remove('event-pulse');void el.offsetWidth;el.classList.add('event-pulse');
+ setTimeout(()=>el.classList.remove('event-pulse'),1900);
+}
+function cascadeTopicPulse(){
+ const topics=[...document.querySelectorAll('.topic')];
+ [0,6,7,1,2,5,4,3].forEach((idx,n)=>setTimeout(()=>pulseTopic(topics[idx]),n*155));
+}
 function addFlows(direction='in',count=18){
  const c=center(),ts=topicCenters();
- for(let i=0;i<count;i++){const target=ts[Math.floor(Math.random()*ts.length)];flows.push({c,target,t:Math.random()*.12,s:.0022+Math.random()*.0018,dir:direction,col:direction==='in'?'88,201,255':(Math.random()<.35?'255,120,15':'242,59,96'),size:2.8+Math.random()*2.4})}
+ for(let i=0;i<count;i++){
+   const target=ts[Math.floor(Math.random()*ts.length)];
+   flows.push({c,target,t:Math.random()*.12,s:.0022+Math.random()*.0018,dir:direction,col:direction==='in'?'88,201,255':(Math.random()<.35?'255,120,15':'242,59,96'),size:2.8+Math.random()*2.4,triggered:false});
+   if(direction==='in'&&Math.random()<.72)setTimeout(()=>pulseTopic(target.el),180+Math.random()*1100);
+ }
 }
 function drawPulse(){
  pctx.clearRect(0,0,W,H);const c=center(),ts=topicCenters();
  // faint relational arcs
  ts.forEach((t,i)=>{pctx.strokeStyle='rgba(76,171,225,.075)';pctx.lineWidth=.8;pctx.beginPath();pctx.moveTo(c.x,c.y);const mx=(c.x+t.x)/2+(i%2?22:-22);pctx.quadraticCurveTo(mx,(c.y+t.y)/2,t.x,t.y);pctx.stroke()});
  waves.forEach((w,i)=>{w.r+=w.dir==='out'?1.15:-.9;if(w.dir==='in'&&w.r<=8){waves.splice(i,1);return}w.a-=.006;const col=w.color==='orange'?'255,120,15':w.color==='red'?'242,59,96':'88,201,255';pctx.strokeStyle=`rgba(${col},${Math.max(0,w.a)})`;pctx.lineWidth=1.2;pctx.beginPath();pctx.arc(c.x,c.y,w.r,0,Math.PI*2);pctx.stroke();if(w.a<=0||w.r>w.max)waves.splice(i,1)});
- flows.forEach((f,i)=>{f.t+=f.s;if(f.t>=1){flows.splice(i,1);return}const a=f.dir==='in'?f.target:f.c,b=f.dir==='in'?f.c:f.target;const t=f.t,u=1-t;const bend=(f.target.x<c.x?-1:1)*35;const mx=(a.x+b.x)/2+bend,my=(a.y+b.y)/2;const x=u*u*a.x+2*u*t*mx+t*t*b.x,y=u*u*a.y+2*u*t*my+t*t*b.y;pctx.shadowBlur=20;pctx.shadowColor=`rgba(${f.col},.8)`;pctx.fillStyle=`rgba(${f.col},.95)`;pctx.beginPath();pctx.arc(x,y,f.size,0,Math.PI*2);pctx.fill();
+ flows.forEach((f,i)=>{f.t+=f.s;if(f.t>=1){if(f.dir==='out'&&!f.triggered){pulseTopic(f.target.el);f.triggered=true}flows.splice(i,1);return}const a=f.dir==='in'?f.target:f.c,b=f.dir==='in'?f.c:f.target;const t=f.t,u=1-t;const bend=(f.target.x<c.x?-1:1)*35;const mx=(a.x+b.x)/2+bend,my=(a.y+b.y)/2;const x=u*u*a.x+2*u*t*mx+t*t*b.x,y=u*u*a.y+2*u*t*my+t*t*b.y;pctx.shadowBlur=20;pctx.shadowColor=`rgba(${f.col},.8)`;pctx.fillStyle=`rgba(${f.col},.95)`;pctx.beginPath();pctx.arc(x,y,f.size,0,Math.PI*2);pctx.fill();
  pctx.shadowBlur=0;
  pctx.strokeStyle=`rgba(${f.col},.22)`;pctx.lineWidth=1;pctx.beginPath();pctx.arc(x,y,f.size+5,0,Math.PI*2);pctx.stroke()});
  requestAnimationFrame(drawPulse)
@@ -214,12 +231,12 @@ function clearHits(){document.querySelectorAll('.topic').forEach(x=>x.classList.
 
 async function runPulse(){
  if(running)return;running=true;document.getElementById('phase').classList.add('running');clearHits();const c=document.getElementById('central');c.style.animationDuration='2.4s';
- phase(0);think('Listening across organisational knowledge…');addWave('out','blue');addFlows('in',20);hitTopics([0,2,6,7]);await wait(2100);
- phase(1);think('New knowledge is strengthening relevant signals…');addWave('out','blue');addFlows('in',26);hitTopics([1,3,4,5]);document.getElementById('items').textContent='1,263';await wait(2400);
- phase(2);think('Connecting related experiences, expertise and themes…');addWave('out','red');addFlows('out',24);addFlows('in',16);await wait(2500);
+ phase(0);think('Listening across organisational knowledge…');addWave('out','blue');cascadeTopicPulse();addFlows('in',20);hitTopics([0,2,6,7]);await wait(2100);
+ phase(1);think('New knowledge is strengthening relevant signals…');addWave('out','blue');cascadeTopicPulse();addFlows('in',26);hitTopics([1,3,4,5]);document.getElementById('items').textContent='1,263';await wait(2400);
+ phase(2);think('Connecting related experiences, expertise and themes…');addWave('out','red');cascadeTopicPulse();addFlows('out',24);addFlows('in',16);await wait(2500);
  phase(3);think('Revising: reducing noise and highlighting the strongest meaning…');addWave('out','orange');
  const topics=[...document.querySelectorAll('.topic')];topics.forEach((x,i)=>x.classList.add([0,1,2,6].includes(i)?'retained':'revising'));await wait(2700);
- phase(4);think('Sending refined capability intelligence back into the University…');addWave('out','red');addFlows('out',34);document.getElementById('signals').textContent='97';await wait(2600);
+ phase(4);think('Sending refined capability intelligence back into the University…');addWave('out','red');cascadeTopicPulse();addFlows('out',34);document.getElementById('signals').textContent='97';await wait(2600);
  think('Pulse complete · 3 signals strengthened · 1 capability opportunity identified');await wait(1800);
  document.getElementById('thinking').classList.remove('show');clearHits();c.style.animationDuration='5.8s';running=false;document.getElementById('phase').classList.remove('running');phase(0);
 }
