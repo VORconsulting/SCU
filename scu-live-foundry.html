@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCU Live | Knowledge Foundry</title>
+<style>
+:root{
+  --hope:#DC0037;--inspire:#B50232;--power:#DC0037;--passion:#F01846;--energy:#FF780F;
+  --enrich:#131010;--white:#fff;--g04:#F8F6F6;--g08:#ECE9E9;--g24:#C7C5C5;
+  --g40:#A19F9F;--g60:#686666;--ai:#2B82DA;--positive:#168335;
+  --shadow:0 18px 50px rgba(220,0,55,.10)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#ffffff;color:var(--enrich);overflow-x:hidden}
+button,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+.topline{height:4px;background:linear-gradient(90deg,var(--hope),var(--passion),var(--energy))}
+header{height:68px;position:sticky;top:0;z-index:70;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(255,255,255,.97);backdrop-filter:blur(18px);border-bottom:1px solid #f0e8ea}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--hope),var(--passion));display:grid;place-items:center;color:#fff;font-size:13px;font-weight:900;letter-spacing:-.45px;box-shadow:0 8px 22px rgba(149,5,42,.18)}
+.brand-copy strong{display:block;font-size:14px}.brand-copy span{display:block;font-size:10px;color:#756d70;margin-top:2px}
+nav{display:flex;align-items:center;gap:17px;font-size:11px;font-weight:700;color:#5d5658}nav a:hover{color:var(--hope)}
+.ai-btn{border:1px solid rgba(149,5,42,.2);background:#fff8fa;color:var(--hope);padding:9px 13px;border-radius:999px;font-weight:800}
+.demo-tab{position:fixed;left:0;top:92px;z-index:90;background:#3f3f42;color:#fff;border:0;border-radius:0 7px 7px 0;padding:8px 10px;font-size:9px;letter-spacing:.8px;opacity:.72}
+.demo-panel{position:fixed;left:-250px;top:124px;z-index:89;width:240px;background:#303034;color:#fff;padding:14px;border-radius:0 10px 10px 0;box-shadow:0 12px 30px rgba(0,0,0,.25);transition:.25s}.demo-panel.open{left:0}.demo-panel small{color:#aaa;display:block;margin-bottom:9px}.demo-link{display:block;padding:8px 9px;border-radius:7px;font-size:10px;margin:4px 0;color:#ddd}.demo-link:hover,.demo-link.active{background:#555;color:#fff}
+
+.hero{position:relative;min-height:520px;overflow:hidden;background:
+ radial-gradient(circle at 50% 35%,rgba(240,24,70,.055),transparent 25%),
+ linear-gradient(180deg,#ffffff,#ffffff);border-bottom:1px solid #eee7e9}
+.tech-grid{position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(220,0,55,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(220,0,55,.025) 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(to bottom,#000 40%,transparent)}
+.hero-copy{position:relative;z-index:5;text-align:center;padding:48px 20px 0}.eyebrow{font-size:10px;letter-spacing:2.2px;font-weight:900;color:var(--hope)}h1{font-size:43px;letter-spacing:-1.7px;margin:8px 0 8px}.hero-copy p{max-width:680px;margin:0 auto;color:#70686b;font-size:14px;line-height:1.55}
+.foundry-stage{position:relative;z-index:4;max-width:1180px;height:320px;margin:20px auto 0}
+#cableCanvas{position:absolute;inset:0;width:100%;height:100%}
+.source,.output{position:absolute;width:145px;padding:10px 11px;background:rgba(255,255,255,.96);border:1px solid #f0dfe4;border-radius:11px;box-shadow:0 8px 24px rgba(220,0,55,.055);font-size:9px;z-index:4}
+.source b,.output b{display:block;font-size:10px;color:var(--hope);margin-bottom:3px}.source span,.output span{color:#81777a}
+.s1{left:1%;top:18px}.s2{left:3%;top:112px}.s3{left:1%;top:206px}.o1{right:1%;top:18px}.o2{right:3%;top:112px}.o3{right:1%;top:206px}
+.engine{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:238px;height:238px;border-radius:50%;z-index:5;display:grid;place-items:center}
+.ring{position:absolute;border-radius:50%;border:1px solid rgba(220,0,55,.25);inset:0;animation:spin 18s linear infinite}.ring.r2{inset:19px;border-style:dashed;border-color:rgba(240,24,70,.36);animation-duration:12s;animation-direction:reverse}.ring.r3{inset:42px;border-width:2px;border-color:rgba(220,0,55,.22);animation-duration:8s}
+.ring:before,.ring:after{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:var(--passion);box-shadow:0 0 15px rgba(220,0,55,.55)}.ring:before{left:17%;top:8%}.ring:after{right:9%;bottom:25%}
+.engine-core{width:122px;height:122px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#ffffff,#fffafd 58%,#ffeef3);border:1px solid rgba(220,0,55,.25);box-shadow:0 0 0 9px rgba(220,0,55,.025),0 15px 45px rgba(149,5,42,.16);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.engine-core strong{font-size:17px;color:var(--hope);line-height:1}.engine-core span{font-size:8px;letter-spacing:1.3px;color:#7e6d72;margin-top:8px;font-weight:800}
+.engine.busy .ring{animation-duration:3.2s}.engine.busy .ring.r2{animation-duration:2.3s}.engine.busy .ring.r3{animation-duration:1.5s}.engine.busy .engine-core{box-shadow:0 0 0 12px rgba(240,24,70,.055),0 0 55px rgba(240,24,70,.24)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.process-strip{background:var(--hope);color:#fff;padding:13px 5vw;position:relative;overflow:hidden}.process-strip:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transform:translateX(-100%);animation:sweep 5s infinite}
+.process-inner{max-width:1180px;margin:auto;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;position:relative;z-index:2}.step{text-align:center;font-size:9px;letter-spacing:.8px;font-weight:800;opacity:.65}.step.active{opacity:1}.step:before{content:"";display:block;width:7px;height:7px;border-radius:50%;background:#fff;margin:0 auto 5px;box-shadow:0 0 12px rgba(255,255,255,.65)}
+@keyframes sweep{50%,100%{transform:translateX(100%)}}
+
+main{max-width:1180px;margin:auto;padding:46px 22px 80px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:18px}.kicker{font-size:9px;letter-spacing:1.8px;color:var(--hope);font-weight:900}.section-head h2{font-size:27px;margin:5px 0}.section-head p{max-width:510px;font-size:12px;color:#7c7376;margin:0;line-height:1.5}
+.pipeline{display:grid;grid-template-columns:.82fr 1.36fr .82fr;gap:16px;align-items:stretch}
+.panel{background:#fff;border:1px solid #e9e1e3;border-radius:17px;padding:18px;box-shadow:var(--shadow);position:relative;overflow:hidden}.panel:before{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:linear-gradient(90deg,var(--hope),var(--passion),transparent)}
+.panel h3{font-size:15px;margin:0 0 4px}.panel .sub{font-size:10px;color:#8b8184;margin-bottom:13px}
+.item{padding:10px;border:1px solid #eee5e7;border-radius:10px;margin:8px 0;background:#fdfbfb;position:relative}.item b{font-size:10px;display:block}.item span{font-size:9px;color:#8b8184}.item .live{position:absolute;right:8px;top:8px;width:6px;height:6px;border-radius:50%;background:var(--passion);box-shadow:0 0 0 0 rgba(220,0,55,.4);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(220,0,55,0)}}
+.workbench{background:linear-gradient(145deg,#ffffff,#fffdfd);border-color:#e1c8cf}.work-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eadfe2;padding-bottom:11px}.status{font-size:8px;font-weight:900;color:var(--hope);letter-spacing:1px}
+.idle{height:270px;display:grid;place-items:center;text-align:center;color:#8c8184;font-size:11px}.mini-engine{width:64px;height:64px;border-radius:50%;border:1px solid #d7b6bf;margin:auto auto 11px;display:grid;place-items:center;color:var(--hope);font-size:20px;box-shadow:inset 0 0 20px #fff1f5}
+.transform{width:100%;border:0;border-radius:10px;padding:12px;background:linear-gradient(90deg,#DC0037,#F01846);color:#fff;font-weight:900;font-size:11px;box-shadow:0 9px 25px rgba(149,5,42,.2)}
+.think{display:flex;gap:9px;align-items:center;padding:10px;margin:8px 0;background:#fff;border:1px solid #eadde0;border-radius:9px;font-size:10px;color:#6f6669}.think.active{border-color:#d590a2;color:var(--hope);box-shadow:0 5px 15px rgba(149,5,42,.07)}.think.done{color:var(--positive)}.spin{width:11px;height:11px;border:2px solid #ead9de;border-top-color:var(--passion);border-radius:50%;animation:spin .7s linear infinite}.check{font-weight:900;color:var(--positive)}
+.result h3{font-size:18px;color:var(--hope);margin:5px 0}.result p{font-size:10px;color:#756b6e}.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:12px 0}.stat{padding:9px 5px;border-radius:8px;background:#fff;border:1px solid #eadfe2;text-align:center}.stat b{display:block;color:var(--hope);font-size:16px}.stat span{font-size:7px;color:#897f82}
+.gate{margin-top:12px;border:1px solid #e5d7db;border-radius:11px;padding:11px;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:10px}.gate b{font-size:10px}.gate small{display:block;font-size:8px;color:#8b8184;margin-top:2px}.approve{border:0;background:#ece8e9;color:#766e70;padding:8px 10px;border-radius:8px;font-size:9px;font-weight:800}.approve.ready{background:var(--hope);color:#fff}
+.output-item{transition:.4s}.output-item.locked{opacity:.38;filter:grayscale(1)}.output-item.routed{animation:routeGlow 1.6s ease 2}@keyframes routeGlow{50%{border-color:var(--passion);box-shadow:0 0 20px rgba(220,0,55,.18);transform:translateX(3px)}}
+.routing{margin-top:50px;padding:24px;border-radius:20px;background:#fff;border:1px solid #e8dde0;box-shadow:var(--shadow)}.routing-grid{display:grid;grid-template-columns:.8fr 1.4fr;gap:24px;align-items:center}.routing h2{font-size:26px;margin:5px 0 8px}.routing p{font-size:12px;color:#7d7376;line-height:1.55}
+.route-map{position:relative;height:260px;background:linear-gradient(145deg,#ffffff,#fffdfd);border:1px solid #eee2e5;border-radius:15px;overflow:hidden}.route-map canvas{position:absolute;inset:0;width:100%;height:100%}.route-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;background:var(--hope);color:#fff;width:92px;height:92px;border-radius:50%;display:grid;place-items:center;text-align:center;font-size:10px;font-weight:900;box-shadow:0 0 0 9px rgba(149,5,42,.06),0 10px 30px rgba(149,5,42,.2)}
+.route-node{position:absolute;z-index:3;background:#fff;border:1px solid #dfcdd2;border-radius:9px;padding:7px 9px;font-size:8px;font-weight:800;color:#6d6265}.rn1{left:4%;top:16%}.rn2{right:4%;top:15%}.rn3{left:4%;bottom:15%}.rn4{right:4%;bottom:15%}.rn5{left:41%;bottom:5%}
+.quote{margin:48px auto 0;max-width:830px;text-align:center;font-size:24px;line-height:1.28;font-weight:800}.quote span{color:var(--hope)}
+footer{border-top:1px solid #e8e0e2;padding:24px 6vw;color:#857b7e;font-size:9px;display:flex;justify-content:space-between}
+.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,18px);opacity:0;z-index:100;background:var(--enrich);color:#fff;padding:10px 14px;border-radius:8px;font-size:10px;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:900px){nav a{display:none}.pipeline,.routing-grid{grid-template-columns:1fr}.foundry-stage{transform:scale(.82);transform-origin:top center;margin-bottom:-45px}.process-inner{grid-template-columns:repeat(3,1fr);row-gap:12px}}
+@media(max-width:600px){header{padding:0 14px}.brand-copy span{display:none}h1{font-size:34px}.foundry-stage{transform:scale(.64);width:150%;margin-left:-25%;margin-bottom:-95px}.section-head{display:block}.stats{grid-template-columns:1fr 1fr}.source,.output{width:125px}}
+</style>
+</head>
+<body>
+<div class="topline"></div>
+<header>
+  <div class="brand"><div class="logo">SCU</div><div class="brand-copy"><strong>Sector Corporate University</strong><span>SCU Live · Knowledge Foundry</span></div></div>
+  <nav><a href="index.html">Campus</a><a href="public.html">Faculties</a><a href="individual.html">My Journey</a><a href="leaderboard.html">Leaderboard</a><button class="ai-btn" onclick="document.getElementById('foundry').scrollIntoView()">✦ Knowledge Foundry</button></nav>
+</header>
+
+<button class="demo-tab" onclick="document.getElementById('demoPanel').classList.toggle('open')">DEMO CONCEPTS ▸</button>
+<div class="demo-panel" id="demoPanel"><small>SCU Live concept exploration</small>
+  <a class="demo-link" href="scu-live.html">1 · Living University</a>
+  <a class="demo-link" href="scu-live-pulse.html">2 · Knowledge Pulse</a>
+  <a class="demo-link active" href="scu-live-foundry.html">3 · Knowledge Foundry</a>
+  <a class="demo-link" href="scu-live-universe.html">4 · Knowledge Universe</a>
+</div>
+
+<section class="hero">
+  <div class="tech-grid"></div>
+  <div class="hero-copy">
+    <div class="eyebrow">SCU LIVE · KNOWLEDGE FOUNDRY</div>
+    <h1>Turn organisational knowledge into <span style="color:var(--hope)">capability.</span></h1>
+    <p>AI captures valuable knowledge from real work, connects it to what the organisation already knows, structures it for learning, and intelligently routes validated knowledge to where it can create capability.</p>
+  </div>
+  <div class="foundry-stage">
+    <canvas id="cableCanvas"></canvas>
+    <div class="source s1"><b>MS TEAMS CONVERSATION</b><span>Public Sector SME · 42 min</span></div>
+    <div class="source s2"><b>CLIENT EXPERIENCE</b><span>Municipal infrastructure</span></div>
+    <div class="source s3"><b>COMMUNITY INSIGHT</b><span>Liquidity · 18 contributions</span></div>
+    <div class="engine" id="heroEngine"><div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div><div class="engine-core"><strong>AI</strong><span>KNOWLEDGE<br>FOUNDRY</span></div></div>
+    <div class="output o1"><b>MICROLEARNING</b><span>Fiscal dynamics</span></div>
+    <div class="output o2"><b>CLIENT SCENARIO</b><span>Liquidity challenge</span></div>
+    <div class="output o3"><b>PATHWAY UPDATE</b><span>Public Sector · Developing</span></div>
+  </div>
+</section>
+
+<div class="process-strip"><div class="process-inner">
+  <div class="step active">CAPTURE</div><div class="step">UNDERSTAND</div><div class="step">CONNECT</div><div class="step">STRUCTURE</div><div class="step">VALIDATE</div><div class="step">PUBLISH</div>
+</div></div>
+
+<main>
+<section id="foundry">
+  <div class="section-head"><div><div class="kicker">THE AI TRANSFORMATION ENGINE</div><h2>Watch knowledge become reusable capability.</h2></div><p>The Foundry treats organisational knowledge as a living input. AI accelerates capture and structuring, while expert review protects quality before knowledge is released back into the University.</p></div>
+  <div class="pipeline">
+    <div class="panel">
+      <h3>Knowledge in</h3><div class="sub">Live organisational inputs</div>
+      <div class="item"><span class="live"></span><b>Recorded SME conversation</b><span>Municipal liquidity · Teams</span></div>
+      <div class="item"><span class="live"></span><b>Client experience</b><span>Procurement timing insight</span></div>
+      <div class="item"><b>Deal review</b><span>Provincial funding structure</span></div>
+      <div class="item"><b>Community signal</b><span>18 related contributions</span></div>
+      <div class="item"><b>Expert knowledge</b><span>Public financial management</span></div>
+    </div>
+    <div class="panel workbench">
+      <div class="work-head"><div><h3 style="margin:0">AI Knowledge Foundry</h3><div class="sub" style="margin:2px 0 0">Transformation + capability mapping</div></div><div class="status" id="status">READY</div></div>
+      <div id="workbench"><div class="idle"><div><div class="mini-engine">✦</div><b>Knowledge is ready to enter the Foundry.</b><br>Start the transformation to see AI process it.</div></div></div>
+      <button class="transform" id="transformBtn" onclick="transformKnowledge()">✦ Transform knowledge with AI</button>
+    </div>
+    <div class="panel">
+      <h3>Capability out</h3><div class="sub">Structured outputs · awaiting validation</div>
+      <div class="item output-item locked"><b>Microlearning brief</b><span>Liquidity pressure explained</span></div>
+      <div class="item output-item locked"><b>Client scenario</b><span>Municipal cash-flow challenge</span></div>
+      <div class="item output-item locked"><b>Knowledge check</b><span>5 diagnostic questions</span></div>
+      <div class="item output-item locked"><b>Case insight</b><span>Procurement timing</span></div>
+      <div class="item output-item locked"><b>Pathway recommendation</b><span>Public Sector · Developing</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="routing">
+ <div class="routing-grid">
+  <div><div class="kicker">INTELLIGENT ROUTING</div><h2>Knowledge should find the people who need it.</h2><p>Once validated, AI can connect a new insight to relevant faculties, learning journeys, cases, communities and knowledge resources. The value is not only creating content. It is connecting knowledge to where it can build capability.</p>
+  <button class="transform" id="routeBtn" style="max-width:250px;margin-top:8px" onclick="routeKnowledge()" disabled>Route validated knowledge</button></div>
+  <div class="route-map"><canvas id="routeCanvas"></canvas><div class="route-hub">VALIDATED<br>INSIGHT</div><div class="route-node rn1">PUBLIC SECTOR FACULTY</div><div class="route-node rn2">NALEDI'S JOURNEY</div><div class="route-node rn3">PUBLIC ECONOMICS CASE</div><div class="route-node rn4">COMMUNITY OF PRACTICE</div><div class="route-node rn5">KNOWLEDGE LIBRARY</div></div>
+ </div>
+</section>
+
+<div class="quote">AI does more than create learning. <span>It moves knowledge to where it can create capability.</span></div>
+</main>
+<footer><span>Sector Corporate University · SCU Live · Knowledge Foundry</span><span>Capture → Understand → Connect → Structure → Validate → Publish</span></footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
+
+const cable=document.getElementById('cableCanvas'),cctx=cable.getContext('2d');
+let packets=[],cw=0,ch=0;
+function sizeCable(){const r=cable.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);cw=r.width;ch=r.height;cable.width=cw*d;cable.height=ch*d;cctx.setTransform(d,0,0,d,0,0)}
+function paths(){
+ const hub={x:cw*.5,y:ch*.5};
+ return [
+  [{x:cw*.13,y:45},hub],[{x:cw*.14,y:139},hub],[{x:cw*.13,y:233},hub],
+  [hub,{x:cw*.87,y:45}],[hub,{x:cw*.86,y:139}],[hub,{x:cw*.87,y:233}]
+ ];
+}
+function seedPackets(n=20){const ps=paths();for(let i=0;i<n;i++)packets.push({p:Math.floor(Math.random()*ps.length),t:Math.random(),s:.0015+Math.random()*.0025,orange:Math.random()<.18})}
+function drawCable(){
+ cctx.clearRect(0,0,cw,ch);const ps=paths();
+ ps.forEach((p,i)=>{const [a,b]=p;const mx=(a.x+b.x)/2;cctx.strokeStyle=i<3?'rgba(220,0,55,.25)':'rgba(240,24,70,.22)';cctx.lineWidth=2;cctx.beginPath();cctx.moveTo(a.x,a.y);cctx.bezierCurveTo(mx,a.y,mx,b.y,b.x,b.y);cctx.stroke();
+ cctx.strokeStyle='rgba(220,0,55,.055)';cctx.lineWidth=8;cctx.stroke()});
+ packets.forEach((q,i)=>{const [a,b]=ps[q.p];q.t+=q.s;if(q.t>1){q.t=0;q.p=Math.floor(Math.random()*ps.length);if(packets.length>35&&i>19){packets.splice(i,1);return}}
+ const t=q.t,u=1-t,mx=(a.x+b.x)/2;const x=u*u*u*a.x+3*u*u*t*mx+3*u*t*t*mx+t*t*t*b.x;const y=u*u*u*a.y+3*u*u*t*a.y+3*u*t*t*b.y+t*t*t*b.y;
+ const col=q.orange?'255,120,15':'240,24,70';cctx.shadowBlur=12;cctx.shadowColor=`rgba(${col},.7)`;cctx.fillStyle=`rgb(${col})`;cctx.beginPath();cctx.arc(x,y,q.orange?2.5:2,0,Math.PI*2);cctx.fill();cctx.shadowBlur=0});
+ requestAnimationFrame(drawCable)
+}
+sizeCable();seedPackets();drawCable();addEventListener('resize',sizeCable);
+function surge(n=12){seedPackets(n);document.getElementById('heroEngine').classList.add('busy');setTimeout(()=>document.getElementById('heroEngine').classList.remove('busy'),1800)}
+
+async function transformKnowledge(){
+ const btn=document.getElementById('transformBtn'),wb=document.getElementById('workbench'),st=document.getElementById('status');
+ btn.disabled=true;btn.textContent='AI Knowledge Foundry is working…';st.textContent='PROCESSING';wb.innerHTML='';
+ const stages=[
+  ['Receiving organisational knowledge','CAPTURE'],
+  ['Understanding context and meaning','UNDERSTAND'],
+  ['Connecting with existing organisational knowledge','CONNECT'],
+  ['Mapping knowledge to capability requirements','STRUCTURE'],
+  ['Structuring reusable learning assets','STRUCTURE'],
+  ['Preparing outputs for expert validation','VALIDATE']
+ ];
+ const topSteps=[...document.querySelectorAll('.step')];
+ for(let i=0;i<stages.length;i++){
+   topSteps.forEach((x,j)=>x.classList.toggle('active',j<=Math.min(i,4)));
+   const d=document.createElement('div');d.className='think active';d.innerHTML='<span class="spin"></span><span>'+stages[i][0]+'…</span>';wb.appendChild(d);surge(8);
+   await wait(i===0?1350:1550);d.className='think done';d.innerHTML='<span class="check">✓</span><span>'+stages[i][0]+'</span>';
+ }
+ st.textContent='SYNTHESISING';surge(18);await wait(1700);
+ wb.innerHTML='<div class="result"><h3>5 capability assets prepared</h3><p>Public Sector knowledge has been structured and mapped to Fiscal Dynamics · Developing.</p><div class="stats"><div class="stat"><b>1</b><span>MICROLEARNING</span></div><div class="stat"><b>1</b><span>SCENARIO</span></div><div class="stat"><b>5</b><span>QUESTIONS</span></div><div class="stat"><b>1</b><span>CASE INSIGHT</span></div><div class="stat"><b>1</b><span>PATHWAY LINK</span></div></div><div class="gate"><div><b>SME REVIEW GATE</b><small>Expert validation required before publication and routing.</small></div><button class="approve ready" onclick="approveKnowledge(this)">Simulate SME approval</button></div></div>';
+ document.querySelectorAll('.output-item').forEach(x=>x.classList.remove('locked'));st.textContent='READY FOR SME REVIEW';btn.textContent='✓ Transformation complete';btn.disabled=false;
+}
+async function approveKnowledge(btn){
+ btn.disabled=true;btn.textContent='Reviewing…';surge(16);await wait(1200);btn.textContent='✓ SME APPROVED';btn.classList.remove('ready');btn.style.background='#168335';btn.style.color='#fff';
+ document.getElementById('status').textContent='VALIDATED';document.getElementById('routeBtn').disabled=false;document.querySelectorAll('.step').forEach(x=>x.classList.add('active'));toast('Knowledge validated. Intelligent routing is now available.');
+}
+const rc=document.getElementById('routeCanvas'),rctx=rc.getContext('2d');let routeT=-1,routeActive=false;
+function sizeRoute(){const r=rc.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);rc.width=r.width*d;rc.height=r.height*d;rctx.setTransform(d,0,0,d,0,0)}
+function routeTargets(){const w=rc.getBoundingClientRect().width,h=rc.getBoundingClientRect().height;return [{x:w*.5,y:h*.5},{x:w*.17,y:h*.23},{x:w*.83,y:h*.22},{x:w*.18,y:h*.77},{x:w*.82,y:h*.77},{x:w*.5,y:h*.88}]}
+function drawRoute(){
+ const r=rc.getBoundingClientRect(),w=r.width,h=r.height;rctx.clearRect(0,0,w,h);const pts=routeTargets(),hub=pts[0];
+ pts.slice(1).forEach((p,i)=>{rctx.strokeStyle='rgba(220,0,55,.20)';rctx.lineWidth=1.5;rctx.beginPath();rctx.moveTo(hub.x,hub.y);rctx.quadraticCurveTo((hub.x+p.x)/2,hub.y+(i%2?20:-20),p.x,p.y);rctx.stroke();
+ if(routeActive){const t=Math.min(1,Math.max(0,routeT-i*.08));if(t>0){const x=hub.x+(p.x-hub.x)*t,y=hub.y+(p.y-hub.y)*t;rctx.shadowBlur=13;rctx.shadowColor='rgba(220,0,55,.7)';rctx.fillStyle='#DC0037';rctx.beginPath();rctx.arc(x,y,3,0,Math.PI*2);rctx.fill();rctx.shadowBlur=0}}});
+ if(routeActive&&routeT<1.4){routeT+=.008;requestAnimationFrame(drawRoute)}
+}
+sizeRoute();drawRoute();addEventListener('resize',()=>{sizeRoute();drawRoute()});
+async function routeKnowledge(){
+ const b=document.getElementById('routeBtn');b.disabled=true;b.textContent='Routing knowledge…';routeT=0;routeActive=true;drawRoute();surge(15);await wait(3200);
+ document.querySelectorAll('.output-item').forEach((x,i)=>setTimeout(()=>x.classList.add('routed'),i*120));b.textContent='✓ Knowledge routed';toast('Validated insight connected across the Corporate University.');
+}
+</script>
+</body>
+</html>
